@@ -58,7 +58,6 @@
 ;; flymake-mode for haskell:
 (require 'flymake)
 
-
 ;; optional setting
 ;; if you want to use flymake always, then add the following hook.
 (add-hook
@@ -122,24 +121,13 @@
   ; mode-specific keywords
   (add-to-list 'ac-dictionary-directories "~/Emacs/auto-complete/dict")
 
-  ;; I'm using the extension from http://madscientist.jp/~ikegami/diary/20090215.html
-  ;; Except that the module names are produced by ghc-mod http://www.mew.org/~kazu/proj/ghc-mod/en/
-  ;; There's also http://www.emacswiki.org/emacs/auto-complete-extension.el, that can do hoogle search
   
   ;; Somehow the hook doesn't enable auto-complete-mode for Haskell although it should
   ; ac-modes lists all modes with auto-complete enabled
   (setq ac-modes
       (append '(scheme-mode haskell-mode literate-haskell-mode tuareg-mode js-mode inferior-haskell-mode)
               ac-modes)))
-  ; http://github.com/brianjcj/auto-complete-clang
-  ;; (require 'auto-complete-clang)
-  ;; )
 
-;; (add-hook 'c-mode-common-hook
-;;    (lambda ()
-;;      (push 'ac-source-clang ac-sources)
-;;      ))
-;; (setq ac-clang-auto-save nil)
 
 (add-hook 'inferior-haskell-mode-hook
    (lambda ()
