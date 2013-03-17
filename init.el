@@ -31,12 +31,9 @@
 (winner-mode 1)
 
 ;; add auto-complete
-;; dirty fix for having AC everywhere
-(define-globalized-minor-mode real-global-auto-complete-mode
-  auto-complete-mode (lambda ()
-                       (if (not (minibufferp (current-buffer)))
-                         (auto-complete-mode 1))
-                       ))
-(real-global-auto-complete-mode t)
+(require 'auto-complete-extension)
+(auto-complete-mode 1)
 ;; end of auto-complete setup
+
+
 

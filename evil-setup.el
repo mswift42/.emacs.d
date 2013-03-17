@@ -10,3 +10,10 @@
 (key-chord-define evil-visual-state-map "kj" 'evil-change-to-previous-state)
 (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
 (key-chord-define evil-replace-state-map "kj" 'evil-normal-state)
+
+;; evil-leader setup:
+
+(evil-leader/set-leader ",")
+(evil-leader/set-key
+  "m" 'magit-status
+  "h" 'helm-mini)

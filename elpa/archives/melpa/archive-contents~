@@ -1672,7 +1672,7 @@
 	    (20120509)))
 	  "helm-sources and some utilities for GNU R. [source: github]" single])
  (helm .
-       [(20130317 823)
+       [(20130317 247)
 	nil "Helm is an Emacs incremental and narrowing framework [source: github]" tar])
  (header2 .
 	  [(20121228 2051)
@@ -2778,7 +2778,7 @@
 	     (1 4)))
 	   "Auto-complete sources for input of mathematical symbols and latex tags [source: github]" single])
  (ac-js2 .
-	 [(20130314 2336)
+	 [(20130317 310)
 	  ((js2-mode
 	    (20090723))
 	   (skewer-mode
