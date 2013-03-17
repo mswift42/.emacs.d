@@ -135,3 +135,8 @@
      )))
 
 ;; end of auto-complete for haskell 
+
+;; weather-metno-setup:
+(setq weather-metno-location-name "City_of_Edinburgh,Scotland"
+      weather-metno-location-latitude 56
+      weather-metno-location-longitude 3)

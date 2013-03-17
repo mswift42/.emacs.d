@@ -18,7 +18,7 @@
   "m" 'magit-status
   "g r" 'golden-ratio
   "t w" 'toggle-window-split
-  "k" 'kill-buffer
+  "c" 'kill-buffer
   "f" 'find-file
   "b" 'switch-to-buffer
   "h" 'windmove-left
