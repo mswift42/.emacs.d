@@ -16,4 +16,8 @@
 (evil-leader/set-leader ",")
 (evil-leader/set-key
   "m" 'magit-status
-  "r" 'golden-ratio)
+  "r" 'golden-ratio
+  "t" 'toggle-window-split)
+
+
+
