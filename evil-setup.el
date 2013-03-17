@@ -24,7 +24,8 @@
   "h" 'windmove-left
   "l" 'windmove-right
   "j" 'windmove-down
-  "k" 'windmove-up)
+  "k" 'windmove-up
+  "o c" 'org-capture)
 
 
 

@@ -522,7 +522,7 @@
 		  [(20121202 1829)
 		   nil "Intelligently indent with tabs, align with spaces! [source: github]" single])
  (smart-tab .
-	    [(20130304 1509)
+	    [(20130317 1157)
 	     nil "Intelligent tab completion and indentation. [source: github]" single])
  (smart-operator .
 		 [(20051013 1756)
@@ -1427,7 +1427,7 @@
 		[(20121004 1726)
 		 nil "Watch continuous integration build status [source: github]" single])
  (jedi .
-       [(20130315 1610)
+       [(20130317 927)
 	((epc
 	  (0 1 0))
 	 (auto-complete
@@ -1622,10 +1622,10 @@
 		 (20120811)))
 	       "Migemo plug-in for helm [source: github]" single])
  (helm-mercurial-queue .
-		       [(20130226 1504)
+		       [(20130317 2030)
 			nil "No description available. [source: github]" tar])
  (helm-ls-git .
-	      [(20130310 1401)
+	      [(20130317 2028)
 	       nil "list git files. [source: github]" single])
  (helm-gtags .
 	     [(20130309 100)

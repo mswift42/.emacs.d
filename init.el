@@ -140,3 +140,11 @@
 (setq weather-metno-location-name "City_of_Edinburgh,Scotland"
       weather-metno-location-latitude 56
       weather-metno-location-longitude 3)
+
+;; org-capture:
+(setq org-default-notes-file (expand-file-name "~/todo.org"))
+
+;; change flymake faces to underlines:
+(custom-set-faces
+ '(flymake-errline ((((class color)) (:underline "red"))))
+ '(flymake-warnline ((((class color)) (:underline "yellow")))))
