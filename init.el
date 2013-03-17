@@ -1,6 +1,8 @@
 ;; disable tool and Menu bar:
 (tool-bar-mode -1)
 (menu-bar-mode -1)
+;; disable scroll bar:
+(scroll-bar-mode -1)
 ;;(add-to-list 'load-path "~/.emacs.d/evil-setup.el")
 (add-to-list 'load-path "~/.emacs.d/")
 
