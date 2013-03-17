@@ -45,3 +45,41 @@
 
 
 
+;; use y/n instead of yes / no:
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+;; flymake-mode for haskell:
+(require 'flymake)
+
+(defun flymake-Haskell-init ()
+  (flymake-simple-make-init-impl
+   'flymake-create-temp-with-folder-structure nil nil
+   (file-name-nondirectory buffer-file-name)
+   'flymake-get-Haskell-cmdline))
+
+(defun flymake-get-Haskell-cmdline (source base-dir)
+  (list "flycheck_haskell.pl"
+	(list source base-dir)))
+
+(push '(".+\\.hs$" flymake-Haskell-init flymake-simple-java-cleanup)
+      flymake-allowed-file-name-masks)
+(push '(".+\\.lhs$" flymake-Haskell-init flymake-simple-java-cleanup)
+      flymake-allowed-file-name-masks)
+(push
+ '("^\\(\.+\.hs\\|\.lhs\\):\\([0-9]+\\):\\([0-9]+\\):\\(.+\\)"
+   1 2 3 4) flymake-err-line-patterns)
+
+;; optional setting
+;; if you want to use flymake always, then add the following hook.
+(add-hook
+ 'haskell-mode-hook
+ '(lambda ()
+    (if (not (null buffer-file-name)) (flymake-mode))))
+
+(add-hook 'haskell-mode-hook 'flymake-hlint-load)
+
+;; enable ido-mode:
+(setq ido-enable-flex-matching t)
+  (setq ido-everywhere t)
+  (ido-mode 1)
+

@@ -16,4 +16,4 @@
 (evil-leader/set-leader ",")
 (evil-leader/set-key
   "m" 'magit-status
-  "h" 'helm-mini)
+  "r" 'golden-ratio)
