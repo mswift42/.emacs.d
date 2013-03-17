@@ -20,7 +20,11 @@
   "t w" 'toggle-window-split
   "k" 'kill-buffer
   "f" 'find-file
-  "b" 'switch-to-buffer)
+  "b" 'switch-to-buffer
+  "h" 'windmove-left
+  "l" 'windmove-right
+  "j" 'windmove-down
+  "k" 'windmove-up)
 
 
 
