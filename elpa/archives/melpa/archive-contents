@@ -120,7 +120,7 @@
 	[(20130114 1335)
 	 nil "Writable grep buffer and apply the changes to files [source: github]" single])
  (weechat .
-	  [(20130316 1636)
+	  [(20130317 1417)
 	   nil "No description available. [source: github]" tar])
  (websocket .
 	    [(20130123 2144)
@@ -511,7 +511,7 @@
 	   [(20130312 1839)
 	    nil "Support sequential operation which omitted prefix keys. [source: github]" single])
  (smartparens .
-	      [(20130315 2109)
+	      [(20130317 1536)
 	       ((dash
 		 (1 0 2)))
 	       "Smart insertion and wrapping with parens/user defined pairs/tags [source: github]" tar])
@@ -1217,9 +1217,9 @@
  (map-progress .
 	       [(20120927 1839)
 		nil "mapping macros that report progress [source: github]" tar])
- (mainline .
-	   [(20130317 1521)
-	    nil "modeline replacement forked from an early version of powerline.el [source: github]" single])
+ (main-line .
+	    [(20130317 1521)
+	     nil "modeline replacement forked from an early version of powerline.el [source: github]" single])
  (magnet .
 	 [(20121107 1805)
 	  nil "one config and one data directory for Emacs [source: github]" single])
@@ -2007,7 +2007,7 @@
 	  "Quickly navigate to FIXME notices in code [source: github]" single])
  (findr .
 	[(20130127 2032)
-	 nil "Breadth-first file-finding facility for (X)Emacs [source: wiki]" tar])
+	 nil "Breadth-first file-finding facility for (X)Emacs [source: wiki]" single])
  (find-file-in-repository .
 			  [(20130221 811)
 			   nil "Quickly find files in a git, mercurial or other repository [source: github]" single])
@@ -2609,6 +2609,9 @@
  (birds-of-paradise-plus-theme .
 			       [(20120811 1252)
 				nil "A brown/orange light-on-dark theme for Emacs 24 (deftheme). [source: github]" single])
+ (bdo .
+      [(20130314 1020)
+       nil "Do things to a browser page from Emacs. BETA! [source: github]" tar])
  (bbdb-vcard .
 	     [(20121206 1058)
 	      ((bbdb

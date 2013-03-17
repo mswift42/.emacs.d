@@ -16,8 +16,11 @@
 (evil-leader/set-leader ",")
 (evil-leader/set-key
   "m" 'magit-status
-  "r" 'golden-ratio
-  "t" 'toggle-window-split)
+  "g r" 'golden-ratio
+  "t w" 'toggle-window-split
+  "k" 'kill-buffer
+  "f" 'find-file
+  "b" 'switch-to-buffer)
 
 
 

@@ -7,6 +7,7 @@
 
 (scroll-bar-mode -1)
 (display-battery-mode 1)
+(set-fringe-mode 0)
 
 ;;(add-to-list 'load-path "~/.emacs.d/evil-setup.el")
 
@@ -39,8 +40,10 @@
 (winner-mode 1)
 
 ;; add auto-complete
+(require 'auto-complete-config)
 (require 'auto-complete-extension)
-(auto-complete-mode 1)
+(add-to-list 'ac-dictionary-directories "/home/martin/.emacs.d//ac-dict")
+
 ;; end of auto-complete setup
 
 
@@ -51,23 +54,6 @@
 ;; flymake-mode for haskell:
 (require 'flymake)
 
-(defun flymake-Haskell-init ()
-  (flymake-simple-make-init-impl
-   'flymake-create-temp-with-folder-structure nil nil
-   (file-name-nondirectory buffer-file-name)
-   'flymake-get-Haskell-cmdline))
-
-(defun flymake-get-Haskell-cmdline (source base-dir)
-  (list "flycheck_haskell.pl"
-	(list source base-dir)))
-
-(push '(".+\\.hs$" flymake-Haskell-init flymake-simple-java-cleanup)
-      flymake-allowed-file-name-masks)
-(push '(".+\\.lhs$" flymake-Haskell-init flymake-simple-java-cleanup)
-      flymake-allowed-file-name-masks)
-(push
- '("^\\(\.+\.hs\\|\.lhs\\):\\([0-9]+\\):\\([0-9]+\\):\\(.+\\)"
-   1 2 3 4) flymake-err-line-patterns)
 
 ;; optional setting
 ;; if you want to use flymake always, then add the following hook.
@@ -110,3 +96,50 @@
           (select-window first-win)
           (if this-win-2nd (other-window 1))))))
 
+
+;; python jedi setup:
+(setq jedi:setup-keys t)
+(add-hook 'python-mode-hook 'jedi:setup)
+
+
+;; auto-complete the 2nd.
+(when (require 'auto-complete-config)
+  ; Load the default configs and do some further tweaking
+  (ac-config-default)
+  (define-key ac-complete-mode-map "\C-n" 'ac-next)
+  (define-key ac-complete-mode-map "\C-p" 'ac-previous)
+
+  ;; default sources of candidates
+  (setq-default ac-sources (cons 'ac-source-yasnippet ac-sources))
+
+  ;; A new way of adding keywords is through dictionary:
+  ; Any user defined keywords go here
+  ;(add-to-list 'ac-user-dictionary "foobar@example.com")
+  ; mode-specific keywords
+  (add-to-list 'ac-dictionary-directories "~/Emacs/auto-complete/dict")
+
+  ;; I'm using the extension from http://madscientist.jp/~ikegami/diary/20090215.html
+  ;; Except that the module names are produced by ghc-mod http://www.mew.org/~kazu/proj/ghc-mod/en/
+  ;; There's also http://www.emacswiki.org/emacs/auto-complete-extension.el, that can do hoogle search
+  
+  ;; Somehow the hook doesn't enable auto-complete-mode for Haskell although it should
+  ; ac-modes lists all modes with auto-complete enabled
+  (setq ac-modes
+      (append '(scheme-mode haskell-mode literate-haskell-mode tuareg-mode js-mode inferior-haskell-mode)
+              ac-modes)))
+  ; http://github.com/brianjcj/auto-complete-clang
+  ;; (require 'auto-complete-clang)
+  ;; )
+
+;; (add-hook 'c-mode-common-hook
+;;    (lambda ()
+;;      (push 'ac-source-clang ac-sources)
+;;      ))
+;; (setq ac-clang-auto-save nil)
+
+(add-hook 'inferior-haskell-mode-hook
+   (lambda ()
+     (setq ac-sources '(my/ac-source-haskell ac-source-dictionary ac-source-words-in-same-mode-buffers)
+     )))
+
+;; end of auto-complete for haskell 
