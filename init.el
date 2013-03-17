@@ -9,6 +9,10 @@
 (display-battery-mode 1)
 (set-fringe-mode 0)
 
+;; set default font:
+
+(set-frame-font "Source Code Pro-11")
+
 ;;(add-to-list 'load-path "~/.emacs.d/evil-setup.el")
 
 (add-to-list 'load-path "~/.emacs.d/")
