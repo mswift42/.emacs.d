@@ -1,69 +1,74 @@
 ;; set custom file
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
-
+ 
 ;; disable tool and Menu bar:
-
+ 
 (tool-bar-mode -1)
 (menu-bar-mode -1)
-
+ 
 ;; disable scroll bar , load-battery. :
-
+ 
 (scroll-bar-mode -1)
 (display-battery-mode 1)
 (set-fringe-mode 0)
-
+ 
 ;; set default font:
-
+ 
 (set-frame-font "Source Code Pro-11")
-
+ 
 ;;(add-to-list 'load-path "~/.emacs.d/evil-setup.el")
-
+ 
 (add-to-list 'load-path "~/.emacs.d/")
-
+ 
 ;; add repos for elpa
-
+ 
 (require 'package)
-
+ 
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-			 ("marmalade" . "http://marmalade-repo.org/packages/")
-			 ("melpa" . "http://melpa.milkbox.net/packages/")))
-
+ 			 ("marmalade" . "http://marmalade-repo.org/packages/")
+ 			 ("melpa" . "http://melpa.milkbox.net/packages/")))
+ 
 (package-initialize)
-
+ 
 ;; end of elpa setup
-
+ 
 ;; add key-chords
 (require 'key-chord)
 (key-chord-mode 1)
-
+ 
 ;; evil setup:
 (require 'evil-setup)
-
+ 
 ;; set theme :
 (load-theme 'gruber-darker)
-
-
+ 
+ 
 ;; add winner-mode
 (winner-mode 1)
-
+ 
 ;; add auto-complete
 (require 'auto-complete-config)
 (require 'auto-complete-extension)
 (add-to-list 'ac-dictionary-directories "/home/martin/.emacs.d//ac-dict")
-
+ 
 ;; end of auto-complete setup
-
-
-
+ 
+ 
+ 
 ;; use y/n instead of yes / no:
 (defalias 'yes-or-no-p 'y-or-n-p)
-
+ 
 ;; flymake-mode for haskell:
 (require 'flymake)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'flymake-mode nil)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
+(add-hook 'haskell-mode-hook 'flymake-hlint-load)
+(add-hook 'haskell-mode-hook 'flymake-mode t)
+(add-hook 'haskell-mode-hook 'eldoc-mode)
+
 
 
 ;; enable ido-mode:
