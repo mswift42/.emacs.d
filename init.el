@@ -41,7 +41,7 @@
 (require 'evil-setup)
  
 ;; set theme :
-(load-theme 'gruber-darker)
+(load-theme 'inkpot)
  
  
 ;; add winner-mode
