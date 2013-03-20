@@ -4,7 +4,6 @@
 
 (require 'evil-leader)
 (require 'surround)
-(setq evil-default-cursor t)
 (evil-mode 1)
 
 (key-chord-define evil-normal-state-map "kj" 'evil-force-normal-state)

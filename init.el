@@ -1,3 +1,7 @@
+;; set custom file
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+
 ;; disable tool and Menu bar:
 
 (tool-bar-mode -1)
@@ -37,7 +41,7 @@
 (require 'evil-setup)
 
 ;; set theme :
-(load-theme 'gruber-darker t)
+(load-theme 'gruber-darker)
 
 
 ;; add winner-mode
@@ -57,15 +61,10 @@
 
 ;; flymake-mode for haskell:
 (require 'flymake)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
 
-;; optional setting
-;; if you want to use flymake always, then add the following hook.
-(add-hook
- 'haskell-mode-hook
- '(lambda ()
-    (if (not (null buffer-file-name)) (flymake-mode))))
-
-(add-hook 'haskell-mode-hook 'flymake-hlint-load)
 
 ;; enable ido-mode:
 (setq ido-enable-flex-matching t)
@@ -138,7 +137,7 @@
 
 ;; weather-metno-setup:
 (setq weather-metno-location-name "City_of_Edinburgh,Scotland"
-      weather-metno-location-latitude 56
+      weather-metno-location-latitude 55
       weather-metno-location-longitude 3)
 
 ;; org-capture:
@@ -152,43 +151,11 @@
  ;; If there is more than one, they won't work right.
  '(flymake-errline ((((class color)) (:underline "red"))))
  '(flymake-warnline ((((class color)) (:underline "yellow")))))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("967c58175840fcea30b56f2a5a326b232d4939393bed59339d21e46cf4798ecf" default))))
+
 
 ;; Org-mode setup:
 
-(custom-set-variables
- '(org-agenda-files (quote ("~/todo.org")))
- '(org-default-notes-file "~/notes.org")
- '(org-agenda-ndays 7)
- '(org-deadline-warning-days 14)
- '(org-agenda-show-all-dates t)
- '(org-agenda-skip-deadline-if-done t)
- '(org-agenda-skip-scheduled-if-done t)
- '(org-agenda-start-on-weekday nil)
- '(org-reverse-note-order t)
- '(org-fast-tag-selection-single-key (quote expert))
- '(org-agenda-custom-commands
-   (quote (("d" todo "DELEGATED" nil)
-       ("c" todo "DONE|DEFERRED|CANCELLED" nil)
-       ("w" todo "WAITING" nil)
-       ("W" agenda "" ((org-agenda-ndays 21)))
-       ("A" agenda ""
-        ((org-agenda-skip-function
-          (lambda nil
-        (org-agenda-skip-entry-if (quote notregexp) "\\=.*\\[#A\\]")))
-         (org-agenda-ndays 1)
-         (org-agenda-overriding-header "Today's Priority #A tasks: ")))
-       ("u" alltodo ""
-        ((org-agenda-skip-function
-          (lambda nil
-        (org-agenda-skip-entry-if (quote scheduled) (quote deadline)
-                      (quote regexp) "\n]+>")))
-         (org-agenda-overriding-header "Unscheduled TODO entries: ")))))))
+
 
 (setq org-default-notes-file (expand-file-name "~/notes.org"))
 (setq org-capture-templates
@@ -196,3 +163,6 @@
          "* TODO %?\n  %i\n  %a")))
 
 ;; end of org-mode .
+
+
+(setq evil-default-cursor t)
