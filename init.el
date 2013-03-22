@@ -41,7 +41,7 @@
 (require 'evil-setup)
  
 ;; set theme :
-(load-theme 'inkpot)
+(load-theme 'gruber-darker)
  
  
 ;; add winner-mode
@@ -68,6 +68,7 @@
 (add-hook 'haskell-mode-hook 'flymake-hlint-load)
 (add-hook 'haskell-mode-hook 'flymake-mode t)
 (add-hook 'haskell-mode-hook 'eldoc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 
 
 
@@ -171,3 +172,12 @@
 
 
 (setq evil-default-cursor t)
+
+
+;; hl-line+ mode:
+(defface hl-line '((t (:background "Black")))
+  "Face to use for `hl-line-face'." :group 'hl-line)
+(setq hl-line-face 'hl-line)
+(require 'hl-line+)
+(toggle-hl-line-when-idle 1)
+(hl-line-when-idle-interval 5)
