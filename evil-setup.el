@@ -4,6 +4,7 @@
 
 (require 'evil-leader)
 (require 'surround)
+(global-surround-mode 1)
 (evil-mode 1)
 
 (key-chord-define evil-normal-state-map "kj" 'evil-force-normal-state)
@@ -25,6 +26,8 @@
   "l" 'windmove-right
   "j" 'windmove-down
   "k" 'windmove-up
+  "w b" 'winner-undo
+  "w r" 'winner-redo
   "o c" 'org-capture)
 
 

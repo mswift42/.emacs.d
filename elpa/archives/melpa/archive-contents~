@@ -78,6 +78,13 @@
  (workgroups .
 	     [(20110724 1825)
 	      nil "workgroups for windows (for Emacs) [source: github]" single])
+ (with-namespace .
+		 [(20130321 1619)
+		  ((dash
+		    (1 1 0))
+		   (loop
+		    (1 1)))
+		  "Poor-man's namespaces for elisp [source: github]" single])
  (windsize .
 	   [(20110728 1636)
 	    nil "Simple, intuitive window resizing [source: github]" single])
@@ -658,7 +665,7 @@
 	       (3 0 15)))
 	     "Major mode for editing Sass files [source: github]" single])
  (sackspace .
-	    [(20130315 250)
+	    [(20130321 1944)
 	     nil "A better backspace [source: github]" single])
  (s .
     [(20130320 1524)
@@ -1281,6 +1288,11 @@
  (magit-commit-training-wheels .
 			       [(20121223 154)
 				nil "Advice for magit-log-edit-commit [source: github]" single])
+ (magit .
+	[(20130319 2223)
+	 ((cl-lib
+	   (0 2)))
+	 "Control Git from Emacs. [source: github]" tar])
  (mag-menu .
 	   [(20130224 56)
 	    ((splitter
@@ -1993,6 +2005,11 @@
 		 ((flymake-easy
 		   (0 1)))
 		 "A flymake handler for haskell-mode files using hlint [source: github]" single])
+ (flymake-haskell-multi .
+			[(20130321 1737)
+			 ((flymake-easy
+			   (0 1)))
+			 "Syntax-check haskell-mode using both ghc and hlint [source: github]" tar])
  (flymake-haml .
 	       [(20121104 1904)
 		((flymake-easy
@@ -2796,8 +2813,8 @@
       [(20130215 1117)
        nil "Alberto's Emacs interface for Mercurial (Hg) [source: hg]" single])
  (ag .
-     [(20130309 1625)
-      nil "A front-end for ag, the C ack replacement. [source: github]" single])
+     [(20130321 1734)
+      nil "A front-end for ag ('the silver searcher'), the C ack replacement. [source: github]" single])
  (aes .
       [(20130121 413)
        nil "Implementation of AES [source: github]" single])
@@ -2847,8 +2864,5 @@
 	      nil "auto-complete.el source for dabbrev [source: wiki]" single])
  (abl-mode .
 	   [(20120718 1655)
-	    nil "Python TDD minor mode [source: github]" single])
- (magit .
-	[(20130318 1630)
-	 nil "Control Git from Emacs. [source: github]" tar]))
+	    nil "Python TDD minor mode [source: github]" single]))
 

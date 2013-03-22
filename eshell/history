@@ -39,3 +39,9 @@ ghc --make ex2.hs
 ./ex2 $
 ./ex2 "*$*"
 ./ex2 " *"
+cd
+cd .emacs.d.backup17032013/cd
+cd haskell/writeyourself/
+ghc --make hitch1.hs 
+./hitch1 hitch1.hs
+echo "PIMMEL" | runghc hitch1.hs
