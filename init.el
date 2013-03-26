@@ -41,7 +41,7 @@
 (require 'evil-setup)
  
 ;; set theme :
-(load-theme 'gruber-darker)
+(load-theme 'inkpot)
  
  
 ;; add winner-mode
@@ -68,7 +68,7 @@
 (add-hook 'haskell-mode-hook 'flymake-hlint-load)
 (add-hook 'haskell-mode-hook 'flymake-mode t)
 (add-hook 'haskell-mode-hook 'eldoc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 
 
 
@@ -130,7 +130,7 @@
   ;; Somehow the hook doesn't enable auto-complete-mode for Haskell although it should
   ; ac-modes lists all modes with auto-complete enabled
   (setq ac-modes
-      (append '(scheme-mode haskell-mode literate-haskell-mode tuareg-mode js-mode inferior-haskell-mode)
+      (append '(scheme-mode haskell-mode literate-haskell-mode tuareg-mode js-mode inferior-haskell-mode scala-mode scala-mode2)
               ac-modes)))
 
 
@@ -149,14 +149,6 @@
 ;; org-capture:
 (setq org-default-notes-file (expand-file-name "~/todo.org"))
 
-;; change flymake faces to underlines:
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(flymake-errline ((((class color)) (:underline "red"))))
- '(flymake-warnline ((((class color)) (:underline "yellow")))))
 
 
 ;; Org-mode setup:
@@ -173,11 +165,48 @@
 
 (setq evil-default-cursor t)
 
+;; load the ensime lisp code...
+(add-to-list 'load-path "~/ensime_2.9.2-0.9.8.9/elisp")
+(require 'ensime)
 
-;; hl-line+ mode:
-(defface hl-line '((t (:background "Black")))
-  "Face to use for `hl-line-face'." :group 'hl-line)
-(setq hl-line-face 'hl-line)
-(require 'hl-line+)
-(toggle-hl-line-when-idle 1)
-(hl-line-when-idle-interval 5)
+;; This step causes the ensime-mode to be started whenever
+;; scala-mode is started for a buffer. You may have to customize this step
+;; if you're not using the standard scala mode.
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+
+;; setup python :
+(setq py-install-directory "~/.emacs.d/site-lisp/python-mode.el-6.1.1")
+(add-to-list 'load-path py-install-directory)
+(require 'python-mode)
+
+;; python flycheck:
+
+(add-hook 'python-mode 'flycheck-mode)
+
+;; switch window contents
+(defun rotate-windows ()
+  "Rotate your windows"
+  (interactive)
+  (cond ((not (> (count-windows)1))
+         (message "You can't rotate a single window!"))
+        (t
+         (setq i 1)
+         (setq numWindows (count-windows))
+         (while  (< i numWindows)
+           (let* (
+                  (w1 (elt (window-list) i))
+                  (w2 (elt (window-list) (+ (% i numWindows) 1)))
+
+                  (b1 (window-buffer w1))
+                  (b2 (window-buffer w2))
+
+                  (s1 (window-start w1))
+                  (s2 (window-start w2))
+                  )
+             (set-window-buffer w1  b2)
+             (set-window-buffer w2 b1)
+             (set-window-start w1 s2)
+             (set-window-start w2 s1)
+             (setq i (1+ i)))))))
+
+;; End of switch window contents.

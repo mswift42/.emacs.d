@@ -45,3 +45,19 @@ cd haskell/writeyourself/
 ghc --make hitch1.hs 
 ./hitch1 hitch1.hs
 echo "PIMMEL" | runghc hitch1.hs
+cd
+cd ensime-sbt-cmd/
+ls
+cd ..
+cd ensime_2.9.2-0.9.8.9/elisp/
+ls
+cd ..
+ghc -O2 --make euler69.hs 
+./euler69 
+locate Feed
+locate Scorefeed.hs 
+cd
+less eu70.hs 
+ghc --help
+ghc -O --make eu70.hs 
+./eu70

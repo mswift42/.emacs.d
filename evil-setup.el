@@ -20,6 +20,7 @@
   "m" 'magit-status
   "g r" 'golden-ratio
   "t w" 'toggle-window-split
+  "r w" 'rotate-windows
   "f" 'find-file
   "b" 'switch-to-buffer
   "h" 'windmove-left
