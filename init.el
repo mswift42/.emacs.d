@@ -32,6 +32,10 @@
 (package-initialize)
  
 ;; end of elpa setup
+
+;; set themes directory:
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
  
 ;; add key-chords
 (require 'key-chord)
@@ -41,7 +45,7 @@
 (require 'evil-setup)
  
 ;; set theme :
-(load-theme 'inkpot)
+(load-theme 'solarized-dark)
  
  
 ;; add winner-mode
@@ -165,23 +169,20 @@
 
 (setq evil-default-cursor t)
 
-;; load the ensime lisp code...
-(add-to-list 'load-path "~/ensime_2.9.2-0.9.8.9/elisp")
-(require 'ensime)
+;; ;; load the ensime lisp code...
+;; (add-to-list 'load-path "~/ensime_2.9.2-0.9.8.9/elisp")
+;; (require 'ensime)
 
-;; This step causes the ensime-mode to be started whenever
-;; scala-mode is started for a buffer. You may have to customize this step
-;; if you're not using the standard scala mode.
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+;; ;; This step causes the ensime-mode to be started whenever
+;; ;; scala-mode is started for a buffer. You may have to customize this step
+;; ;; if you're not using the standard scala mode.
+;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 ;; setup python :
 (setq py-install-directory "~/.emacs.d/site-lisp/python-mode.el-6.1.1")
 (add-to-list 'load-path py-install-directory)
 (require 'python-mode)
 
-;; python flycheck:
-
-(add-hook 'python-mode 'flycheck-mode)
 
 ;; switch window contents
 (defun rotate-windows ()
@@ -210,3 +211,14 @@
              (setq i (1+ i)))))))
 
 ;; End of switch window contents.
+
+;; Sunrise / Sunset ThemeChanger
+(setq calendar-location-name "Edinburgh, UK")
+(setq calendar-latitude 56.0 )
+(setq calendar-longitude -3.2)
+
+;; setup Ruby:
+(require 'ruby-tools)
+(require 'ruby-electric)
+(add-hook 'ruby-mode 'ruby-tools-mode 1)
+(add-hook 'ruby-mode 'ruby-electric-mode)

@@ -1,63 +1,128 @@
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+cd
 ls
-cp /home/martin/eu48.hs ~/project-euler/euler48.hs
-cd 
-cd project-euler-2/
+cd googlereader/
+ls
+cd martin.haesler@gmail.com-takeout/
+cd Reader/
+ls
+rake
+rake
 cd ..
-cd project-euler/
+cd ruby_koans/
 ls
-less euler40.py
-less euler30.py 
-less euler30.py 
-less euler34.py 
-make euler34.hs
-ghc -O2 --make euler34.hs
-./euler34
-python euler34
-ghc -O2 --make euler34.hs
-./euler34
-ghc -O2 --make euler29.hs
-./euler29
-python euler29.py
-less euler29.py
-cd
-cd haskell/writeyourself/
-ghc --make ex1.hs 
-./ex1.hs Pimmel
-./ex1 Pimmel
-ghc --make ex1.hs 
-./ex1 Pimmel Hoden
-ghc --make ex1.hs 
-ghc --make ex1.hs 
-./ex1 3 4
-ghc --make ex1.hs 
-./ex1 3 4
-show 23
-ghc --make ex2.hs 
-./ex2 *
-./ex2 a
-./ex2 $a
-./ex2 $
-./ex2 "*$*"
-./ex2 " *"
-cd
-cd .emacs.d.backup17032013/cd
-cd haskell/writeyourself/
-ghc --make hitch1.hs 
-./hitch1 hitch1.hs
-echo "PIMMEL" | runghc hitch1.hs
-cd
-cd ensime-sbt-cmd/
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
 ls
 cd ..
-cd ensime_2.9.2-0.9.8.9/elisp/
+sh un.sh
 ls
-cd ..
-ghc -O2 --make euler69.hs 
-./euler69 
-locate Feed
-locate Scorefeed.hs 
-cd
-less eu70.hs 
-ghc --help
-ghc -O --make eu70.hs 
-./eu70
+sh run.sh
+sh run.sh
+sh run.sh
+sh run.sh
+sh run.sh
+sh run.sh
+sh run.sh
+sh run.sh
+sh run.sh
+sh run.sh
+sh run.sh
+sh run.sh
+sh run.sh
+sh run.sh
+sh run.sh
+sh run.sh
+sh run.sh
+sh run.sh
+sh run.sh
+sh run.sh
+sh run.sh
+cd ruby_koans/
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
