@@ -244,3 +244,10 @@
 (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
 
 (add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
+
+;; swap '(' with '[' :
+(define-key paredit-mode-map (kbd "[") 'paredit-open-round)
+(define-key paredit-mode-map (kbd "]") 'paredit-close-round)
+(define-key paredit-mode-map (kbd "M-[") 'paredit-wrap-round)
+(define-key paredit-mode-map (kbd "(") 'paredit-open-square)
+(define-key paredit-mode-map (kbd ")") 'paredit-close-square)
