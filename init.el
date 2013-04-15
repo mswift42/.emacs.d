@@ -81,6 +81,13 @@
   (setq ido-everywhere t)
   (ido-mode 1)
 
+;; setup smex
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+
 ;; toggle window-split:
 
 (defun toggle-window-split ()
@@ -222,3 +229,18 @@
 (require 'ruby-electric)
 (add-hook 'ruby-mode 'ruby-tools-mode 1)
 (add-hook 'ruby-mode 'ruby-electric-mode)
+
+;; setup Yasnippet :
+(yas-global-mode 1)
+
+;; common Lisp:
+;; paredit hook:
+(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+(add-hook 'ielm-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+(add-hook 'scheme-mode-hook           #'enable-paredit-mode)
+
+(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))

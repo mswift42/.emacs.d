@@ -7,6 +7,11 @@
 (global-surround-mode 1)
 (evil-mode 1)
 
+;; emacs keybindings in insert-state:
+(setcdr evil-insert-state-map nil)
+(define-key evil-insert-state-map
+  (read-kbd-macro evil-toggle-key) 'evil-emacs-state)
+
 (key-chord-define evil-normal-state-map "kj" 'evil-force-normal-state)
 (key-chord-define evil-visual-state-map "kj" 'evil-change-to-previous-state)
 (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)

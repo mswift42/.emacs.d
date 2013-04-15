@@ -22,21 +22,6 @@ rake
 rake
 rake
 rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
 cd
 ls
 cd googlereader/
@@ -99,6 +84,21 @@ sh run.sh
 sh run.sh
 sh run.sh
 cd ruby_koans/
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
+rake
 rake
 rake
 rake
