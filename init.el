@@ -164,6 +164,7 @@
 
 ;; Org-mode setup:
 
+(define-key mode-specific-map [?a] 'org-agenda)
 
 
 (setq org-default-notes-file (expand-file-name "~/notes.org"))
@@ -245,9 +246,15 @@
 
 (add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
 
-;; swap '(' with '[' :
-(define-key paredit-mode-map (kbd "[") 'paredit-open-round)
-(define-key paredit-mode-map (kbd "]") 'paredit-close-round)
-(define-key paredit-mode-map (kbd "M-[") 'paredit-wrap-round)
-(define-key paredit-mode-map (kbd "(") 'paredit-open-square)
-(define-key paredit-mode-map (kbd ")") 'paredit-close-square)
+;; (load (expand-file-name "~/quicklisp/slime-helper.el"))
+;; ;; Replace "sbcl" with the path to your implementation
+;; (setq inferior-lisp-program "sbcl")
+;; setup Clojure:
+(add-hook 'clojure-mode-hook 'paredit-mode)
+
+(add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
+(setq nrepl-hide-special-buffers t)
+(add-hook 'nrepl-mode-hook 'paredit-mode)
+
+
+
