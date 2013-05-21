@@ -46,6 +46,7 @@
  
 ;; set theme :
 (load-theme 'solarized-dark)
+(hl-line-mode t)
  
  
 ;; add winner-mode
@@ -141,7 +142,7 @@
   ;; Somehow the hook doesn't enable auto-complete-mode for Haskell although it should
   ; ac-modes lists all modes with auto-complete enabled
   (setq ac-modes
-      (append '(scheme-mode haskell-mode literate-haskell-mode tuareg-mode js-mode inferior-haskell-mode scala-mode scala-mode2)
+      (append '(clojure-mode scheme-mode haskell-mode literate-haskell-mode tuareg-mode js-mode inferior-haskell-mode scala-mode scala-mode2)
               ac-modes)))
 
 
@@ -238,23 +239,51 @@
 ;; paredit hook:
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
 (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
 (add-hook 'ielm-mode-hook             #'enable-paredit-mode)
 (add-hook 'lisp-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
 
 (add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
 
-;; (load (expand-file-name "~/quicklisp/slime-helper.el"))
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
 ;; ;; Replace "sbcl" with the path to your implementation
-;; (setq inferior-lisp-program "sbcl")
+(setq inferior-lisp-program "sbcl")
+(slime-setup '(slime-fancy))
 ;; setup Clojure:
 (add-hook 'clojure-mode-hook 'paredit-mode)
+(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
+(require 'clojure-jump-to-file)
 
 (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
 (setq nrepl-hide-special-buffers t)
 (add-hook 'nrepl-mode-hook 'paredit-mode)
 
+;;smart-mode line:
 
+(add-hook 'after-init-hook 'sml/setup)
 
+;;recentf -mode
+(require 'recentf)
+ 
+;; get rid of `find-file-read-only' and replace it with something
+;; more useful.
+(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
+ 
+;; enable recent files mode.
+(recentf-mode t)
+ 
+; 50 files ought to be enough.
+(setq recentf-max-saved-items 50)
+ 
+(defun ido-recentf-open ()
+  "Use `ido-completing-read' to \\[find-file] a recent file"
+  (interactive)
+  (if (find-file (ido-completing-read "Find recent file: " recentf-list))
+      (message "Opening file...")
+    (message "Aborting")))
+
+;; end of recentf-mode.

@@ -25,8 +25,9 @@
   "m" 'magit-status
   "g r" 'golden-ratio
   "t w" 'toggle-window-split
-  "r w" 'rotate-windows
+  "c w" 'rotate-windows
   "f" 'find-file
+  "r" 'ido-recentf-open
   "b" 'switch-to-buffer
   "h" 'windmove-left
   "l" 'windmove-right
