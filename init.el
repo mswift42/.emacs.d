@@ -6,6 +6,7 @@
  
 (tool-bar-mode -1)
 (menu-bar-mode -1)
+(setq inhibit-startup-message t)
  
 ;; disable scroll bar , load-battery. :
  
@@ -40,13 +41,29 @@
 ;; add key-chords
 (require 'key-chord)
 (key-chord-mode 1)
+
+;; multiple-cursors setup:
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+;; end of multiple cursors
+
+;; ace-jump mode
+(require 'ace-jump-mode)
+(key-chord-define-global "kj" 'ace-jump-mode)
+
+;; change key-binding from complete-at-point:
+(key-chord-define-global "hg" 'completion-at-point)
  
 ;; evil setup:
-(require 'evil-setup)
+;; (require 'evil-setup)
  
 ;; set theme :
 (load-theme 'solarized-dark)
-(hl-line-mode t)
+(hl-line-mode 1)
  
  
 ;; add winner-mode
@@ -240,16 +257,26 @@
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
 (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'lisp-mode-hook 'highlight-parentheses-mode)
 (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
 (add-hook 'ielm-mode-hook             #'enable-paredit-mode)
 (add-hook 'lisp-mode-hook             #'enable-paredit-mode)
 (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'lisp-mode-hook 'show-paren-mode)
 (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
 
 (add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
+(defun cliki:start-slime ()
+  (unless (slime-connected-p)
+    (save-excursion (slime))))
+
+(add-hook 'slime-mode-hook 'cliki:start-slime)
+
+
 
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
+;;(load (expand-file-name "~/quicklisp/setup.lisp"))
 ;; ;; Replace "sbcl" with the path to your implementation
 (setq inferior-lisp-program "sbcl")
 (slime-setup '(slime-fancy))
