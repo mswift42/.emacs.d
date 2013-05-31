@@ -6,6 +6,7 @@
 (require 'surround)
 (global-surround-mode 1)
 (evil-mode 1)
+(global-evil-leader-mode t)
 
 ;; emacs keybindings in insert-state:
 (setcdr evil-insert-state-map nil)
@@ -17,10 +18,9 @@
 (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
 (key-chord-define evil-replace-state-map "kj" 'evil-normal-state)
 
-
 ;; evil-leader setup:
 
-(evil-leader/set-leader ",")
+(evil-leader/set-leader ";")
 (evil-leader/set-key
   "m" 'magit-status
   "g r" 'golden-ratio

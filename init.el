@@ -57,7 +57,7 @@
 
 ;; change key-binding from complete-at-point:
 (key-chord-define-global "hg" 'completion-at-point)
- 
+(key-chord-define-global "nm" 'magit-status) 
 ;; evil setup:
 ;; (require 'evil-setup)
  
@@ -272,6 +272,7 @@
     (save-excursion (slime))))
 
 (add-hook 'slime-mode-hook 'cliki:start-slime)
+
 
 
 
