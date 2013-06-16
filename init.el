@@ -1,4 +1,4 @@
-;; set custom file
+; set custom file
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
  
@@ -49,6 +49,9 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
 ;; end of multiple cursors
 
 ;; ace-jump mode
@@ -56,14 +59,17 @@
 (key-chord-define-global "kj" 'ace-jump-mode)
 
 ;; change key-binding from complete-at-point:
-(key-chord-define-global "hg" 'completion-at-point)
+(key-chord-define-global "hg" 'slime-complete-symbol)
 (key-chord-define-global "nm" 'magit-status) 
+(key-chord-define-global "gr" 'golden-ratio)
+(key-chord-define-global "tw" 'rotate-windows)
 ;; evil setup:
 ;; (require 'evil-setup)
  
 ;; set theme :
 (load-theme 'solarized-dark)
-(hl-line-mode 1)
+(global-hl-line-mode 1)
+
  
  
 ;; add winner-mode
@@ -252,12 +258,21 @@
 ;; setup Yasnippet :
 (yas-global-mode 1)
 
+;; dimm rainbow-delimiters
+(defun krig-paren-clr (n)
+  (let ((c (+ ?\x59 (* (- n 1) 8))))
+    (format "#%X%X%X" c c c)))
+
+(defun krig-rainbow-face-n (n)
+  (intern (format "rainbow-delimiters-depth-%d-face" n)))
+
+
 ;; common Lisp:
 ;; paredit hook:
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
 (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'lisp-mode-hook 'highlight-parentheses-mode)
+;;(add-hook 'lisp-mode-hook 'highlight-parentheses-mode)
 (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
 (add-hook 'ielm-mode-hook             #'enable-paredit-mode)
 (add-hook 'lisp-mode-hook             #'enable-paredit-mode)
@@ -266,14 +281,22 @@
 (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
 
-(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
+;;(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
 (defun cliki:start-slime ()
-  (unless (slime-connected-p)
-    (save-excursion (slime))))
+  (save-excursion (slime)))
 
 (add-hook 'slime-mode-hook 'cliki:start-slime)
+(require 'rainbow-delimiters)
+(global-rainbow-delimiters-mode)
+(cl-loop for i from 1 to 9 do
+	 (set-face-foreground (krig-rainbow-face-n i)
+			      (krig-paren-clr i)))
 
 
+(add-hook 'slime-mode-hook 'set-up-slime-ac)
+(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'slime-repl-mode))
 
 
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
@@ -284,11 +307,20 @@
 ;; setup Clojure:
 (add-hook 'clojure-mode-hook 'paredit-mode)
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
+(cl-loop for i from 1 to 9 do
+	 (set-face-foreground (krig-rainbow-face-n i)
+			      (krig-paren-clr i)))
+
 (require 'clojure-jump-to-file)
 
 (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
 (setq nrepl-hide-special-buffers t)
 (add-hook 'nrepl-mode-hook 'paredit-mode)
+(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+(add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'nrepl-mode))
+
 
 ;;smart-mode line:
 
@@ -315,3 +347,22 @@
     (message "Aborting")))
 
 ;; end of recentf-mode.
+;; open-line-above
+(defun smart-open-line-above ()
+  "Insert an empty line above the current line."
+  (interactive)
+  (move-beginning-of-line nil)
+  (newline-and-indent)
+  (forward-line -1)
+  (indent-according-to-mode))
+
+
+(global-set-key (kbd "M-o") 'smart-open-line-above)
+
+;;end of smart-open line
+
+;; Add Popwin Window-Manger
+(require 'popwin)
+(popwin-mode t)
+
+
