@@ -366,3 +366,22 @@
 (popwin-mode t)
 
 
+;; ;; Try JDEE:
+(add-to-list 'load-path "~/.emacs.d/jdee-2.4.1/lisp")
+;(load "jde")
+
+
+(add-hook 'java-mode-hook '(lambda ()
+			     (load "jde")
+			     (global-semantic-idle-completions-mode t)
+			     (global-semantic-decoration-mode t)
+			     (global-semantic-highlight-func-mode t)
+			     (global-semantic-show-unmatched-syntax-mode t)
+			     (jde-mode)
+			     (setq ac-sources (append '(ac-source-semantic) ac-sources))
+			     (local-set-key (kbd "RET") 'newline-and-indent)
+			     (semantic-mode t)))
+;; ace-jump-buffer-mode:
+
+;; (ace-jump-buffer-mode t)
+;; (global-set-key (kbd "C-x C-b") 'ace-jump-buffer)
