@@ -16,7 +16,7 @@
  
 ;; set default font:
  
-(set-frame-font "Source Code Pro-11")
+(set-frame-font "Source Code Pro 11")
  
 ;;(add-to-list 'load-path "~/.emacs.d/evil-setup.el")
  
@@ -42,6 +42,14 @@
 (require 'key-chord)
 (key-chord-mode 1)
 
+;;load slime-helper for quicklisp:
+
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
+(setq inferior-lisp-program "ccl")
+(slime-setup '(slime-fancy))
+
+
+
 ;; multiple-cursors setup:
 (require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -62,12 +70,14 @@
 (key-chord-define-global "hg" 'slime-complete-symbol)
 (key-chord-define-global "nm" 'magit-status) 
 (key-chord-define-global "gr" 'golden-ratio)
-(key-chord-define-global "tw" 'rotate-windows)
+(key-chord-define-global "rw" 'rotate-windows)
+(key-chord-define-global "tw" 'toggle-window-split)
+
 ;; evil setup:
 ;; (require 'evil-setup)
  
 ;; set theme :
-(load-theme 'solarized-dark)
+(load-theme 'naquadah)
 (global-hl-line-mode 1)
 
  
@@ -280,12 +290,13 @@
 (add-hook 'lisp-mode-hook 'show-paren-mode)
 (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
+(add-hook 'slime-repl-mode-hook (lambda () (smartparens-mode +1)))
 
 ;;(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
-(defun cliki:start-slime ()
-  (save-excursion (slime)))
+;; (defun cliki:start-slime ()
+;;   (save-excursion (slime)))
 
-(add-hook 'slime-mode-hook 'cliki:start-slime)
+;; (add-hook 'slime-mode-hook 'cliki:start-slime)
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode)
 (cl-loop for i from 1 to 9 do
@@ -299,11 +310,9 @@
   '(add-to-list 'ac-modes 'slime-repl-mode))
 
 
-(load (expand-file-name "~/quicklisp/slime-helper.el"))
+
 ;;(load (expand-file-name "~/quicklisp/setup.lisp"))
 ;; ;; Replace "sbcl" with the path to your implementation
-(setq inferior-lisp-program "sbcl")
-(slime-setup '(slime-fancy))
 ;; setup Clojure:
 (add-hook 'clojure-mode-hook 'paredit-mode)
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
@@ -311,11 +320,11 @@
 	 (set-face-foreground (krig-rainbow-face-n i)
 			      (krig-paren-clr i)))
 
-(require 'clojure-jump-to-file)
+;(require 'clojure-jump-to-file)
 
-(add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
-(setq nrepl-hide-special-buffers t)
-(add-hook 'nrepl-mode-hook 'paredit-mode)
+;(add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
+;(setq nrepl-hide-special-buffers t)
+;(add-hook 'nrepl-mode-hook 'paredit-mode)
 (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
 (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
 (eval-after-load "auto-complete"
@@ -366,22 +375,49 @@
 (popwin-mode t)
 
 
-;; ;; Try JDEE:
-(add-to-list 'load-path "~/.emacs.d/jdee-2.4.1/lisp")
-;(load "jde")
+;; ;; ;; Try JDEE:
+;; (add-to-list 'load-path "~/.emacs.d/jdee-2.4.1/lisp")
+;; ;(load "jde")
 
 
-(add-hook 'java-mode-hook '(lambda ()
-			     (load "jde")
-			     (global-semantic-idle-completions-mode t)
-			     (global-semantic-decoration-mode t)
-			     (global-semantic-highlight-func-mode t)
-			     (global-semantic-show-unmatched-syntax-mode t)
-			     (jde-mode)
-			     (setq ac-sources (append '(ac-source-semantic) ac-sources))
-			     (local-set-key (kbd "RET") 'newline-and-indent)
-			     (semantic-mode t)))
-;; ace-jump-buffer-mode:
+;; (add-hook 'java-mode-hook '(lambda ()
+;; 			     (load "jde")
+;; 			     (global-semantic-idle-completions-mode t)
+;; 			     (global-semantic-decoration-mode t)
+;; 			     (global-semantic-highlight-func-mode t)
+;; 			     (global-semantic-show-unmatched-syntax-mode t)
+;; 			     (jde-mode)
+;; 			     (setq ac-sources (append '(ac-source-semantic) ac-sources))
+;; 			     (local-set-key (kbd "RET") 'newline-and-indent)
+;; 			     (semantic-mode t)))
+(setq inferior-lisp-program "ccl")
+(defun lispdoc ()
+  "Searches lispdoc.com for SYMBOL, which is by default the symbol currently under the curser"
+  (interactive)
+  (let* ((word-at-point (word-at-point))
+         (symbol-at-point (symbol-at-point))
+         (default (symbol-name symbol-at-point))
+         (inp (read-from-minibuffer
+               (if (or word-at-point symbol-at-point)
+                   (concat "Symbol (default " default "): ")
+                 "Symbol (no default): "))))
+    (if (and (string= inp "") (not word-at-point) (not
+                                                   symbol-at-point))
+        (message "you didn't enter a symbol!")
+      (let ((search-type (read-from-minibuffer
+                          "full-text (f) or basic (b) search (default b)? ")))
+        (browse-url (concat "http://lispdoc.com?q="
+                            (if (string= inp "")
+                                default
+                              inp)
+                            "&search="
+                            (if (string-equal search-type "f")
+                                "full+text+search"
+                              "basic+search")))))))
 
-;; (ace-jump-buffer-mode t)
-;; (global-set-key (kbd "C-x C-b") 'ace-jump-buffer)
+(define-key lisp-mode-map (kbd "C-c l") 'lispdoc)
+
+(defun byte-compile-init-dir ()
+  "Byte-compile all your dotfiles."
+  (interactive)
+  (byte-recompile-directory user-emacs-directory 0))
