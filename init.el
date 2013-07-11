@@ -13,6 +13,9 @@
 (scroll-bar-mode -1)
 (display-battery-mode 1)
 (set-fringe-mode 0)
+
+;; setup linum-relative:
+
  
 ;; set default font:
  
@@ -31,7 +34,7 @@
  			 ("melpa" . "http://melpa.milkbox.net/packages/")))
  
 (package-initialize)
- 
+
 ;; end of elpa setup
 
 ;; set themes directory:
@@ -45,8 +48,9 @@
 ;;load slime-helper for quicklisp:
 
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
-(setq inferior-lisp-program "ccl")
-(slime-setup '(slime-fancy))
+(setq inferior-lisp-program "sbcl")
+(slime-setup '(slime-fancy slime-tramp slime-asdf))
+
 
 
 
@@ -77,9 +81,9 @@
 ;; (require 'evil-setup)
  
 ;; set theme :
-(load-theme 'naquadah)
-(global-hl-line-mode 1)
-
+(load-theme 'adwaita)
+(set-background-color "#F9F1AE")
+(global-hl-line-mode t)
  
  
 ;; add winner-mode
@@ -290,7 +294,11 @@
 (add-hook 'lisp-mode-hook 'show-paren-mode)
 (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
-(add-hook 'slime-repl-mode-hook (lambda () (smartparens-mode +1)))
+(add-hook 'lisp-mode-hook (lambda () (font-lock-add-keywords nil '(("deftest" . font-lock-keyword-face)
+								   ("clunit:assert-equal" . font-lock-keyword-face)
+								   ("clunit:assert-true" . font-lock-keyword-face)
+								   ("clunit:defsuite" . font-lock-keyword-face)
+								   ("clunit:run-suite" . font-lock-keyword-face)))))
 
 ;;(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
 ;; (defun cliki:start-slime ()
@@ -324,16 +332,10 @@
 
 ;(add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
 ;(setq nrepl-hide-special-buffers t)
-;(add-hook 'nrepl-mode-hook 'paredit-mode)
 (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
 (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
 (eval-after-load "auto-complete"
   '(add-to-list 'ac-modes 'nrepl-mode))
-
-
-;;smart-mode line:
-
-(add-hook 'after-init-hook 'sml/setup)
 
 ;;recentf -mode
 (require 'recentf)
@@ -421,3 +423,32 @@
   "Byte-compile all your dotfiles."
   (interactive)
   (byte-recompile-directory user-emacs-directory 0))
+
+
+;; set yas-expand key
+(global-set-key (kbd "C-<tab>") 'yas-expand-from-trigger-key)
+
+
+;; add column-marker
+(add-hook 'clojure-mode-hook (lambda () (interactive) (column-marker-1 80)))
+(add-hook 'lisp-mode-hook (lambda () (interactive) (column-marker-1 80)))
+
+;; Teach compile the syntax of the kibit output
+(require 'compile)
+(add-to-list 'compilation-error-regexp-alist-alist
+         '(kibit "At \\([^:]+\\):\\([[:digit:]]+\\):" 1 2 nil 0))
+(add-to-list 'compilation-error-regexp-alist 'kibit)
+
+;; A convenient command to run "lein kibit" in the project to which
+;; the current emacs buffer belongs to.
+(defun kibit ()
+  "Run kibit on the current project.
+Display the results in a hyperlinked *compilation* buffer."
+  (interactive)
+  (compile "lein kibit"))
+
+(defun kibit-current-file ()
+  "Run kibit on the current file.
+Display the results in a hyperlinked *compilation* buffer."
+  (interactive)
+  (compile (concat "lein kibit " buffer-file-name)))
