@@ -76,13 +76,14 @@
 (key-chord-define-global "gr" 'golden-ratio)
 (key-chord-define-global "rw" 'rotate-windows)
 (key-chord-define-global "tw" 'toggle-window-split)
+(key-chord-define-global "sc" 'org-capture)
 
 ;; evil setup:
 ;; (require 'evil-setup)
  
 ;; set theme :
-(load-theme 'adwaita)
-(set-background-color "#F9F1AE")
+(load-theme 'ujelly)
+(set-background-color "#080808")
 (global-hl-line-mode t)
  
  
@@ -95,8 +96,9 @@
 (add-to-list 'ac-dictionary-directories "/home/martin/.emacs.d//ac-dict")
  
 ;; end of auto-complete setup
- 
- 
+;; map "C-h" to Delete char.
+(define-key key-translation-map [?\C-h] [?\C-?])
+(global-set-key (kbd "<f1>") 'help-command)
  
 ;; use y/n instead of yes / no:
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -124,6 +126,7 @@
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 ;; This is your old M-x.
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+(global-set-key (kbd "<menu>") 'smex)
 
 
 ;; toggle window-split:
@@ -210,6 +213,8 @@
       '(("t" "Todo" entry (file+headline "~/todo.org" "Tasks")
          "* TODO %?\n  %i\n  %a")))
 
+(global-set-key (kbd "C-c c") 'org-capture)
+
 ;; end of org-mode .
 
 
@@ -294,11 +299,13 @@
 (add-hook 'lisp-mode-hook 'show-paren-mode)
 (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
-(add-hook 'lisp-mode-hook (lambda () (font-lock-add-keywords nil '(("deftest" . font-lock-keyword-face)
-								   ("clunit:assert-equal" . font-lock-keyword-face)
-								   ("clunit:assert-true" . font-lock-keyword-face)
-								   ("clunit:defsuite" . font-lock-keyword-face)
-								   ("clunit:run-suite" . font-lock-keyword-face)))))
+(add-hook 'lisp-mode-hook
+	  (lambda () (font-lock-add-keywords nil '(("deftest" . font-lock-keyword-face)
+						   ("clunit:assert-equal" . font-lock-keyword-face)
+						   ("clunit:assert-true" . font-lock-keyword-face)
+						   ("clunit:defsuite" . font-lock-keyword-face)
+						   ("clunit:run-suite" . font-lock-keyword-face)
+						   ("test" . font-lock-keyword-face)))))
 
 ;;(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
 ;; (defun cliki:start-slime ()
@@ -378,21 +385,20 @@
 
 
 ;; ;; ;; Try JDEE:
-;; (add-to-list 'load-path "~/.emacs.d/jdee-2.4.1/lisp")
-;; ;(load "jde")
+(add-to-list 'load-path "~/.emacs.d/jdee-2.4.1/lisp")
+(load "jde")
 
 
-;; (add-hook 'java-mode-hook '(lambda ()
-;; 			     (load "jde")
-;; 			     (global-semantic-idle-completions-mode t)
-;; 			     (global-semantic-decoration-mode t)
-;; 			     (global-semantic-highlight-func-mode t)
-;; 			     (global-semantic-show-unmatched-syntax-mode t)
-;; 			     (jde-mode)
-;; 			     (setq ac-sources (append '(ac-source-semantic) ac-sources))
-;; 			     (local-set-key (kbd "RET") 'newline-and-indent)
-;; 			     (semantic-mode t)))
-(setq inferior-lisp-program "ccl")
+(add-hook 'java-mode-hook '(lambda ()
+			     (load "jde")
+			     (global-semantic-idle-completions-mode t)
+			     (global-semantic-decoration-mode t)
+			     (global-semantic-highlight-func-mode t)
+			     (global-semantic-show-unmatched-syntax-mode t)
+			     (jde-mode)
+			     (setq ac-sources (append '(ac-source-semantic) ac-sources))
+			     (local-set-key (kbd "RET") 'newline-and-indent)
+			     (semantic-mode t)))
 (defun lispdoc ()
   "Searches lispdoc.com for SYMBOL, which is by default the symbol currently under the curser"
   (interactive)
