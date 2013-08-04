@@ -6,20 +6,20 @@
  
 (tool-bar-mode -1)
 (menu-bar-mode -1)
-(setq inhibit-startup-message t)
+
  
 ;; disable scroll bar , load-battery. :
  
 (scroll-bar-mode -1)
 (display-battery-mode 1)
-(set-fringe-mode 0)
+(set-fringe-mode 1)
 
 ;; setup linum-relative:
 
  
 ;; set default font:
  
-(set-frame-font "Source Code Pro 11")
+(set-frame-font "DejaVu Sans Mono 12")
  
 ;;(add-to-list 'load-path "~/.emacs.d/evil-setup.el")
  
@@ -38,6 +38,14 @@
 ;; end of elpa setup
 
 ;; set themes directory:
+;; set path for go-mode
+;(setenv "GOPATH" "/home/martin/gocode")
+
+(require 'go-autocomplete)
+
+
+
+
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
  
@@ -82,8 +90,8 @@
 ;; (require 'evil-setup)
  
 ;; set theme :
-(load-theme 'ujelly)
-(set-background-color "#080808")
+(load-theme 'sanityinc-tomorrow-night)
+;(set-background-color "#212121")
 (global-hl-line-mode t)
  
  
@@ -178,11 +186,14 @@
   ; mode-specific keywords
   (add-to-list 'ac-dictionary-directories "~/Emacs/auto-complete/dict")
 
+(define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
+
+
   
   ;; Somehow the hook doesn't enable auto-complete-mode for Haskell although it should
   ; ac-modes lists all modes with auto-complete enabled
   (setq ac-modes
-      (append '(clojure-mode scheme-mode haskell-mode literate-haskell-mode tuareg-mode js-mode inferior-haskell-mode scala-mode scala-mode2)
+      (append '(clojure-mode scheme-mode haskell-mode literate-haskell-mode tuareg-mode js-mode inferior-haskell-mode scala-mode scala-mode2 )
               ac-modes)))
 
 
@@ -384,21 +395,22 @@
 (popwin-mode t)
 
 
-;; ;; ;; Try JDEE:
-(add-to-list 'load-path "~/.emacs.d/jdee-2.4.1/lisp")
-(load "jde")
+;; ;; ;; ;; Try JDEE:
+;; (add-to-list 'load-path "~/.emacs.d/jdee-2.4.1/lisp")
+;; (load "jde")
 
 
-(add-hook 'java-mode-hook '(lambda ()
-			     (load "jde")
-			     (global-semantic-idle-completions-mode t)
-			     (global-semantic-decoration-mode t)
-			     (global-semantic-highlight-func-mode t)
-			     (global-semantic-show-unmatched-syntax-mode t)
-			     (jde-mode)
-			     (setq ac-sources (append '(ac-source-semantic) ac-sources))
-			     (local-set-key (kbd "RET") 'newline-and-indent)
-			     (semantic-mode t)))
+;; (add-hook 'java-mode-hook '(lambda ()
+;; 			     (load "jde")
+;; 			     (global-semantic-idle-completions-mode t)
+;; 			     (global-semantic-decoration-mode t)
+;; 			     (global-semantic-highlight-func-mode t)
+;; 			     (global-semantic-show-unmatched-syntax-mode t)
+;; 			     (jde-mode)
+;; 			     (setq ac-sources (append '(ac-source-semantic) ac-sources))
+;; 			     (local-set-key (kbd "RET") 'newline-and-indent)
+;;			     (semantic-mode t)
+;; ))
 (defun lispdoc ()
   "Searches lispdoc.com for SYMBOL, which is by default the symbol currently under the curser"
   (interactive)
@@ -458,3 +470,29 @@ Display the results in a hyperlinked *compilation* buffer."
 Display the results in a hyperlinked *compilation* buffer."
   (interactive)
   (compile (concat "lein kibit " buffer-file-name)))
+
+
+;; setup go-mode:
+(add-hook 'before-save-hook 'gofmt-before-save)
+
+;; setup javascript:
+(autoload 'js2-mode "js2-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+;; (add-hook 'js2-mode-hook 'skewer-mode)
+;; (add-hook 'css-mode-hook 'skewer-css-mode)
+;; (add-hook 'html-mode-hook 'skewer-html-mode)
+;(add-hook ‘js-mode-hook (lambda () (slime-js-minor-mode 1)))
+(add-hook 'js2-mode-hook (lambda () (slime-js-minor-mode 1)))
+
+(global-set-key [f5] 'slime-js-reload)
+(add-hook 'js2-mode-hook
+          (lambda ()
+            (slime-js-minor-mode 1)))
+(add-hook 'css-mode-hook
+          (lambda ()
+            (define-key css-mode-map "\M-\C-x" 'slime-js-refresh-css)
+            (define-key css-mode-map "\C-c\C-r" 'slime-js-embed-css)))
+
+
+
+
