@@ -91,8 +91,9 @@
  
 ;; set theme :
 (load-theme 'wombat)
-;(set-background-color "#f5eca8")
-;(global-hl-line-mode t)
+
+
+
  
 ;; add winner-mode
 (winner-mode 1)
@@ -533,5 +534,11 @@ Display the results in a hyperlinked *compilation* buffer."
 (add-hook 'nrepl-mode-hook 'set-auto-complete-as-completion-at-point-function)
 (add-hook 'nrepl-interaction-mode-hook
 	  'set-auto-complete-as-completion-at-point-function)
+
+;; change slime-output faces:
+(set-face-foreground 'slime-repl-output-face "lightsalmon")
+(set-face-foreground 'slime-repl-result-face "#e2ffb8")
+(set-face-foreground 'slime-repl-inputed-output-face "#e2ffb8")
+
 
 
