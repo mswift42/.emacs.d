@@ -4,7 +4,7 @@
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-capture-last-stored"
  (filename . "~/todo.org")
- (front-context-string . "** TODO emacs se")
- (rear-context-string . "2013-03-17 Sun]\n")
- (position . 1564))
+ (front-context-string . "** TODO thebeeb ")
+ (rear-context-string . " (direction )]]\n")
+ (position . 1801))
 )

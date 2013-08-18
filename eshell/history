@@ -1,128 +1,128 @@
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
+ls *.py
 cd
+go run hel.go 
+cd 
+cd .emacs.d/elpa/
 ls
-cd googlereader/
+cd go-autocomplete-20130617.2214/
+rm go-autocomplete.elc
+go run hel.go 
+go run hel.go 
+go run hel.go 
+cd
+cd gocode/
 ls
-cd martin.haesler@gmail.com-takeout/
-cd Reader/
+cd src
 ls
-rake
-rake
+mkdir hello
+cd he
+cd hello/
+ls
+go build
+ls
+.hello
+less hello
+./hello
+ls
+gorun hel.go
+go run hel.go
+go run hel.go PIMMEL
+go build
+./hello Pimmel
+rm hello
+go build
+./hello Pimmel
+go build
+./hello Pimmel
+cd
+cd gocode/src/github.com/
+ls
+cd dougm/
+ls
+cd goflymake/
+ls
+gocode --help
+gocode --help
+gocode -s
+gocode
+gocode
+gocode --help
+echo $GOCODE
+echo $GOPATH
+gocode --help
+gocode --help
+echoe $GOPATH/bin
+echo $GOPATH/bin
+rm tests.lisp
+rm tests.lisp.old
+rm tests.lisp\~ 
+mkdir lweb
+cd lweb
+ls
+cd
+cd MetalHead/
+ls
+ls
+ls
+mkdir templates
+touch templates/index.html
+touch templates/wager.html
+touch templates/about.html
+rm -rf templates/
+ls
+xskat
+mkdir templates
+touch templates/beeb.html
+mv templates/ ~/thebeeb/
+ls
 cd ..
-cd ruby_koans/
-ls
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
 ls
 cd ..
-sh un.sh
 ls
-sh run.sh
-sh run.sh
-sh run.sh
-sh run.sh
-sh run.sh
-sh run.sh
-sh run.sh
-sh run.sh
-sh run.sh
-sh run.sh
-sh run.sh
-sh run.sh
-sh run.sh
-sh run.sh
-sh run.sh
-sh run.sh
-sh run.sh
-sh run.sh
-sh run.sh
-sh run.sh
-sh run.sh
-cd ruby_koans/
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
-rake
+cp templates/beeb.html resources/
+cd resources/
+ls
+less beeb.html 
+less beeb.html 
+less beeb.html 
+cd ..
+ls
+cd src/
+ls
+cd ..
+lein ring server-headless
+lein ring server-headless
+ls
+rm handler.clj templates.clj 
+ls
+less core.clj 
+cd ..
+ls
+ls
+cd ..
+ls
+cd resources/
+ls
+rm beeb.html 
+ls
+cd ..
+rm -rf templates/
+ls
+xskat
+xskat
+xskat
+xskat
+xskat
+xskat
+xskat
+xskat
+xskat
+xskat
+xskat
+xskat
+xskat
+xskat
+xskat
+xskat
+cd
+less .vimrc

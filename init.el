@@ -12,14 +12,14 @@
  
 (scroll-bar-mode -1)
 (display-battery-mode 1)
-(set-fringe-mode 1)
+(fringe-mode nil)
 
 ;; setup linum-relative:
 
  
 ;; set default font:
  
-(set-frame-font "DejaVu Sans Mono 12")
+(set-frame-font "Ubuntu Mono 13")
  
 ;;(add-to-list 'load-path "~/.emacs.d/evil-setup.el")
  
@@ -90,10 +90,9 @@
 ;; (require 'evil-setup)
  
 ;; set theme :
-(load-theme 'sanityinc-tomorrow-night)
-;(set-background-color "#212121")
-(global-hl-line-mode t)
- 
+(load-theme 'wombat)
+;(set-background-color "#f5eca8")
+;(global-hl-line-mode t)
  
 ;; add winner-mode
 (winner-mode 1)
@@ -193,8 +192,8 @@
   ;; Somehow the hook doesn't enable auto-complete-mode for Haskell although it should
   ; ac-modes lists all modes with auto-complete enabled
   (setq ac-modes
-      (append '(clojure-mode scheme-mode haskell-mode literate-haskell-mode tuareg-mode js-mode inferior-haskell-mode scala-mode scala-mode2 )
-              ac-modes)))
+      (append '(clojure-mode elisp-mode scheme-mode haskell-mode literate-haskell-mode tuareg-mode js2-mode inferior-haskell-mode scala-mode scala-mode2 )
+              ac-modes )))
 
 
 (add-hook 'inferior-haskell-mode-hook
@@ -289,45 +288,49 @@
 (yas-global-mode 1)
 
 ;; dimm rainbow-delimiters
-(defun krig-paren-clr (n)
-  (let ((c (+ ?\x59 (* (- n 1) 8))))
-    (format "#%X%X%X" c c c)))
+;; (defun krig-paren-clr (n)
+;;   (let ((c (+ ?\x59 (* (- n 1) 8))))
+;;     (format "#%X%X%X" c c c)))
 
-(defun krig-rainbow-face-n (n)
-  (intern (format "rainbow-delimiters-depth-%d-face" n)))
+;; (defun krig-rainbow-face-n (n)
+;;   (intern (format "rainbow-delimiters-depth-%d-face" n)))
 
 
 ;; common Lisp:
 ;; paredit hook:
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
 (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
-(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+;;(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 ;;(add-hook 'lisp-mode-hook 'highlight-parentheses-mode)
 (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
 (add-hook 'ielm-mode-hook             #'enable-paredit-mode)
 (add-hook 'lisp-mode-hook             #'enable-paredit-mode)
-(add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
+;;(add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'lisp-mode-hook 'show-paren-mode)
 (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
-(add-hook 'lisp-mode-hook
-	  (lambda () (font-lock-add-keywords nil '(("deftest" . font-lock-keyword-face)
-						   ("clunit:assert-equal" . font-lock-keyword-face)
-						   ("clunit:assert-true" . font-lock-keyword-face)
-						   ("clunit:defsuite" . font-lock-keyword-face)
-						   ("clunit:run-suite" . font-lock-keyword-face)
-						   ("test" . font-lock-keyword-face)))))
+(add-hook
+ 'lisp-mode-hook
+	  (lambda ()
+	    (font-lock-add-keywords nil
+				    '(("deftest" . font-lock-keyword-face)
+				      ("clunit:assert-equal" . font-lock-keyword-face)
+				      ("clunit:assert-true" . font-lock-keyword-face)
+				      ("clunit:defsuite" . font-lock-keyword-face)
+				      ("clunit:run-suite" . font-lock-keyword-face)))))
 
-;;(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
+;; ;;(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
 ;; (defun cliki:start-slime ()
 ;;   (save-excursion (slime)))
 
-;; (add-hook 'slime-mode-hook 'cliki:start-slime)
-(require 'rainbow-delimiters)
-(global-rainbow-delimiters-mode)
-(cl-loop for i from 1 to 9 do
-	 (set-face-foreground (krig-rainbow-face-n i)
-			      (krig-paren-clr i)))
+
+;;(add-hook 'slime-mode-hook 'cliki:start-slime)
+;; (require 'rainbow-delimiters)
+;; (global-rainbow-delimiters-mode)
+;; ;; (cl-loop for i from 1 to 9 do
+;; ;; 	 (set-face-foreground (krig-rainbow-face-n i)
+;; ;			      (krig-paren-clr i)
+;; ))
 
 
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
@@ -341,10 +344,10 @@
 ;; ;; Replace "sbcl" with the path to your implementation
 ;; setup Clojure:
 (add-hook 'clojure-mode-hook 'paredit-mode)
-(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
-(cl-loop for i from 1 to 9 do
-	 (set-face-foreground (krig-rainbow-face-n i)
-			      (krig-paren-clr i)))
+;(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
+;; (cl-loop for i from 1 to 9 do
+;; 	 (set-face-foreground (krig-rainbow-face-n i)
+;; 			      (krig-paren-clr i)))
 
 ;(require 'clojure-jump-to-file)
 
@@ -478,21 +481,57 @@ Display the results in a hyperlinked *compilation* buffer."
 ;; setup javascript:
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-;; (add-hook 'js2-mode-hook 'skewer-mode)
-;; (add-hook 'css-mode-hook 'skewer-css-mode)
-;; (add-hook 'html-mode-hook 'skewer-html-mode)
+(add-hook 'js2-mode-hook 'skewer-mode)
+(add-hook 'css-mode-hook 'skewer-css-mode)
+(add-hook 'html-mode-hook 'skewer-html-mode)
 ;(add-hook ‘js-mode-hook (lambda () (slime-js-minor-mode 1)))
-(add-hook 'js2-mode-hook (lambda () (slime-js-minor-mode 1)))
+;(add-hook 'js2-mode-hook (lambda () (slime-js-minor-mode 1)))
 
-(global-set-key [f5] 'slime-js-reload)
-(add-hook 'js2-mode-hook
-          (lambda ()
-            (slime-js-minor-mode 1)))
-(add-hook 'css-mode-hook
-          (lambda ()
-            (define-key css-mode-map "\M-\C-x" 'slime-js-refresh-css)
-            (define-key css-mode-map "\C-c\C-r" 'slime-js-embed-css)))
+;(load-file "/home/martin/.emacs.d/setup-slime-js.el")
 
+;; (global-set-key [f5] 'slime-js-reload)
+;; (add-hook 'js2-mode-hook
+;;           (lambda ()
+;;             (slime-js-minor-mode 1)))
+;; (add-hook 'css-mode-hook
+;;           (lambda ()
+;;             (define-key css-mode-map "\M-\C-x" 'slime-js-refresh-css)
+;;             (define-key css-mode-map "\C-c\C-r" 'slime-js-embed-css)))
 
+;; Bookmarklet to load skewer:
+;;
+;;     javascript:(function(){var d=document ;var s=d.createElement('script');s.src='http://localhost:8023/skewer';d.body.appendChild(s);})()
+;;
+(defun skewer-start ()
+  (interactive)
+  (let ((httpd-port 8023))
+    (httpd-start)
+    (message "Ready to skewer the browser. Now jack in with the bookmarklet.")))
+
+(defun skewer-demo ()
+  (interactive)
+  (let ((httpd-port 8024))
+    (run-skewer)
+    (skewer-repl)))
+
+(require 'parenface)
+(set-face-foreground 'paren-face "gray32")
+
+(require 'powerline)
+(powerline-center-theme)
+
+(require 'ac-nrepl-compliment)
+(add-hook 'nrepl-mode-hook 'ac-nrepl-compliment-setup)
+(add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-compliment-setup)
+(eval-after-load "auto-complete"
+   '(add-to-list 'ac-modes 'nrepl-mode))
+(defun set-auto-complete-as-completion-at-point-function ()
+  (setq completion-at-point-functions '(auto-complete)))
+(add-hook 'auto-complete-mode-hook
+	  'set-auto-complete-as-completion-at-point-function)
+
+(add-hook 'nrepl-mode-hook 'set-auto-complete-as-completion-at-point-function)
+(add-hook 'nrepl-interaction-mode-hook
+	  'set-auto-complete-as-completion-at-point-function)
 
 

@@ -3,22 +3,22 @@
       [(1 2)
        nil "Interface to ack-like source code search tools" tar])
  (adaptive-wrap .
-		[(0 2)
+		[(0 5)
 		 nil "Smart line-wrapping with wrap-prefix" single])
  (all .
       [(1 0)
        nil "Edit all lines matching a given regexp" single])
  (auctex .
-	 [(11 86)
+	 [(11 86 1)
 	  nil "Integrated environment for *TeX*" tar])
  (cl-lib .
-	 [(0 2)
+	 [(0 3)
 	  nil "Properly prefixed CL functions and macros" single])
  (coffee-mode .
 	      [(0 4 1)
 	       nil "Major mode for CoffeeScript files" tar])
  (company .
-	  [(0 6 9)
+	  [(0 6 10)
 	   nil "Modular in-buffer completion framework" tar])
  (csv-mode .
 	   [(1 2)
@@ -35,6 +35,9 @@
 	      (heap
 	       (0 3)))
 	     "Dictionary data structure" single])
+ (dismal .
+	 [(1 5)
+	  nil "Dis Mode Ain't Lotus: Spreadsheet program Emacs" tar])
  (djvu .
        [(0 5)
 	nil "Edit and view Djvu files via djvused" single])
@@ -57,7 +60,7 @@
 			[(1 1)
 			 nil "Parse and browse f90 interfaces" single])
  (ggtags .
-	 [(0 6 3)
+	 [(0 6 6)
 	  nil "GNU Global source code tagging system" single])
  (heap .
        [(0 3)
@@ -69,12 +72,12 @@
 	      [(1 0)
 	       nil "Major mode for Jgraph files" single])
  (js2-mode .
-	   [(20130510)
+	   [(20130619)
 	    ((emacs
 	      (24 1)))
-	    "Improved JavaScript editing mode" single])
+	    "Improved JavaScript editing mode" tar])
  (jumpc .
-	[(2 0)
+	[(3 0)
 	 nil "jump to previous insertion points" single])
  (lex .
       [(1 1)
@@ -110,13 +113,13 @@
 	    [(1 1)
 	     nil "highlight groups of digits in long numbers" single])
  (oauth2 .
-	 [(0 8)
+	 [(0 9)
 	  nil "OAuth 2.0 Authorization Protocol" single])
  (omn-mode .
 	   [(1 0)
 	    nil "Support for OWL Manchester Notation" single])
  (org .
-      [(20130520)
+      [(20130812)
        nil "Outline-based notes management and organizer" tar])
  (quarter-plane .
 		[(0 1)
@@ -125,7 +128,7 @@
 	[(0 1)
 	 nil "Queue data structure" single])
  (rainbow-mode .
-	       [(0 8)
+	       [(0 9)
 		nil "Colorize color names in buffers" single])
  (register-list .
 		[(0 1)
@@ -146,13 +149,16 @@
 	  [(1 0 4)
 	   nil "Sokoban game for emacs" tar])
  (svg-clock .
-	    [(0 4)
+	    [(0 5)
 	     nil "Analog clock using Scalable Vector Graphics" single])
  (tNFA .
        [(0 1 1)
 	((queue
 	  (0 1)))
 	"Tagged non-deterministic finite-state automata" single])
+ (temp-buffer-browse .
+		     [(1 0)
+		      nil "temp buffer browse mode" single])
  (trie .
        [(0 2 6)
 	((tNFA
@@ -167,8 +173,11 @@
 		  [(0 1)
 		   nil "Unicode confusables table" tar])
  (vlf .
-      [(0 2)
+      [(0 9 1)
        nil "View Large Files" single])
+ (websocket .
+	    [(1 1)
+	     nil "Emacs WebSocket client and server" tar])
  (windresize .
 	     [(0 1)
 	      nil "Resize windows interactively" single])
