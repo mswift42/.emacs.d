@@ -90,8 +90,7 @@
 ;; (require 'evil-setup)
  
 ;; set theme :
-(load-theme 'wombat)
-
+(load-theme 'underwater)
 
 
  
@@ -241,9 +240,9 @@
 ;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 ;; setup python :
-(setq py-install-directory "~/.emacs.d/site-lisp/python-mode.el-6.1.1")
-(add-to-list 'load-path py-install-directory)
-(require 'python-mode)
+;; (setq py-install-directory "~/.emacs.d/site-lisp/python-mode.el-6.1.1")
+;; (add-to-list 'load-path py-install-directory)
+;; (require 'python-mode)
 
 
 ;; switch window contents
@@ -535,10 +534,8 @@ Display the results in a hyperlinked *compilation* buffer."
 (add-hook 'nrepl-interaction-mode-hook
 	  'set-auto-complete-as-completion-at-point-function)
 
-;; change slime-output faces:
-(set-face-foreground 'slime-repl-output-face "lightsalmon")
-(set-face-foreground 'slime-repl-result-face "#e2ffb8")
-(set-face-foreground 'slime-repl-inputed-output-face "#e2ffb8")
+;; change slime-output faces:PP
+
 
 
 
