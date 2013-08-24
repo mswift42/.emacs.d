@@ -90,7 +90,8 @@
 ;; (require 'evil-setup)
  
 ;; set theme :
-(load-theme 'underwater)
+(load-theme 'mustang)
+
 
 
  
@@ -313,24 +314,20 @@
  'lisp-mode-hook
 	  (lambda ()
 	    (font-lock-add-keywords nil
-				    '(("deftest" . font-lock-keyword-face)
+  				    '(("deftest" . font-lock-keyword-face)
 				      ("clunit:assert-equal" . font-lock-keyword-face)
 				      ("clunit:assert-true" . font-lock-keyword-face)
 				      ("clunit:defsuite" . font-lock-keyword-face)
 				      ("clunit:run-suite" . font-lock-keyword-face)))))
 
-;; ;;(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
-;; (defun cliki:start-slime ()
-;;   (save-excursion (slime)))
 
 
-;;(add-hook 'slime-mode-hook 'cliki:start-slime)
-;; (require 'rainbow-delimiters)
-;; (global-rainbow-delimiters-mode)
-;; ;; (cl-loop for i from 1 to 9 do
-;; ;; 	 (set-face-foreground (krig-rainbow-face-n i)
-;; ;			      (krig-paren-clr i)
-;; ))
+(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
+(defun cliki:start-slime ()
+  (save-excursion (slime)))
+
+
+
 
 
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
@@ -340,8 +337,6 @@
 
 
 
-;;(load (expand-file-name "~/quicklisp/setup.lisp"))
-;; ;; Replace "sbcl" with the path to your implementation
 ;; setup Clojure:
 (add-hook 'clojure-mode-hook 'paredit-mode)
 ;(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
@@ -349,10 +344,9 @@
 ;; 	 (set-face-foreground (krig-rainbow-face-n i)
 ;; 			      (krig-paren-clr i)))
 
-;(require 'clojure-jump-to-file)
 
-;(add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
-;(setq nrepl-hide-special-buffers t)
+(add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
+(setq nrepl-hide-special-buffers t)
 (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
 (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
 (eval-after-load "auto-complete"
@@ -440,11 +434,6 @@
 
 (define-key lisp-mode-map (kbd "C-c l") 'lispdoc)
 
-(defun byte-compile-init-dir ()
-  "Byte-compile all your dotfiles."
-  (interactive)
-  (byte-recompile-directory user-emacs-directory 0))
-
 
 ;; set yas-expand key
 (global-set-key (kbd "C-<tab>") 'yas-expand-from-trigger-key)
@@ -454,25 +443,7 @@
 (add-hook 'clojure-mode-hook (lambda () (interactive) (column-marker-1 80)))
 (add-hook 'lisp-mode-hook (lambda () (interactive) (column-marker-1 80)))
 
-;; Teach compile the syntax of the kibit output
-(require 'compile)
-(add-to-list 'compilation-error-regexp-alist-alist
-         '(kibit "At \\([^:]+\\):\\([[:digit:]]+\\):" 1 2 nil 0))
-(add-to-list 'compilation-error-regexp-alist 'kibit)
 
-;; A convenient command to run "lein kibit" in the project to which
-;; the current emacs buffer belongs to.
-(defun kibit ()
-  "Run kibit on the current project.
-Display the results in a hyperlinked *compilation* buffer."
-  (interactive)
-  (compile "lein kibit"))
-
-(defun kibit-current-file ()
-  "Run kibit on the current file.
-Display the results in a hyperlinked *compilation* buffer."
-  (interactive)
-  (compile (concat "lein kibit " buffer-file-name)))
 
 
 ;; setup go-mode:
@@ -484,10 +455,8 @@ Display the results in a hyperlinked *compilation* buffer."
 (add-hook 'js2-mode-hook 'skewer-mode)
 (add-hook 'css-mode-hook 'skewer-css-mode)
 (add-hook 'html-mode-hook 'skewer-html-mode)
-;(add-hook ‘js-mode-hook (lambda () (slime-js-minor-mode 1)))
-;(add-hook 'js2-mode-hook (lambda () (slime-js-minor-mode 1)))
 
-;(load-file "/home/martin/.emacs.d/setup-slime-js.el")
+
 
 ;; (global-set-key [f5] 'slime-js-reload)
 ;; (add-hook 'js2-mode-hook
@@ -534,8 +503,39 @@ Display the results in a hyperlinked *compilation* buffer."
 (add-hook 'nrepl-interaction-mode-hook
 	  'set-auto-complete-as-completion-at-point-function)
 
-;; change slime-output faces:PP
+;; Setup Mu4e
 
+(require 'mu4e)
+(require 'smtpmail)
 
+(setq mu4e-drafts-folder "/Gmail/[Gmail].Drafts"
+      mu4e-sent-folder   "/Gmail/[Gmail].Sent Mail"
+      mu4e-trash-folder  "/Gmail/[Gmail].Trash"
+      mu4e-sent-messages-behavior 'delete
+      mu4e-get-mail-command "offlineimap"
+      mu4e-update-interval 60
+      user-mail-address "youremail@gmail.com"
+      user-full-name  "yourname"
+      mu4e-maildir-shortcuts
+            '( ("/Gmail/INBOX"               . ?i)
+               ("/Gmail/[Gmail].Sent Mail"   . ?s)
+               ("/Gmail/[Gmail].Trash"       . ?t)
+               ("/Gmail/[Gmail].All Mail"    . ?a))
+
+     message-send-mail-function 'smtpmail-send-it
+     smtpmail-stream-type 'starttls
+     smtpmail-default-smtp-server "smtp.gmail.com"
+     smtpmail-smtp-server "smtp.gmail.com"
+     smtpmail-smtp-service 587
+     message-kill-buffer-on-exit t)
+
+(setq mu4e-view-show-images t)
+(when (fboundp 'imagemagick-register-types)
+  (imagemagick-register-types))
+(setq mu4e-view-prefer-html t)
+(setq mu4e-html2text-command "html2text -utf8 -width 72")
+(setq mail-user-agent 'mu4e-user-agent)
+
+;; end of mu4e setup.
 
 
