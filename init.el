@@ -6,6 +6,7 @@
  
 (tool-bar-mode -1)
 (menu-bar-mode -1)
+(column-number-mode 1)
 
  
 ;; disable scroll bar , load-battery. :
@@ -14,12 +15,10 @@
 (display-battery-mode 1)
 (fringe-mode nil)
 
-;; setup linum-relative:
-
  
 ;; set default font:
  
-(set-frame-font "Ubuntu Mono 13")
+(set-frame-font "Source Code Pro 10")
  
 ;;(add-to-list 'load-path "~/.emacs.d/evil-setup.el")
  
@@ -79,7 +78,6 @@
 (key-chord-define-global "kj" 'ace-jump-mode)
 
 ;; change key-binding from complete-at-point:
-(key-chord-define-global "hg" 'slime-complete-symbol)
 (key-chord-define-global "nm" 'magit-status) 
 (key-chord-define-global "gr" 'golden-ratio)
 (key-chord-define-global "rw" 'rotate-windows)
@@ -90,7 +88,9 @@
 ;; (require 'evil-setup)
  
 ;; set theme :
-(load-theme 'mustang)
+
+(load-theme 'soft-morning)
+(global-hl-line-mode)
 
 
 
@@ -122,7 +122,8 @@
 (add-hook 'haskell-mode-hook 'eldoc-mode)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 
-
+;; Add hook to start auto insert mode when starting el files.
+(add-hook 'elisp-mode 'auto-insert-mode t)
 
 ;; enable ido-mode:
 (setq ido-enable-flex-matching t)
@@ -172,7 +173,7 @@
 
 ;; auto-complete the 2nd.
 (when (require 'auto-complete-config)
-  ; Load the default configs and do some further tweaking
+  ; Load the default configs and do some further 
   (ac-config-default)
   (define-key ac-complete-mode-map "\C-n" 'ac-next)
   (define-key ac-complete-mode-map "\C-p" 'ac-previous)
@@ -199,8 +200,7 @@
 
 (add-hook 'inferior-haskell-mode-hook
    (lambda ()
-     (setq ac-sources '(my/ac-source-haskell ac-source-dictionary ac-source-words-in-same-mode-buffers)
-     )))
+     (setq ac-sources '(my/ac-source-haskell ac-source-dictionary ac-source-words-in-same-mode-buffers))))
 
 ;; end of auto-complete for haskell 
 
@@ -225,6 +225,7 @@
          "* TODO %?\n  %i\n  %a")))
 
 (global-set-key (kbd "C-c c") 'org-capture)
+(setq org-log-done 'note) ;; timelogging of when changing a TODO to DONE.
 
 ;; end of org-mode .
 
@@ -241,9 +242,9 @@
 ;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 ;; setup python :
-;; (setq py-install-directory "~/.emacs.d/site-lisp/python-mode.el-6.1.1")
-;; (add-to-list 'load-path py-install-directory)
-;; (require 'python-mode)
+(setq py-install-directory "~/.emacs.d/site-lisp/python-mode.el-6.1.1")
+(add-to-list 'load-path py-install-directory)
+(require 'python-mode)
 
 
 ;; switch window contents
@@ -385,11 +386,16 @@
 
 (global-set-key (kbd "M-o") 'smart-open-line-above)
 
+
+
+
 ;;end of smart-open line
 
-;; Add Popwin Window-Manger
-(require 'popwin)
-(popwin-mode t)
+;; set sml-path:
+(setq sml-program-name "/usr/lib/smlnj/bin/sml")
+
+
+
 
 
 ;; ;; ;; ;; Try JDEE:
@@ -483,11 +489,10 @@
     (run-skewer)
     (skewer-repl)))
 
-(require 'parenface)
-(set-face-foreground 'paren-face "gray32")
 
-(require 'powerline)
-(powerline-center-theme)
+
+;; (require 'powerline)
+;; (powerline-center-theme)
 
 (require 'ac-nrepl-compliment)
 (add-hook 'nrepl-mode-hook 'ac-nrepl-compliment-setup)
@@ -503,39 +508,47 @@
 (add-hook 'nrepl-interaction-mode-hook
 	  'set-auto-complete-as-completion-at-point-function)
 
-;; Setup Mu4e
+;; ;; Setup Mu4e
 
-(require 'mu4e)
-(require 'smtpmail)
+;; (require 'mu4e)
+;; (require 'smtpmail)
 
-(setq mu4e-drafts-folder "/Gmail/[Gmail].Drafts"
-      mu4e-sent-folder   "/Gmail/[Gmail].Sent Mail"
-      mu4e-trash-folder  "/Gmail/[Gmail].Trash"
-      mu4e-sent-messages-behavior 'delete
-      mu4e-get-mail-command "offlineimap"
-      mu4e-update-interval 60
-      user-mail-address "youremail@gmail.com"
-      user-full-name  "yourname"
-      mu4e-maildir-shortcuts
-            '( ("/Gmail/INBOX"               . ?i)
-               ("/Gmail/[Gmail].Sent Mail"   . ?s)
-               ("/Gmail/[Gmail].Trash"       . ?t)
-               ("/Gmail/[Gmail].All Mail"    . ?a))
+;; (setq mu4e-drafts-folder "/Gmail/[Gmail].Drafts"
+;;       mu4e-sent-folder   "/Gmail/[Gmail].Sent Mail"
+;;       mu4e-trash-folder  "/Gmail/[Gmail].Trash"
+;;       mu4e-sent-messages-behavior 'delete
+;;       mu4e-get-mail-command "offlineimap"
+;;       mu4e-update-interval 60
+;;       user-mail-address "youremail@gmail.com"
+;;       user-full-name  "yourname"
+;;       mu4e-maildir-shortcuts
+;;             '( ("/Gmail/INBOX"               . ?i)
+;;                ("/Gmail/[Gmail].Sent Mail"   . ?s)
+;;                ("/Gmail/[Gmail].Trash"       . ?t)
+;;                ("/Gmail/[Gmail].All Mail"    . ?a))
 
-     message-send-mail-function 'smtpmail-send-it
-     smtpmail-stream-type 'starttls
-     smtpmail-default-smtp-server "smtp.gmail.com"
-     smtpmail-smtp-server "smtp.gmail.com"
-     smtpmail-smtp-service 587
-     message-kill-buffer-on-exit t)
+;;      message-send-mail-function 'smtpmail-send-it
+;;      smtpmail-stream-type 'starttls
+;;      smtpmail-default-smtp-server "smtp.gmail.com"
+;;      smtpmail-smtp-server "smtp.gmail.com"
+;;      smtpmail-smtp-service 587
+;;      message-kill-buffer-on-exit t)
 
-(setq mu4e-view-show-images t)
-(when (fboundp 'imagemagick-register-types)
-  (imagemagick-register-types))
-(setq mu4e-view-prefer-html t)
-(setq mu4e-html2text-command "html2text -utf8 -width 72")
-(setq mail-user-agent 'mu4e-user-agent)
+;; (setq mu4e-view-show-images t)
+;; (when (fboundp 'imagemagick-register-types)
+;;   (imagemagick-register-types))
+;; (setq mu4e-view-prefer-html t)
+;; (setq mu4e-html2text-command "html2text -utf8 -width 72")
+;; (setq mail-user-agent 'mu4e-user-agent)
 
-;; end of mu4e setup.
+;; end of mu4e setup.(require 'diminish)
+
+(require 'diminish)
+(eval-after-load "paredit" '(diminish 'paredit-mode "pe"))
+(eval-after-load 'yas-minor-mode '(diminish 'yas-minor-mode))
+(eval-after-load "eldoc" '(diminish 'eldoc-mode))
+
+
+
 
 
