@@ -18,13 +18,14 @@
  
 ;; set default font:
  
-(set-frame-font "Source Code Pro 10")
+(set-frame-font "Ubuntu Mono ")
  
-;;(add-to-list 'load-path "~/.emacs.d/evil-setup.el")
+(add-to-list 'load-path "~/.emacs.d/evil-setup.el")
  
 (add-to-list 'load-path "~/.emacs.d/")
  
 ;; add repos for elpa
+;;(add-to-list 'load-path "~/racket-mode/")
  
 (require 'package)
  
@@ -40,7 +41,7 @@
 ;; set path for go-mode
 ;(setenv "GOPATH" "/home/martin/gocode")
 
-(require 'go-autocomplete)
+;; (require 'go-autocomplete)
 
 
 
@@ -53,7 +54,8 @@
 (key-chord-mode 1)
 
 ;;load slime-helper for quicklisp:
-
+;; (setq slime-lisp-implementations
+;;       '((sbcl ("sbcl") :coding-system utf-8-unix)))
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
 (setq inferior-lisp-program "sbcl")
 (slime-setup '(slime-fancy slime-tramp slime-asdf))
@@ -85,11 +87,11 @@
 (key-chord-define-global "sc" 'org-capture)
 
 ;; evil setup:
-;; (require 'evil-setup)
+(require 'evil-setup)
  
 ;; set theme :
 
-(load-theme 'soft-morning)
+(load-theme 'soft-stone)
 (global-hl-line-mode)
 
 
@@ -107,6 +109,7 @@
 ;; map "C-h" to Delete char.
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "<f1>") 'help-command)
+
  
 ;; use y/n instead of yes / no:
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -190,11 +193,16 @@
 (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
 
 
+
+(require 'company-go)
+(require 'auto-complete-config)
+
+(add-hook 'go-mode-hook 'company-mode)
   
   ;; Somehow the hook doesn't enable auto-complete-mode for Haskell although it should
   ; ac-modes lists all modes with auto-complete enabled
   (setq ac-modes
-      (append '(clojure-mode elisp-mode scheme-mode haskell-mode literate-haskell-mode tuareg-mode js2-mode inferior-haskell-mode scala-mode scala-mode2 )
+      (append '( elisp-mode scheme-mode haskell-mode literate-haskell-mode tuareg-mode js2-mode inferior-haskell-mode scala-mode scala-mode2 go-mode)
               ac-modes )))
 
 
@@ -205,9 +213,9 @@
 ;; end of auto-complete for haskell 
 
 ;; weather-metno-setup:
-(setq weather-metno-location-name "City_of_Edinburgh,Scotland"
-      weather-metno-location-latitude 55
-      weather-metno-location-longitude 3)
+;; (setq weather-metno-location-name "City_of_Edinburgh,Scotland"
+;;       weather-metno-location-latitude 55
+;;       weather-metno-location-longitude 3)
 
 ;; org-capture:
 (setq org-default-notes-file (expand-file-name "~/todo.org"))
@@ -227,6 +235,43 @@
 (global-set-key (kbd "C-c c") 'org-capture)
 (setq org-log-done 'note) ;; timelogging of when changing a TODO to DONE.
 
+(require 'org-latex)
+
+(add-to-list 'org-export-latex-classes
+  '("koma-article"
+      "\\documentclass{scrartcl}"
+             ("\\section{%s}" . "\\section*{%s}")
+             ("\\subsection{%s}" . "\\subsection*{%s}")
+             ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+             ("\\paragraph{%s}" . "\\paragraph*{%s}")
+             ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+;; "\\documentclass[11pt,a4paper]{article}
+;; \\usepackage[T1]{fontenc}
+;; \\usepackage{fontspec}
+;; \\usepackage{graphicx} 
+;; \\defaultfontfeatures{Mapping=tex-text}
+;; \\setromanfont{Gentium}
+;; \\setromanfont [BoldFont={Gentium Basic Bold},
+;;                 ItalicFont={Gentium Basic Italic}]{Gentium Basic}
+;; \\setsansfont{Charis SIL}
+;; \\setmonofont[Scale=0.8]{DejaVu Sans Mono}
+;; \\usepackage{geometry}
+;; \\geometry{a4paper, textwidth=6.5in, textheight=10in,
+;;             marginparsep=7pt, marginparwidth=.6in}
+;; \\pagestyle{empty}
+;; \\title{}
+;;       [NO-DEFAULT-PACKAGES]
+;;       [NO-PACKAGES]"
+;;      ("\\section{%s}" . "\\section*{%s}")
+;;      ("\\subsection{%s}" . "\\subsection*{%s}")
+;;      ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+;;      ("\\paragraph{%s}" . "\\paragraph*{%s}")
+;;      ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+(setq org-latex-to-pdf-process 
+  '("xelatex -interaction nonstopmode %f"
+     "xelatex -interaction nonstopmode %f")) ;; for multiple passes
+
 ;; end of org-mode .
 
 
@@ -242,9 +287,15 @@
 ;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 ;; setup python :
-(setq py-install-directory "~/.emacs.d/site-lisp/python-mode.el-6.1.1")
+
+
+
+
+(setq py-install-directory "~/.emacs.d/site-lisp/python-mode")
 (add-to-list 'load-path py-install-directory)
 (require 'python-mode)
+(when (featurep 'python) (unload-feature 'python t))
+(setq py-load-pymacs-p t)
 
 
 ;; switch window contents
@@ -272,6 +323,7 @@
              (set-window-start w1 s2)
              (set-window-start w2 s1)
              (setq i (1+ i)))))))
+
 
 ;; End of switch window contents.
 
@@ -345,13 +397,14 @@
 ;; 	 (set-face-foreground (krig-rainbow-face-n i)
 ;; 			      (krig-paren-clr i)))
 
-
-(add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
+;;(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 (setq nrepl-hide-special-buffers t)
-(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
-(add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'nrepl-mode))
+;; (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
+;; (setq nrepl-hide-special-buffers t)
+;; (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+;; (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
+;; (eval-after-load "auto-complete"
+;;   '(add-to-list 'ac-modes 'nrepl-mode))
 
 ;;recentf -mode
 (require 'recentf)
@@ -446,7 +499,7 @@
 
 
 ;; add column-marker
-(add-hook 'clojure-mode-hook (lambda () (interactive) (column-marker-1 80)))
+;; (add-hook 'clojure-mode-hook (lambda () (interactive) (column-marker-1 80)))
 (add-hook 'lisp-mode-hook (lambda () (interactive) (column-marker-1 80)))
 
 
@@ -494,19 +547,19 @@
 ;; (require 'powerline)
 ;; (powerline-center-theme)
 
-(require 'ac-nrepl-compliment)
-(add-hook 'nrepl-mode-hook 'ac-nrepl-compliment-setup)
-(add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-compliment-setup)
-(eval-after-load "auto-complete"
-   '(add-to-list 'ac-modes 'nrepl-mode))
+;; (require 'ac-nrepl-compliment)
+;; (add-hook 'nrepl-mode-hook 'ac-nrepl-compliment-setup)
+;; (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-compliment-setup)
+;; (eval-after-load "auto-complete"
+;;    '(add-to-list 'ac-modes 'nrepl-mode))
 (defun set-auto-complete-as-completion-at-point-function ()
   (setq completion-at-point-functions '(auto-complete)))
 (add-hook 'auto-complete-mode-hook
 	  'set-auto-complete-as-completion-at-point-function)
 
-(add-hook 'nrepl-mode-hook 'set-auto-complete-as-completion-at-point-function)
-(add-hook 'nrepl-interaction-mode-hook
-	  'set-auto-complete-as-completion-at-point-function)
+;; (add-hook 'nrepl-mode-hook 'set-auto-complete-as-completion-at-point-function)
+;; (add-hook 'nrepl-interaction-mode-hook
+;;	  'set-auto-complete-as-completion-at-point-function)
 
 ;; ;; Setup Mu4e
 
@@ -550,5 +603,41 @@
 
 
 
+;; (require 'cursor-chg)  ; Load the library
+;; (toggle-cursor-type-when-idle 1) ; Turn on cursor change when Emacs is idle
+;; (change-cursor-mode 1) ; Turn on change for overwrite, read-only, and input mode
+
+;; Chicken scheme
+;; (add-to-list 'load-path "/usr/local/lib/chicken/6/*")   ; Where Eggs are installed
+;; (autoload 'chicken-slime "chicken-slime" "SWANK backend for Chicken" t)
+;; (add-hook 'scheme-mode-hook
+;;           (lambda ()
+;;            (slime-mode t)))
+
+;; hs-lint integreation:
+(setenv "PATH" (concat "~/.cabal/bin:" (getenv "PATH")))
+(add-to-list 'exec-path "~/.cabal/bin")
+
+(require 'hs-lint)
+
+(defun my-haskell-mode-hook ()
+   (local-set-key "\C-cl" 'hs-lint))
+(add-hook 'haskell-mode-hook 'my-haskell-mode-hook)
 
 
+(add-hook 'haskell-mode-hook 'flymake-hlint-load)
+(require 'racket-mode)
+
+
+;; add uniquify
+(require 'uniquify)
+
+;; add icomplete
+(require 'icomplete)
+
+(require 'info+)
+(put 'narrow-to-region 'disabled nil)
+(dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
+  (add-hook hook 'turn-on-elisp-slime-nav-mode))
+
+(load "evil-setup.el")
