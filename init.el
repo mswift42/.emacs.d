@@ -1,4 +1,4 @@
-; set custom file
+;; set custom file
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
  
@@ -13,19 +13,18 @@
  
 (scroll-bar-mode -1)
 (display-battery-mode 1)
-(fringe-mode nil)
 
  
 ;; set default font:
  
-(set-frame-font "Ubuntu Mono ")
+(set-frame-font "DejaVuSansMono 10")
  
-(add-to-list 'load-path "~/.emacs.d/evil-setup.el")
+;; (add-to-list 'load-path "~/.emacs.d/evil-setup.el")
  
 (add-to-list 'load-path "~/.emacs.d/")
  
-;; add repos for elpa
-;;(add-to-list 'load-path "~/racket-mode/")
+;; add repos for 
+(add-to-list 'load-path "~/racket-mode/")
  
 (require 'package)
  
@@ -87,7 +86,7 @@
 (key-chord-define-global "sc" 'org-capture)
 
 ;; evil setup:
-(require 'evil-setup)
+;;(require 'evil-setup)
  
 ;; set theme :
 
@@ -275,7 +274,7 @@
 ;; end of org-mode .
 
 
-(setq evil-default-cursor t)
+;;(setq evil-default-cursor t)
 
 ;; ;; load the ensime lisp code...
 ;; (add-to-list 'load-path "~/ensime_2.9.2-0.9.8.9/elisp")
@@ -603,9 +602,9 @@
 
 
 
-;; (require 'cursor-chg)  ; Load the library
-;; (toggle-cursor-type-when-idle 1) ; Turn on cursor change when Emacs is idle
-;; (change-cursor-mode 1) ; Turn on change for overwrite, read-only, and input mode
+(require 'cursor-chg)  ; Load the library
+(toggle-cursor-type-when-idle 1) ; Turn on cursor change when Emacs is idle
+(change-cursor-mode 1) ; Turn on change for overwrite, read-only, and input mode
 
 ;; Chicken scheme
 ;; (add-to-list 'load-path "/usr/local/lib/chicken/6/*")   ; Where Eggs are installed
@@ -640,4 +639,16 @@
 (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
   (add-hook hook 'turn-on-elisp-slime-nav-mode))
 
-(load "evil-setup.el")
+(require 'icomplete)
+;; icomplete+ setup:
+(eval-after-load "icomplete"
+  '(progn (require 'icomplete+)))
+
+
+;; startup Emacs maximized:
+(setq initial-frame-alist '((fullscreen . maximized)))
+
+;; use ibuffer instead of normal buffer-list:
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(autoload 'ibuffer "ibuffer" "List buffers." t)
+
