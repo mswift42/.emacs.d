@@ -17,7 +17,7 @@
  
 ;; set default font:
  
-(set-frame-font "DejaVuSansMono 10")
+(set-frame-font "Droid Sans Mono 10")
  
 ;; (add-to-list 'load-path "~/.emacs.d/evil-setup.el")
  
@@ -33,6 +33,11 @@
  			 ("melpa" . "http://melpa.milkbox.net/packages/")))
  
 (package-initialize)
+
+(defun require-package (package)
+  "if package is not installed, install it."
+  (unless (package-installed-p package)
+    (package-install package)))
 
 ;; end of elpa setup
 
@@ -60,6 +65,10 @@
 (slime-setup '(slime-fancy slime-tramp slime-asdf))
 
 
+(unless (package-installed-p 'cider)
+  (package-install 'cider))
+
+(add-hook 'cider-repl-mode-hook 'paredit-mode)
 
 
 ;; multiple-cursors setup:
@@ -595,14 +604,14 @@
 
 ;; end of mu4e setup.(require 'diminish)
 
-(require 'diminish)
+(require-package 'diminish)
 (eval-after-load "paredit" '(diminish 'paredit-mode "pe"))
 (eval-after-load 'yas-minor-mode '(diminish 'yas-minor-mode))
 (eval-after-load "eldoc" '(diminish 'eldoc-mode))
 
 
 
-(require 'cursor-chg)  ; Load the library
+(require-package 'cursor-chg)  ; Load the library
 (toggle-cursor-type-when-idle 1) ; Turn on cursor change when Emacs is idle
 (change-cursor-mode 1) ; Turn on change for overwrite, read-only, and input mode
 
@@ -627,7 +636,7 @@
 ;; add icomplete
 (require 'icomplete)
 
-(require 'info+)
+(require-package 'info+)
 (put 'narrow-to-region 'disabled nil)
 (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
   (add-hook hook 'turn-on-elisp-slime-nav-mode))
