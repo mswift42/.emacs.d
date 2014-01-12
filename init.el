@@ -24,7 +24,7 @@
 (add-to-list 'load-path "~/.emacs.d/")
  
 ;; add repos for 
-(add-to-list 'load-path "~/racket-mode/")
+;;(add-to-list 'load-path "~/racket-mode/")
  
 (require 'package)
  
@@ -606,13 +606,6 @@
 (toggle-cursor-type-when-idle 1) ; Turn on cursor change when Emacs is idle
 (change-cursor-mode 1) ; Turn on change for overwrite, read-only, and input mode
 
-;; Chicken scheme
-;; (add-to-list 'load-path "/usr/local/lib/chicken/6/*")   ; Where Eggs are installed
-;; (autoload 'chicken-slime "chicken-slime" "SWANK backend for Chicken" t)
-;; (add-hook 'scheme-mode-hook
-;;           (lambda ()
-;;            (slime-mode t)))
-
 ;; hs-lint integreation:
 (setenv "PATH" (concat "~/.cabal/bin:" (getenv "PATH")))
 (add-to-list 'exec-path "~/.cabal/bin")
@@ -625,7 +618,7 @@
 
 
 (add-hook 'haskell-mode-hook 'flymake-hlint-load)
-(require 'racket-mode)
+;;(require 'racket-mode)
 
 
 ;; add uniquify
@@ -651,4 +644,16 @@
 ;; use ibuffer instead of normal buffer-list:
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (autoload 'ibuffer "ibuffer" "List buffers." t)
+
+;; dark and light functions to quickly change between light and dark theme:
+(defun dark ()
+  (interactive)
+  (disable-theme 'soft-stone)
+  (load-theme 'soft-charcoal))
+
+(defun light ()
+  (interactive)
+  (disable-theme 'soft-charcoal)
+  (load-theme 'soft-stone))
+
 
