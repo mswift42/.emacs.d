@@ -14,6 +14,32 @@
 (scroll-bar-mode -1)
 (display-battery-mode 1)
 
+;; after-load / add-auto-mode - taken from Purcell's .emacs.d/
+(defmacro after-load (feature &rest body)
+  "After FEATURE is loaded, evaluate BODY."
+  (declare (indent defun))
+  `(eval-after-load ,feature
+     '(progn ,@body)))
+
+
+(defun add-auto-mode (mode &rest patterns)
+  "Add entries to `auto-mode-alist' to use `MODE' for all given file `PATTERNS'."
+  (dolist (pattern patterns)
+    (add-to-list 'auto-mode-alist (cons pattern mode))))
+
+;; (defun require-package (package &optional min-version no-refresh)
+;;   "Install given PACKAGE, optionally requiring MIN-VERSION.
+;; If NO-REFRESH is non-nil, the available package lists will not be
+;; re-downloaded in order to locate PACKAGE."
+;;   (if (package-installed-p package min-version)
+;;       t
+;;     (if (or (assoc package package-archive-contents) no-refresh)
+;;         (package-install package)
+;;       (progn
+;;         (package-refresh-contents)
+;;         (require-package package min-version t)))))
+
+
  
 ;; set default font:
  
@@ -22,6 +48,7 @@
 ;; (add-to-list 'load-path "~/.emacs.d/evil-setup.el")
  
 (add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/lisp/")
  
 ;; add repos for 
 ;;(add-to-list 'load-path "~/racket-mode/")
@@ -46,6 +73,7 @@
 ;(setenv "GOPATH" "/home/martin/gocode")
 
 ;; (require 'go-autocomplete)
+
 
 
 
@@ -341,10 +369,28 @@
 (setq calendar-longitude -3.2)
 
 ;; setup Ruby:
+
+(add-auto-mode 'ruby-mode
+               "Rakefile\\'" "\\.rake\\'" "\\.rxml\\'"
+               "\\.rjs\\'" "\\.irbrc\\'" "\\.pryrc\\'" "\\.builder\\'" "\\.ru\\'"
+               "\\.gemspec\\'" "Gemfile\\'" "Kirkfile\\'")
 (require 'ruby-tools)
 (require 'ruby-electric)
 (add-hook 'ruby-mode 'ruby-tools-mode 1)
 (add-hook 'ruby-mode 'ruby-electric-mode)
+(add-hook 'ruby-mode-hook 'subword-mode)
+(require 'inf-ruby)
+(require 'ac-inf-ruby)
+(after-load 'auto-complete
+  (add-to-list 'ac-modes 'inf-ruby-mode))
+(add-hook 'inf-ruby-mode-hook 'ac-inf-ruby-enable)
+(after-load 'ruby-mode
+  (add-hook 'ruby-mode-hook 'robe-mode))
+(after-load 'robe
+  (add-hook 'robe-mode-hook
+	    (lambda ()
+	      (add-to-list 'ac-sources 'ac-source-robe)
+	      (set-auto-complete-as-completion-at-point-function))))
 
 ;; setup Yasnippet :
 ;;(yas-global-mode 1)
