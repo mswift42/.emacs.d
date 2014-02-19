@@ -98,9 +98,9 @@
 ;;(require 'evil-setup)
  
 ;; set theme :
-
+;;(global-hl-line-mode)
 (load-theme 'soft-stone)
-(global-hl-line-mode)
+
 
 
 
@@ -202,10 +202,10 @@
 
 
 
-(require 'company-go)
+;;(require 'company-go)
 (require 'auto-complete-config)
 
-(add-hook 'go-mode-hook 'company-mode)
+;;(add-hook 'go-mode-hook 'company-mode)
   
   ;; Somehow the hook doesn't enable auto-complete-mode for Haskell although it should
   ; ac-modes lists all modes with auto-complete enabled
@@ -347,7 +347,7 @@
 (add-hook 'ruby-mode 'ruby-electric-mode)
 
 ;; setup Yasnippet :
-(yas-global-mode 1)
+;;(yas-global-mode 1)
 
 ;; dimm rainbow-delimiters
 ;; (defun krig-paren-clr (n)
@@ -514,7 +514,7 @@
 
 
 ;; setup go-mode:
-(add-hook 'before-save-hook 'gofmt-before-save)
+;;(add-hook 'before-save-hook 'gofmt-before-save)
 
 ;; setup javascript:
 (autoload 'js2-mode "js2-mode" nil t)
@@ -602,23 +602,23 @@
 ;; (setq mu4e-html2text-command "html2text -utf8 -width 72")
 ;; (setq mail-user-agent 'mu4e-user-agent)
 
-;; end of mu4e setup.(require 'diminish)
+;; end of mu4e setup.(require ')
 
-(require-package 'diminish)
-(eval-after-load "paredit" '(diminish 'paredit-mode "pe"))
-(eval-after-load 'yas-minor-mode '(diminish 'yas-minor-mode))
-(eval-after-load "eldoc" '(diminish 'eldoc-mode))
+;;(require-package 'diminish)
+;;(eval-after-load "paredit" '(diminish 'paredit-mode "pe"))
+;;(eval-after-load 'yas-minor-mode '(diminish 'yas-minor-mode))
+;;(eval-after-load "eldoc" '(diminish 'eldoc-mode))
 
 
 
-(require-package 'cursor-chg)  ; Load the library
-(toggle-cursor-type-when-idle 1) ; Turn on cursor change when Emacs is idle
-(change-cursor-mode 1) ; Turn on change for overwrite, read-only, and input mode
+;; (require-package 'cursor-chg)  ; Load the library
+;; (toggle-cursor-type-when-idle 1) ; Turn on cursor change when Emacs is idle
+;; (change-cursor-mode 1) ; Turn on change for overwrite, read-only, and input mode
 
 ;; hs-lint integreation:
 (setenv "PATH" (concat "~/.cabal/bin:" (getenv "PATH")))
 (add-to-list 'exec-path "~/.cabal/bin")
-
+(add-to-list 'load-path "~/.emacs.d/site-lisp/")
 (require 'hs-lint)
 
 (defun my-haskell-mode-hook ()
@@ -634,7 +634,7 @@
 (require 'uniquify)
 
 ;; add icomplete
-(require 'icomplete)
+;; (require 'icomplete)
 
 (require-package 'info+)
 (put 'narrow-to-region 'disabled nil)
