@@ -5,8 +5,11 @@
 ;; disable tool and Menu bar:
  
 (tool-bar-mode -1)
-(menu-bar-mode -1)
 (column-number-mode 1)
+
+
+;; don't use tabs
+(setq-default indent-tabs-mode nil)
 
  
 ;; disable scroll bar , load-battery. :
@@ -38,6 +41,8 @@
  
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/lisp/")
+(require 'pp-c-l)
+(pretty-control-l-mode t)
  
 ;; add repos for 
 ;;(add-to-list 'load-path "~/racket-mode/")
@@ -75,8 +80,8 @@
 (key-chord-mode 1)
 
 ;;load slime-helper for quicklisp:
-;; (setq slime-lisp-implementations
-;;       '((sbcl ("sbcl") :coding-system utf-8-unix)))
+(setq slime-lisp-implementations
+      '((sbcl ("sbcl") :coding-system utf-8-unix)))
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
 (setq inferior-lisp-program "sbcl")
 (slime-setup '(slime-fancy slime-tramp slime-asdf))
@@ -152,6 +157,9 @@
 
 ;; Add hook to start auto insert mode when starting el files.
 (add-hook 'elisp-mode 'auto-insert-mode t)
+(add-to-list 'completion-ignored-extensions ".hi")
+(autoload 'ghc-init "ghc" nil t)
+(add-hook 'haskell-mode-hook (lambda () (ghc-init) (flymake-mode)))
 
 ;; enable ido-mode:
 (setq ido-enable-flex-matching t)
@@ -418,9 +426,9 @@
 
 
 
-(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
-(defun cliki:start-slime ()
-  (save-excursion (slime)))
+(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode t)))
+;; (defun cliki:start-slime ()
+;;   (save-excursion (slime)))
 
 
 
@@ -488,7 +496,7 @@
 ;;end of smart-open line
 
 ;; set sml-path:
-(setq sml-program-name "/usr/lib/smlnj/bin/sml")
+;; (setq sml-program-name "/usr/lib/smlnj/bin/sml")
 
 
 
@@ -539,13 +547,6 @@
 
 ;; set yas-expand key
 (global-set-key (kbd "C-<tab>") 'yas-expand-from-trigger-key)
-
-
-;; add column-marker
-;; (add-hook 'clojure-mode-hook (lambda () (interactive) (column-marker-1 80)))
-(add-hook 'lisp-mode-hook (lambda () (interactive) (column-marker-1 80)))
-
-
 
 
 ;; setup go-mode:
