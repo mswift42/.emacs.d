@@ -1,4 +1,4 @@
-;; set custom file
+; set custom file
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
  
@@ -35,20 +35,16 @@
  
 ;; set default font:
  
-(set-frame-font "Droid Sans Mono 10")
- 
-;; (add-to-list 'load-path "~/.emacs.d/evil-setup.el")
- 
-(add-to-list 'load-path "~/.emacs.d/")
+(set-frame-font "Camingo Code 10")
+(load-theme 'oldlace)
+
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (require 'pp-c-l)
 (pretty-control-l-mode t)
  
-;; add repos for 
-;;(add-to-list 'load-path "~/racket-mode/")
  
 (require 'package)
- 
+
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
  			 ("marmalade" . "http://marmalade-repo.org/packages/")
  			 ("melpa" . "http://melpa.milkbox.net/packages/")))
@@ -116,23 +112,19 @@
 (key-chord-define-global "tw" 'toggle-window-split)
 (key-chord-define-global "sc" 'org-capture)
 
-;; evil setup:
-;;(require 'evil-setup)
- 
-;; set theme :
-;;(global-hl-line-mode)
-(load-theme 'soft-stone)
+(defun disable-all-themes ()
+  "disable all custom enabled themes"
+  (dolist (i custom-enabled-themes)
+    (disable-theme i)))
 
-
-
-
- 
+(defadvice load-theme (before disable-themes-first activate)
+  (disable-all-themes))
 ;; add winner-mode
 (winner-mode 1)
  
 ;; add auto-complete
 (require 'auto-complete-config)
-(require 'auto-complete-extension)
+;; (require 'auto-complete-extension)
 (add-to-list 'ac-dictionary-directories "/home/martin/.emacs.d//ac-dict")
  
 ;; end of auto-complete setup
@@ -268,47 +260,47 @@
 (global-set-key (kbd "C-c c") 'org-capture)
 (setq org-log-done 'note) ;; timelogging of when changing a TODO to DONE.
 
-(require 'org-latex)
+;(require 'org-latex)
 
-(add-to-list 'org-export-latex-classes
-  '("koma-article"
-      "\\documentclass{scrartcl}"
-             ("\\section{%s}" . "\\section*{%s}")
-             ("\\subsection{%s}" . "\\subsection*{%s}")
-             ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-             ("\\paragraph{%s}" . "\\paragraph*{%s}")
-             ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-;; "\\documentclass[11pt,a4paper]{article}
-;; \\usepackage[T1]{fontenc}
-;; \\usepackage{fontspec}
-;; \\usepackage{graphicx} 
-;; \\defaultfontfeatures{Mapping=tex-text}
-;; \\setromanfont{Gentium}
-;; \\setromanfont [BoldFont={Gentium Basic Bold},
-;;                 ItalicFont={Gentium Basic Italic}]{Gentium Basic}
-;; \\setsansfont{Charis SIL}
-;; \\setmonofont[Scale=0.8]{DejaVu Sans Mono}
-;; \\usepackage{geometry}
-;; \\geometry{a4paper, textwidth=6.5in, textheight=10in,
-;;             marginparsep=7pt, marginparwidth=.6in}
-;; \\pagestyle{empty}
-;; \\title{}
-;;       [NO-DEFAULT-PACKAGES]
-;;       [NO-PACKAGES]"
-;;      ("\\section{%s}" . "\\section*{%s}")
-;;      ("\\subsection{%s}" . "\\subsection*{%s}")
-;;      ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-;;      ("\\paragraph{%s}" . "\\paragraph*{%s}")
-;;      ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+;(add-to-list 'org-export-latex-classes
+  ;'("koma-article"
+      ;"\\documentclass{scrartcl}"
+             ;("\\section{%s}" . "\\section*{%s}")
+             ;("\\subsection{%s}" . "\\subsection*{%s}")
+             ;("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+             ;("\\paragraph{%s}" . "\\paragraph*{%s}")
+             ;("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+;;; "\\documentclass[11pt,a4paper]{article}
+;;; \\usepackage[T1]{fontenc}
+;;; \\usepackage{fontspec}
+;;; \\usepackage{graphicx} 
+;;; \\defaultfontfeatures{Mapping=tex-text}
+;;; \\setromanfont{Gentium}
+;;; \\setromanfont [BoldFont={Gentium Basic Bold},
+;;;                 ItalicFont={Gentium Basic Italic}]{Gentium Basic}
+;;; \\setsansfont{Charis SIL}
+;;; \\setmonofont[Scale=0.8]{DejaVu Sans Mono}
+;;; \\usepackage{geometry}
+;;; \\geometry{a4paper, textwidth=6.5in, textheight=10in,
+;;;             marginparsep=7pt, marginparwidth=.6in}
+;;; \\pagestyle{empty}
+;;; \\title{}
+;;;       [NO-DEFAULT-PACKAGES]
+;;;       [NO-PACKAGES]"
+;;;      ("\\section{%s}" . "\\section*{%s}")
+;;;      ("\\subsection{%s}" . "\\subsection*{%s}")
+;;;      ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+;;;      ("\\paragraph{%s}" . "\\paragraph*{%s}")
+;;;      ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-(setq org-latex-to-pdf-process 
-  '("xelatex -interaction nonstopmode %f"
-     "xelatex -interaction nonstopmode %f")) ;; for multiple passes
+;(setq org-latex-to-pdf-process 
+  ;'("xelatex -interaction nonstopmode %f"
+     ;"xelatex -interaction nonstopmode %f")) ;; for multiple passes
 
-;; end of org-mode .
+;;; end of org-mode .
 
 
-;;(setq evil-default-cursor t)
+;;;(setq evil-default-cursor t)
 
 ;; ;; load the ensime lisp code...
 ;; (add-to-list 'load-path "~/ensime_2.9.2-0.9.8.9/elisp")
@@ -702,3 +694,4 @@
   (load-theme 'soft-stone))
 
 
+(add-hook 'hy-mode-hook 'paredit-mode 1)
