@@ -31,42 +31,27 @@
     (add-to-list 'auto-mode-alist (cons pattern mode))))
 
 
-
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(require 'init-elpa)
  
 ;; set default font:
  
 (set-frame-font "Camingo Code 10")
-(load-theme 'oldlace)
 
-(add-to-list 'load-path "~/.emacs.d/lisp/")
+
 (require 'pp-c-l)
 (pretty-control-l-mode t)
  
  
-(require 'package)
 
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
- 			 ("marmalade" . "http://marmalade-repo.org/packages/")
- 			 ("melpa" . "http://melpa.milkbox.net/packages/")))
- 
-(package-initialize)
-
-(defun require-package (package)
-  "if package is not installed, install it."
-  (unless (package-installed-p package)
-    (package-install package)))
-
-;; end of elpa setup
-
-;; set themes directory:
-;; set path for go-mode
-;(setenv "GOPATH" "/home/martin/gocode")
-
-;; (require 'go-autocomplete)
+;; set theme and hl-line:
+(load-theme 'oldlace)
+(global-hl-line-mode t)
 
 
-
-
+;; load go-mode:
+(require 'init-go)
+(require 'init-company)
 
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
@@ -111,7 +96,7 @@
 (key-chord-define-global "rw" 'rotate-windows)
 (key-chord-define-global "tw" 'toggle-window-split)
 (key-chord-define-global "sc" 'org-capture)
-
+(key-chord-define-global "fj" 'helm-mini)
 (defun disable-all-themes ()
   "disable all custom enabled themes"
   (dolist (i custom-enabled-themes)
@@ -669,7 +654,7 @@
 (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
   (add-hook hook 'turn-on-elisp-slime-nav-mode))
 
-(require 'icomplete)
+(require-package 'icomplete)
 ;; icomplete+ setup:
 (eval-after-load "icomplete"
   '(progn (require 'icomplete+)))
