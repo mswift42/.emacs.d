@@ -15,7 +15,7 @@
 ;; disable scroll bar , load-battery. :
  
 (scroll-bar-mode -1)
-(display-battery-mode 1)
+
 
 ;; after-load / add-auto-mode - taken from Purcell's .emacs.d/
 (defmacro after-load (feature &rest body)
@@ -51,19 +51,22 @@
 
 ;; load go-mode:
 (require 'init-go)
-(require 'init-company)
 
+;; setup ibuffer:
+(require-package 'ibuffer-vc)
+(add-hook 'ibuffer-hook 'ibuffer-vc-set-filter-groups-by-vc-root)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
  
 ;; add key-chords
 (require 'key-chord)
 (key-chord-mode 1)
-
+(require-package 'slime)
 ;;load slime-helper for quicklisp:
 (setq slime-lisp-implementations
       '((sbcl ("sbcl") :coding-system utf-8-unix)))
-(load (expand-file-name "~/quicklisp/slime-helper.el"))
+;; (load (expand-file-name "~/quicklisp/slime-helper.el"))
 (setq inferior-lisp-program "sbcl")
 (slime-setup '(slime-fancy slime-tramp slime-asdf))
 
@@ -75,19 +78,19 @@
 
 
 ;; multiple-cursors setup:
-(require 'multiple-cursors)
+(require-package 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
-(require 'expand-region)
+(require-package 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
 ;; end of multiple cursors
 
 ;; ace-jump mode
-(require 'ace-jump-mode)
+(require-package 'ace-jump-mode)
 (key-chord-define-global "kj" 'ace-jump-mode)
 
 ;; change key-binding from complete-at-point:
@@ -223,9 +226,9 @@
 ;; end of auto-complete for haskell 
 
 ;; weather-metno-setup:
-;; (setq weather-metno-location-name "City_of_Edinburgh,Scotland"
-;;       weather-metno-location-latitude 55
-;;       weather-metno-location-longitude 3)
+(setq weather-metno-location-name "City_of_Edinburgh,Scotland"
+      weather-metno-location-latitude 55
+      weather-metno-location-longitude 3)
 
 ;; org-capture:
 (setq org-default-notes-file (expand-file-name "~/todo.org"))
