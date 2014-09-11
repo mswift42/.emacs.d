@@ -1,4 +1,6 @@
 /init.el~
+/elpa/*
+/elpa/
 /auto-save-list/.saves-6197-f7se~
 /auto-save-list/.saves-16140-f7se~
 /evil-setup.el~
@@ -134,3 +136,6 @@
 *~
 /.session
 *.elc
+/eshell/history
+/url/cookies
+/url/cookies~
