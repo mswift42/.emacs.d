@@ -13,7 +13,6 @@
    (quote
     ("930a202ae41cb4417a89bc3a6f969ebb7fcea5ffa9df6e7313df4f7a2a631434" "9fa173ced2e7a4d0a8e5aa702701629fa17b52c800391c37ea6678b8e790f7cd" default)))
  '(initial-frame-alist (quote ((fullscreen . maximized))))
- '(linum-format " %7d ")
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
