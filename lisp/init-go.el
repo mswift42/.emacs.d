@@ -9,6 +9,9 @@
 (add-hook 'go-mode-hook 'subword-mode t)
 
 (add-hook 'go-mode-hook 'go-eldoc-setup)
+;; remove unused imports:
+(add-hook 'go-mode-hook (lambda ()
+                          (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)))
 
 ;; load oracle:
 
