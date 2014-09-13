@@ -48,6 +48,14 @@
 (load-theme 'oldlace)
 (global-hl-line-mode t)
 
+;; setup flycheck:
+
+(require 'flycheck)
+(add-hook 'after-init-hook 'global-flycheck-mode)
+
+(setq flycheck-check-syntax-automatically '(save idle-change mode-enabled)
+      flycheck-idle-change-delay 0.4)
+
 
 ;; load go-mode:
 (require 'init-go)
@@ -112,6 +120,7 @@
  
 ;; add auto-complete
 (require 'auto-complete-config)
+(require 'go-autocomplete)
 ;; (require 'auto-complete-extension)
 (add-to-list 'ac-dictionary-directories "/home/martin/.emacs.d//ac-dict")
  
@@ -683,3 +692,6 @@
 
 
 (add-hook 'hy-mode-hook 'paredit-mode 1)
+
+;; setup <F5> to compile
+(global-set-key (kbd "<f5>") 'compile)

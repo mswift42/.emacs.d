@@ -16,5 +16,14 @@
 ;; load oracle:
 
 (load-file "~/go/src/code.google.com/p/go.tools/cmd/oracle/oracle.el" )
+;; add golint:
+(add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/golang/lint/misc/emacs"))
+(require 'golint)
+
+(add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/dougm/goflymake"))
+(require 'go-flycheck)
+(add-hook 'go-mode-hook 'flycheck-mode)
+
+
 
 (provide 'init-go)
