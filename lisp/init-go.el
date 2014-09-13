@@ -23,7 +23,7 @@
 (add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/dougm/goflymake"))
 (require 'go-flycheck)
 (add-hook 'go-mode-hook 'flycheck-mode)
-
-
+(add-hook 'go-mode-hook (lambda () (flycheck-select-checker 'go-gofmt)
+                          (flycheck-mode)))
 
 (provide 'init-go)
