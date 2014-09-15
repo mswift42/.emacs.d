@@ -241,14 +241,9 @@
 
 ;; org-capture:
 (setq org-default-notes-file (expand-file-name "~/todo.org"))
-
-
-
 ;; Org-mode setup:
 
 (define-key mode-specific-map [?a] 'org-agenda)
-
-
 (setq org-default-notes-file (expand-file-name "~/notes.org"))
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "~/todo.org" "Tasks")
@@ -542,11 +537,10 @@
 ;;(add-hook 'before-save-hook 'gofmt-before-save)
 
 ;; setup javascript:
-(autoload 'js2-mode "js2-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-hook 'js2-mode-hook 'skewer-mode)
-(add-hook 'css-mode-hook 'skewer-css-mode)
-(add-hook 'html-mode-hook 'skewer-html-mode)
+(require 'init-javascript)
+;; (add-hook 'js2-mode-hook 'skewer-mode)
+;; (add-hook 'css-mode-hook 'skewer-css-mode)
+;; (add-hook 'html-mode-hook 'skewer-html-mode)
 
 
 

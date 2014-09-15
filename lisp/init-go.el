@@ -2,7 +2,6 @@
 (require-package 'go-mode)
 (require-package 'go-autocomplete)
 (require-package 'go-errcheck)
-(setq gofmt-cmd "goimports")
 (add-hook 'before-save-hook 'gofmt-before-save)
 
 ;; set go mode as subword mode:
@@ -25,5 +24,8 @@
 (add-hook 'go-mode-hook 'flycheck-mode)
 (add-hook 'go-mode-hook (lambda () (flycheck-select-checker 'go-gofmt)
                           (flycheck-mode)))
-
+(add-hook 'go-mode-hook (lambda ()
+                         (local-set-key (kbd "M-.") #'godef-jump)))
 (provide 'init-go)
+
+;;; init-go ends here
