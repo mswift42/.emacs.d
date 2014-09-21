@@ -146,7 +146,7 @@
 (global-set-key (kbd "C-c c") 'org-capture)
 (setq org-log-done 'note) ;; timelogging of when changing a TODO to DONE.
 
-;(require 'org-latex)
+(require-package 'auctex) 
 
 ;(add-to-list 'org-export-latex-classes
   ;'("koma-article"

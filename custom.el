@@ -13,7 +13,7 @@
  '(cursor-color "#cccccc")
  '(custom-safe-themes
    (quote
-    ("1011be33e9843afd22d8d26b031fbbb59036b1ce537d0b250347c19e1bd959d0" "013e87003e1e965d8ad78ee5b8927e743f940c7679959149bbee9a15bd286689" "930a202ae41cb4417a89bc3a6f969ebb7fcea5ffa9df6e7313df4f7a2a631434" "9fa173ced2e7a4d0a8e5aa702701629fa17b52c800391c37ea6678b8e790f7cd" default)))
+    ("769bb56fb9fd7e73459dcdbbfbae1f13e734cdde3cf82f06a067439568cdaa95" "1011be33e9843afd22d8d26b031fbbb59036b1ce537d0b250347c19e1bd959d0" "013e87003e1e965d8ad78ee5b8927e743f940c7679959149bbee9a15bd286689" "930a202ae41cb4417a89bc3a6f969ebb7fcea5ffa9df6e7313df4f7a2a631434" "9fa173ced2e7a4d0a8e5aa702701629fa17b52c800391c37ea6678b8e790f7cd" default)))
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(tool-bar-mode nil))
 (custom-set-faces
