@@ -2,19 +2,6 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
-;; disable tool and Menu bar:
-
-(tool-bar-mode -1)
-(column-number-mode 1)
-
-
-;; don't use tabs
-(setq-default indent-tabs-mode nil)
-
-
-;; disable scroll bar , load-battery. :
-
-(scroll-bar-mode -1)
 
 
 ;; after-load / add-auto-mode - taken from Purcell's .emacs.d/
@@ -34,19 +21,14 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (require 'init-elpa)
  
-;; set default font:
+(require 'init-appearance)
  
-(set-frame-font "Camingo Code 10")
 
 
 (require 'pp-c-l)
 (pretty-control-l-mode t)
  
  
-
-;; set theme and hl-line:
-(load-theme 'oldlace)
-(global-hl-line-mode t)
 
 ;; setup flycheck:
 
@@ -65,7 +47,6 @@
 (add-hook 'ibuffer-hook 'ibuffer-vc-set-filter-groups-by-vc-root)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
  
 ;; add key-chords
 (require 'key-chord)
@@ -100,13 +81,6 @@
 (key-chord-define-global "tw" 'toggle-window-split)
 (key-chord-define-global "sc" 'org-capture)
 (key-chord-define-global "fj" 'helm-mini)
-(defun disable-all-themes ()
-  "disable all custom enabled themes"
-  (dolist (i custom-enabled-themes)
-    (disable-theme i)))
-
-(defadvice load-theme (before disable-themes-first activate)
-  (disable-all-themes))
 ;; add winner-mode
 (winner-mode 1)
  
