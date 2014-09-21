@@ -17,7 +17,7 @@
 (defadvice load-theme (before disable-themes-first activate)
   (disable-all-themes))
 
-(require-package 'oldlace)
+(require-package 'oldlace-theme)
 ;;; set theme and hl-line mode
 (load-theme 'oldlace)
 (global-hl-line-mode t)

@@ -23,7 +23,7 @@
  
 (require 'init-appearance)
  
-
+(require 'init-autocomplete)
 
 (require 'pp-c-l)
 (pretty-control-l-mode t)
@@ -84,11 +84,6 @@
 ;; add winner-mode
 (winner-mode 1)
  
-;; add auto-complete
-(require 'auto-complete-config)
-(require 'go-autocomplete)
-;; (require 'auto-complete-extension)
-(add-to-list 'ac-dictionary-directories "/home/martin/.emacs.d//ac-dict")
  
 ;; end of auto-complete setup
 ;; map "C-h" to Delete char.
@@ -135,43 +130,6 @@
 (add-hook 'python-mode-hook 'jedi:setup)
 
 
-;; auto-complete the 2nd.
-(when (require 'auto-complete-config)
-  ; Load the default configs and do some further 
-  (ac-config-default)
-  (define-key ac-complete-mode-map "\C-n" 'ac-next)
-  (define-key ac-complete-mode-map "\C-p" 'ac-previous)
-
-  ;; default sources of candidates
-  (setq-default ac-sources (cons 'ac-source-yasnippet ac-sources))
-
-  ;; A new way of adding keywords is through dictionary:
-  ; Any user defined keywords go here
-  ;(add-to-list 'ac-user-dictionary "foobar@example.com")
-  ; mode-specific keywords
-  (add-to-list 'ac-dictionary-directories "~/Emacs/auto-complete/dict")
-
-(define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
-
-
-
-;;(require 'company-go)
-(require 'auto-complete-config)
-
-;;(add-hook 'go-mode-hook 'company-mode)
-  
-  ;; Somehow the hook doesn't enable auto-complete-mode for Haskell although it should
-  ; ac-modes lists all modes with auto-complete enabled
-  (setq ac-modes
-      (append '( elisp-mode scheme-mode haskell-mode literate-haskell-mode tuareg-mode js2-mode inferior-haskell-mode scala-mode scala-mode2 go-mode)
-              ac-modes )))
-
-
-(add-hook 'inferior-haskell-mode-hook
-   (lambda ()
-     (setq ac-sources '(my/ac-source-haskell ac-source-dictionary ac-source-words-in-same-mode-buffers))))
-
-;; end of auto-complete for haskell 
 
 
 ;; set location to Edinburgh:
@@ -454,8 +412,8 @@
 
 (require-package 'emmet-mode)
 (require-package 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.tmpl\\.html\\'" . web-mode))
-(add-hook 'web-mode 'emmet-mode t)
+(add-auto-mode 'web-mode "\\.html\\'")
+(add-hook 'web-mode-hook 'emmet-mode)
 
 
 (defun skewer-start ()
