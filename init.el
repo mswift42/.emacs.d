@@ -72,6 +72,7 @@
 (key-chord-mode 1)
 (require-package 'slime)
 ;;load slime-helper for quicklisp:
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
 (setq slime-lisp-implementations
       '((sbcl ("sbcl") :coding-system utf-8-unix)))
 ;; (load (expand-file-name "~/quicklisp/slime-helper.el"))
@@ -573,16 +574,10 @@
 	  'set-auto-complete-as-completion-at-point-function)
 
 
-(require-package 'diminish)
-(eval-after-load "paredit" '(diminish 'paredit-mode "pe"))
-(eval-after-load 'yas-minor-mode '(diminish 'yas-minor-mode))
-(eval-after-load "eldoc" '(diminish 'eldoc-mode))
 
 
 
 (require-package 'cursor-chg)  ; Load the library
-(toggle-cursor-type-when-idle 1) ; Turn on cursor change when Emacs is idle
-(change-cursor-mode 1) ; Turn on change for overwrite, read-only, and input mode
 
 ;; hs-lint integreation:
 (setenv "PATH" (concat "~/.cabal/bin:" (getenv "PATH")))
