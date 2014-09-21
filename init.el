@@ -1,9 +1,9 @@
 ;; set custom file
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
- 
+
 ;; disable tool and Menu bar:
- 
+
 (tool-bar-mode -1)
 (column-number-mode 1)
 
@@ -11,9 +11,9 @@
 ;; don't use tabs
 (setq-default indent-tabs-mode nil)
 
- 
+
 ;; disable scroll bar , load-battery. :
- 
+
 (scroll-bar-mode -1)
 
 
@@ -234,10 +234,13 @@
 
 ;; end of auto-complete for haskell 
 
-;; weather-metno-setup:
-(setq weather-metno-location-name "City_of_Edinburgh,Scotland"
-      weather-metno-location-latitude 55
-      weather-metno-location-longitude 3)
+
+;; set location to Edinburgh:
+(setq calendar-latitude 55.95)
+(setq calendar-longitude -3.18)
+(setq calendar-location-name "Edinburgh, UK")
+
+
 
 ;; org-capture:
 (setq org-default-notes-file (expand-file-name "~/todo.org"))
@@ -538,25 +541,13 @@
 
 ;; setup javascript:
 (require 'init-javascript)
-;; (add-hook 'js2-mode-hook 'skewer-mode)
-;; (add-hook 'css-mode-hook 'skewer-css-mode)
-;; (add-hook 'html-mode-hook 'skewer-html-mode)
+
+(require-package 'emmet-mode)
+(require-package 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.tmpl\\.html\\'" . web-mode))
+(add-hook 'web-mode 'emmet-mode t)
 
 
-
-;; (global-set-key [f5] 'slime-js-reload)
-;; (add-hook 'js2-mode-hook
-;;           (lambda ()
-;;             (slime-js-minor-mode 1)))
-;; (add-hook 'css-mode-hook
-;;           (lambda ()
-;;             (define-key css-mode-map "\M-\C-x" 'slime-js-refresh-css)
-;;             (define-key css-mode-map "\C-c\C-r" 'slime-js-embed-css)))
-
-;; Bookmarklet to load skewer:
-;;
-;;     javascript:(function(){var d=document ;var s=d.createElement('script');s.src='http://localhost:8023/skewer';d.body.appendChild(s);})()
-;;
 (defun skewer-start ()
   (interactive)
   (let ((httpd-port 8023))
@@ -571,9 +562,6 @@
 
 
 
-;; (require 'powerline)
-;; (powerline-center-theme)
-
 ;; (require 'ac-nrepl-compliment)
 ;; (add-hook 'nrepl-mode-hook 'ac-nrepl-compliment-setup)
 ;; (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-compliment-setup)
@@ -584,55 +572,17 @@
 (add-hook 'auto-complete-mode-hook
 	  'set-auto-complete-as-completion-at-point-function)
 
-;; (add-hook 'nrepl-mode-hook 'set-auto-complete-as-completion-at-point-function)
-;; (add-hook 'nrepl-interaction-mode-hook
-;;	  'set-auto-complete-as-completion-at-point-function)
 
-;; ;; Setup Mu4e
-
-;; (require 'mu4e)
-;; (require 'smtpmail)
-
-;; (setq mu4e-drafts-folder "/Gmail/[Gmail].Drafts"
-;;       mu4e-sent-folder   "/Gmail/[Gmail].Sent Mail"
-;;       mu4e-trash-folder  "/Gmail/[Gmail].Trash"
-;;       mu4e-sent-messages-behavior 'delete
-;;       mu4e-get-mail-command "offlineimap"
-;;       mu4e-update-interval 60
-;;       user-mail-address "youremail@gmail.com"
-;;       user-full-name  "yourname"
-;;       mu4e-maildir-shortcuts
-;;             '( ("/Gmail/INBOX"               . ?i)
-;;                ("/Gmail/[Gmail].Sent Mail"   . ?s)
-;;                ("/Gmail/[Gmail].Trash"       . ?t)
-;;                ("/Gmail/[Gmail].All Mail"    . ?a))
-
-;;      message-send-mail-function 'smtpmail-send-it
-;;      smtpmail-stream-type 'starttls
-;;      smtpmail-default-smtp-server "smtp.gmail.com"
-;;      smtpmail-smtp-server "smtp.gmail.com"
-;;      smtpmail-smtp-service 587
-;;      message-kill-buffer-on-exit t)
-
-;; (setq mu4e-view-show-images t)
-;; (when (fboundp 'imagemagick-register-types)
-;;   (imagemagick-register-types))
-;; (setq mu4e-view-prefer-html t)
-;; (setq mu4e-html2text-command "html2text -utf8 -width 72")
-;; (setq mail-user-agent 'mu4e-user-agent)
-
-;; end of mu4e setup.(require ')
-
-;;(require-package 'diminish)
-;;(eval-after-load "paredit" '(diminish 'paredit-mode "pe"))
-;;(eval-after-load 'yas-minor-mode '(diminish 'yas-minor-mode))
-;;(eval-after-load "eldoc" '(diminish 'eldoc-mode))
+(require-package 'diminish)
+(eval-after-load "paredit" '(diminish 'paredit-mode "pe"))
+(eval-after-load 'yas-minor-mode '(diminish 'yas-minor-mode))
+(eval-after-load "eldoc" '(diminish 'eldoc-mode))
 
 
 
-;; (require-package 'cursor-chg)  ; Load the library
-;; (toggle-cursor-type-when-idle 1) ; Turn on cursor change when Emacs is idle
-;; (change-cursor-mode 1) ; Turn on change for overwrite, read-only, and input mode
+(require-package 'cursor-chg)  ; Load the library
+(toggle-cursor-type-when-idle 1) ; Turn on cursor change when Emacs is idle
+(change-cursor-mode 1) ; Turn on change for overwrite, read-only, and input mode
 
 ;; hs-lint integreation:
 (setenv "PATH" (concat "~/.cabal/bin:" (getenv "PATH")))
