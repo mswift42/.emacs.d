@@ -32,15 +32,19 @@
 
 ;; setup flycheck:
 
-(require 'flycheck)
+(require-package 'flycheck)
 (add-hook 'after-init-hook 'global-flycheck-mode)
 
 (setq flycheck-check-syntax-automatically '(save idle-change mode-enabled)
       flycheck-idle-change-delay 0.4)
 
-
+;; load ace-jump mode:
+(require-package 'ace-jump-mode)
 ;; load go-mode:
 (require 'init-go)
+
+;; load key-chords
+(require 'init-keychord)
 
 ;; setup ibuffer:
 (require-package 'ibuffer-vc)
@@ -49,8 +53,6 @@
 
  
 ;; add key-chords
-(require 'key-chord)
-(key-chord-mode 1)
 (require-package 'slime)
 ;;load slime-helper for quicklisp:
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
@@ -70,17 +72,9 @@
 (require 'init-magnars)
 ;; end of multiple cursors
 
-;; ace-jump mode
-(require-package 'ace-jump-mode)
-(key-chord-define-global "kj" 'ace-jump-mode)
 
-;; change key-binding from complete-at-point:
-(key-chord-define-global "nm" 'magit-status) 
-(key-chord-define-global "gr" 'golden-ratio)
-(key-chord-define-global "rw" 'rotate-windows)
-(key-chord-define-global "tw" 'toggle-window-split)
-(key-chord-define-global "sc" 'org-capture)
-(key-chord-define-global "fj" 'helm-mini)
+
+
 ;; add winner-mode
 (winner-mode 1)
  
