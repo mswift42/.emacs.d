@@ -28,7 +28,8 @@
 (require 'pp-c-l)
 (pretty-control-l-mode t)
  
- 
+(require-package 'ws-butler)
+(ws-butler-global-mode)
 
 ;; setup flycheck:
 
