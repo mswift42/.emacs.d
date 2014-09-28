@@ -57,6 +57,8 @@
 (add-hook 'ibuffer-hook 'ibuffer-vc-set-filter-groups-by-vc-root)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
+(require 'init-evil)
+
  
 ;; add key-chords
 (require-package 'slime)
