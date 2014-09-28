@@ -30,6 +30,11 @@
  
 (require-package 'ws-butler)
 (ws-butler-global-mode)
+(ido-mode t)
+(require-package 'ido-better-flex)
+(ido-everywhere t)
+(ido-better-flex/enable)
+(require-package 'ido-ubiquitous)
 
 ;; setup flycheck:
 
@@ -203,10 +208,8 @@
 
 
 
-(setq py-install-directory "~/.emacs.d/site-lisp/python-mode")
-(add-to-list 'load-path py-install-directory)
-(require 'python-mode)
-(when (featurep 'python) (unload-feature 'python t))
+(add-auto-mode 'python-mode "\\.py\\'" "\\.py3\\'")
+(add-hook 'python-mode-hook 'elpy-mode)
 (setq py-load-pymacs-p t)
 
 
