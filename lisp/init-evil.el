@@ -25,6 +25,7 @@
 (define-key evil-normal-state-map "P" 'evil-paste-before)
 ;; undo
 (define-key evil-normal-state-map "u" 'undo)
+(evil-leader/set-key "c" 'compile)
 
 (when (fboundp 'undo-tree-undo)
   (define-key evil-normal-state-map "u" 'undo-tree-undo)
