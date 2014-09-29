@@ -26,6 +26,7 @@
 ;; undo
 (define-key evil-normal-state-map "u" 'undo)
 (evil-leader/set-key "c" 'compile)
+(evil-leader/set-key "m" 'magit-status)
 
 (when (fboundp 'undo-tree-undo)
   (define-key evil-normal-state-map "u" 'undo-tree-undo)
