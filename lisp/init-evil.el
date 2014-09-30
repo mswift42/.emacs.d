@@ -28,6 +28,7 @@
 (evil-leader/set-key "c" 'compile)
 (evil-leader/set-key "m" 'magit-status)
 (evil-leader/set-key "h" 'helm-mini)
+(evil-leader/set-key "of" 'helm-find-files)
 
 (when (fboundp 'undo-tree-undo)
   (define-key evil-normal-state-map "u" 'undo-tree-undo)
