@@ -18,7 +18,7 @@
 
 (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
 (global-evil-leader-mode)
-(evil-leader/set-leader ",")
+(evil-leader/set-leader "<SPC>")
 (evil-leader/set-key "f" 'evil-ace-jump-word-mode)
 (global-evil-surround-mode 1)
 (define-key evil-normal-state-map "p" 'evil-paste-after)
@@ -27,6 +27,7 @@
 (define-key evil-normal-state-map "u" 'undo)
 (evil-leader/set-key "c" 'compile)
 (evil-leader/set-key "m" 'magit-status)
+(evil-leader/set-key "h" 'helm-mini)
 
 (when (fboundp 'undo-tree-undo)
   (define-key evil-normal-state-map "u" 'undo-tree-undo)

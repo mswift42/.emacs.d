@@ -413,6 +413,7 @@
 (require-package 'emmet-mode)
 (require-package 'web-mode)
 (add-auto-mode 'web-mode "\\.html\\'")
+(add-auto-mode 'web-mode "\\.tmpl\\'")
 (add-hook 'web-mode-hook 'emmet-mode)
 
 
@@ -498,6 +499,9 @@
 
 
 (add-hook 'hy-mode-hook 'paredit-mode 1)
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+
 
 ;; setup <F5> to compile
 (global-set-key (kbd "<f5>") 'compile)
