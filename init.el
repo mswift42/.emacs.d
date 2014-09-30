@@ -24,7 +24,7 @@
 (require 'init-appearance)
  
 (require 'init-autocomplete)
-
+(require 'init-magnars)
 (require 'pp-c-l)
 (pretty-control-l-mode t)
  
@@ -50,7 +50,7 @@
 (require 'init-go)
 
 ;; load key-chords
-(require 'init-keychord)
+;; (require 'init-keychord)
 
 ;; setup ibuffer:
 (require-package 'ibuffer-vc)
@@ -77,7 +77,7 @@
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 
 
-(require 'init-magnars)
+
 ;; end of multiple cursors
 
 

@@ -29,6 +29,10 @@
 (evil-leader/set-key "m" 'magit-status)
 (evil-leader/set-key "h" 'helm-mini)
 (evil-leader/set-key "of" 'helm-find-files)
+(evil-leader/set-key "vb" 'ido-switch-buffer)
+(evil-leader/set-key "rw" 'rotate-windows)
+(evil-leader/set-key "tw" 'toggle-window-split)
+(evil-leader/set-key "sc" 'org-capture)
 
 (when (fboundp 'undo-tree-undo)
   (define-key evil-normal-state-map "u" 'undo-tree-undo)
