@@ -33,6 +33,7 @@
 (evil-leader/set-key "rw" 'rotate-windows)
 (evil-leader/set-key "tw" 'toggle-window-split)
 (evil-leader/set-key "sc" 'org-capture)
+(evil-leader/set-key "k" 'ido-kill-buffer)
 
 (when (fboundp 'undo-tree-undo)
   (define-key evil-normal-state-map "u" 'undo-tree-undo)
