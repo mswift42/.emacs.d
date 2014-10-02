@@ -6,6 +6,11 @@
 (require-package 'evil-surround)
 (require-package 'evil-matchit)
 
+(defun severin/evil-jump-to-tag ()
+  (interactive)
+  (evil-emacs-state)
+  (call-interactively (key-binding (kbd "M-.")))
+  (evil-change-to-previous-state (other-buffer)))
 
 ;; color cursor:
 (setq evil-emacs-state-cursor '("red" box))
@@ -23,6 +28,10 @@
 (global-evil-surround-mode 1)
 (define-key evil-normal-state-map "p" 'evil-paste-after)
 (define-key evil-normal-state-map "P" 'evil-paste-before)
+(define-key evil-normal-state-map (kbd "C-]") 'severin/evil-jump-to-tag)
+
+;; (define-key evil-normal-state-map (kbd "C-]") (kbd "\M-."))
+
 ;; undo
 (define-key evil-normal-state-map "u" 'undo)
 (evil-leader/set-key "c" 'compile)
