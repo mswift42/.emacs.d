@@ -13,6 +13,15 @@
   (evil-change-to-previous-state (other-buffer)))
 
 ;; color cursor:
+(defvar evil-emacs-state-cursor)
+(defvar evil-normal-state-cursor)
+(defvar evil-visual-state-cursor)
+(defvar evil-insert-state-cursor)
+(defvar evil-replace-state-cursor)
+(defvar evil-operator-state-cursor)
+(defvar evil-normal-state-map)
+(defvar evil-insert-state-map)
+
 (setq evil-emacs-state-cursor '("red" box))
 (setq evil-normal-state-cursor '("green" box))
 (setq evil-visual-state-cursor '("orange" box))
@@ -30,7 +39,6 @@
 (define-key evil-normal-state-map "P" 'evil-paste-before)
 (define-key evil-normal-state-map (kbd "C-]") 'severin/evil-jump-to-tag)
 
-;; (define-key evil-normal-state-map (kbd "C-]") (kbd "\M-."))
 
 ;; undo
 (define-key evil-normal-state-map "u" 'undo)
