@@ -10,7 +10,8 @@
   (interactive)
   (evil-emacs-state)
   (call-interactively (key-binding (kbd "M-.")))
-  (evil-change-to-previous-state (other-buffer)))
+  (evil-change-to-previous-state (other-buffer))
+  (evil-change-to-previous-state (current-buffer)))
 
 ;; color cursor:
 (defvar evil-emacs-state-cursor)

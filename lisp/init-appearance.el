@@ -23,7 +23,7 @@
 (global-hl-line-mode t)
 
 ;; set default font:
-(set-frame-font "Source Code Pro 10")
+(set-frame-font "Camingo Code 10")
 
 (provide 'init-appearance)
 ;;; init-appearance ends here.
