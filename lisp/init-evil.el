@@ -7,6 +7,7 @@
 (require-package 'evil-matchit)
 
 (defun severin/evil-jump-to-tag ()
+  "call the function bound to Emacs'mode 'M-x'"
   (interactive)
   (evil-emacs-state)
   (call-interactively (key-binding (kbd "M-.")))
@@ -38,7 +39,7 @@
 (global-evil-surround-mode 1)
 (define-key evil-normal-state-map "p" 'evil-paste-after)
 (define-key evil-normal-state-map "P" 'evil-paste-before)
-(define-key evil-normal-state-map (kbd "C-]") 'severin/evil-jump-to-tag)
+(define-key evil-normal-state-map (kbd "C-]") (kbd "\\ M-."))
 
 
 ;; undo
@@ -57,5 +58,7 @@
   (define-key evil-normal-state-map "u" 'undo-tree-undo)
   (define-key evil-normal-state-map "\C-r" 'undo-tree-redo))
 (define-key evil-normal-state-map "=" 'evil-indent)
+
+
 (provide 'init-evil)
 ;;; init-evil ends here
