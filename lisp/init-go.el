@@ -26,6 +26,10 @@
                           (flycheck-mode)))
 (add-hook 'go-mode-hook (lambda ()
                          (local-set-key (kbd "M-.") #'godef-jump)))
+
+;; disable electric-indent-mode:
+
+(add-hook 'go-mode-hook (lambda () (electric-indent-local-mode -1)))
 (provide 'init-go)
 
 ;;; init-go ends here
