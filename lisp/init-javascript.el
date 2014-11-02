@@ -63,9 +63,10 @@
 
 (setq ac-js2-evaluate-calls t)
 
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
+(add-hook 'jsx-mode-hook 'auto-complete-mode)
 
-
-
+(add-hook 'jsx-mode-hook (lambda () (electric-indent-mode -1)))
 
 
 (provide 'init-javascript)

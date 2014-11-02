@@ -505,6 +505,10 @@
 ;; setup <F5> to compile
 (global-set-key (kbd "<f5>") 'compile)
 
+;; set qml-mode for qml files
+(add-to-list 'auto-mode-alist '("\\.qml'" . qml-mode))
+
+
 ;; setup cedet:
 ;; (load-file "~/cedet/cedet-devel-load.el")
 
