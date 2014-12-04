@@ -479,7 +479,7 @@
 
 
 ;; startup Emacs maximized:
-(setq initial-frame-alist '((fullscreen . maximized)))
+;; (setq initial-frame-alist '((fullscreen . maximized)))
 
 ;; use ibuffer instead of normal buffer-list:
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -506,7 +506,7 @@
 (global-set-key (kbd "<f5>") 'compile)
 
 ;; set qml-mode for qml files
-(add-to-list 'auto-mode-alist '("\\.qml'" . qml-mode))
+(add-to-list 'auto-mode-alist '("\\.qml\\'" . qml-mode))
 
 
 ;; setup cedet:
