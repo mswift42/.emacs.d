@@ -54,6 +54,8 @@
 (add-to-list 'load-path "~/tern/emacs")
 (autoload 'tern-mode "tern.el" nil t)
 (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+(add-hook 'js2-mode-hook (lambda () (electric-pair-mode t)))
+(add-hook 'js2-mode-hook (lambda () (electric-indent-mode -1)))
 
 (eval-after-load 'tern
    '(progn
