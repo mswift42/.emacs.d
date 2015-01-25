@@ -45,6 +45,8 @@
 
 ;; load ace-jump mode:
 (require-package 'ace-jump-mode)
+(require-package 'ace-isearch)
+(global-ace-isearch-mode t)
 ;; load go-mode:
 (require 'init-go)
 
@@ -56,7 +58,7 @@
 (add-hook 'ibuffer-hook 'ibuffer-vc-set-filter-groups-by-vc-root)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-(require 'init-evil)
+;; (require 'init-evil)
 
  
 ;; add key-chords
@@ -67,7 +69,7 @@
       '((sbcl ("sbcl") :coding-system utf-8-unix)))
 ;; (load (expand-file-name "~/quicklisp/slime-helper.el"))
 (setq inferior-lisp-program "sbcl")
-(slime-setup '(slime-fancy slime-tramp slime-asdf))
+;; (slime-setup '(slime-fancy slime-tramp slime-asdf))
 
 
 (unless (package-installed-p 'cider)
@@ -499,7 +501,7 @@
 
 (add-hook 'hy-mode-hook 'paredit-mode 1)
 
-(global-set-key (kbd "M-x") 'helm-M-x)
+;; (global-set-key (kbd "M-x") 'helm-M-x)
 
 
 ;; setup <F5> to compile

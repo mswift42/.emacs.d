@@ -19,7 +19,7 @@
 
 (require-package 'oldlace-theme)
 ;;; set theme and hl-line mode
-(load-theme 'warm-night)
+(load-theme 'greymatters)
 (global-hl-line-mode t)
 
 ;; set default font:
