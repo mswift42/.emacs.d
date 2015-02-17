@@ -50,6 +50,11 @@
   (dolist (hook '(emacs-lisp-mode-hook lisp-mode-hook geiser-mode-hook
 				       clojure-mode-hook))
     (add-hook hook 'paredit-mode)))
+
+(use-package flycheck
+  :ensure t
+  :defer t
+  :idle (global-flycheck-mode))
   
 
 ;; setup 
