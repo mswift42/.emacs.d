@@ -43,6 +43,15 @@
   :defer t
   :idle (global-ace-isearch-mode t))
 
+;; setup paredit
+(use-package paredit
+  :ensure t
+  :init
+  (dolist (hook '(emacs-lisp-mode-hook lisp-mode-hook geiser-mode-hook
+				       clojure-mode-hook))
+    (add-hook hook 'paredit-mode)))
+  
+
 ;; setup 
 
 
