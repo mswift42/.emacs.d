@@ -16,9 +16,10 @@
 (use-package color-theme-sanityinc-solarized
   :ensure t)
 
+(load-theme 'sanityinc-solarized-light)
+
 (global-hl-line-mode t)
 (set-frame-font "Camingo Code 10")
-
 
 (provide 'init-appearance)
 	     
