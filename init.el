@@ -16,6 +16,8 @@
   (package-install 'use-package))
 
 (require 'use-package)
+(when (fboundp 'winner-mode)
+  (winner-mode t))
 
 
 
@@ -128,6 +130,11 @@
   :defer
   :idle
   (add-hook 'go-mode-hook 'go-eldoc-setup))
+
+(use-package ace-window
+  :ensure t
+  :init
+  (bind-key [remap other-window] 'ace-window))
 
   
 
