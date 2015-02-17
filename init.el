@@ -131,10 +131,10 @@
   :idle
   (add-hook 'go-mode-hook 'go-eldoc-setup))
 
-(use-package ace-window
+(use-package switch-window
   :ensure t
   :init
-  (bind-key [remap other-window] 'ace-window))
+  (bind-key [remap other-window] 'switch-window))
 
   
 
