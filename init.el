@@ -118,8 +118,16 @@
 (use-package go-mode
   :ensure t
   :init
-  (add-hook 'before-save-hook 'gofmt-before-save)
-  (local-set-key (kbd "M-.") 'godef-jump))
+  (progn
+    (add-hook 'before-save-hook 'gofmt-before-save)
+    (bind-key [remap find-tag] #'godef-jump)
+    (bind-key (kbd "C-c C-r") #'go-remove-unused-imports)))
+
+(use-package go-eldoc
+  :ensure t
+  :defer
+  :idle
+  (add-hook 'go-mode-hook 'go-eldoc-setup))
 
   
 
