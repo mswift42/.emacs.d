@@ -37,7 +37,13 @@
 
 (require 'init-web)
 
+;; setup ace-isearch
+(use-package ace-isearch
+  :ensure t
+  :defer t
+  :idle (global-ace-isearch-mode t))
 
+;; setup 
 
 
 
