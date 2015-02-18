@@ -2,6 +2,8 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
+;; disable yes-or-no
+(fset 'yes-or-no-p-history 'y-or-n-p)
 ;; package init
 
 (require 'package)
@@ -71,7 +73,6 @@
 
 (use-package ido                        ; Better minibuffer completion
   :init (progn
-	  (require 'ido)
           (ido-mode)
           (ido-everywhere))
   :config
@@ -83,6 +84,8 @@
         ido-default-file-method 'selected-window
         ido-default-buffer-method 'selected-window
         ido-use-faces nil))             ; Prefer flx ido faces
+
+
 
 (use-package ido-ubiquitous             ; IDO everywhere, really!
   :ensure t
