@@ -40,7 +40,7 @@
 ;; setup magit
 (use-package magit
   :ensure t
-  :bind (("M-<f12>" . magit-status)))
+  :bind ("M-<f12>" . magit-status))
 
 (require 'init-web)
 
@@ -194,6 +194,17 @@
     "zoom"
     ("g" text-scale-increase)
     ("l" text-scale-decrease)))
+
+(use-package expand-region
+  :ensure t
+  :bind ("C-=" . er/expand-region))
+
+(use-package multiple-cursors
+  :ensure t
+  :bind ("C->" . mc/mark-next-like-this)
+  ("C-<" . mc/mark-previous-like-this)
+  ("C-c C-<" . mc/mark-all-like-this))
+
 
 ;; setup 
 
