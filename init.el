@@ -186,6 +186,15 @@
     (fullframe magit-status magit-mode-quit-window)
     (fullframe list-packages quit-window)))
 
+(use-package hydra
+  :ensure t
+  :defer t
+  :idle
+  (defhydra hydra-zoom (global-map "<f2>")
+    "zoom"
+    ("g" text-scale-increase)
+    ("l" text-scale-decrease)))
+
 ;; setup 
 
 
