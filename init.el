@@ -27,7 +27,8 @@
   :ensure t
   :init
   (dolist (i '(emacs-lisp-mode-hook ielm-mode-hook))
-    (add-hook i 'elisp-slime-nav-mode)))
+    (add-hook i 'elisp-slime-nav-mode))
+  :diminish elisp-slime-nav-mode)
 
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
@@ -54,7 +55,8 @@
   :init
   (dolist (hook '(emacs-lisp-mode-hook lisp-mode-hook geiser-mode-hook
 				       clojure-mode-hook))
-    (add-hook hook 'paredit-mode)))
+    (add-hook hook 'paredit-mode))
+  :diminish paredit-mode)
 
 (use-package flycheck
   :ensure t
@@ -69,6 +71,7 @@
 
 (use-package ido                        ; Better minibuffer completion
   :init (progn
+	  (require 'ido)
           (ido-mode)
           (ido-everywhere))
   :config
@@ -83,7 +86,9 @@
 
 (use-package ido-ubiquitous             ; IDO everywhere, really!
   :ensure t
-  :init (ido-ubiquitous-mode))
+  :init (progn 
+	  (require 'ido)
+	  (ido-ubiquitous-mode)))
 
 (use-package flx-ido                    ; Flex matching for IDO
   :ensure t
