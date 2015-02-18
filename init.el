@@ -18,10 +18,9 @@
   (package-install 'use-package))
 
 (require 'use-package)
+
 (when (fboundp 'winner-mode)
   (winner-mode t))
-
-
 
 
 ;; load elisp-slime-nav
@@ -177,6 +176,15 @@
                     (ibuffer-vc-set-filter-groups-by-vc-root)
                     (unless (eq ibuffer-sorting-mode 'alphabetic)
                       (ibuffer-do-sort-by-alphabetic)))))
+
+
+(use-package fullframe
+  :ensure t
+  :defer t
+  :init
+  (progn
+    (fullframe magit-status magit-mode-quit-window)
+    (fullframe list-packages quit-window)))
 
 ;; setup 
 
