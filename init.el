@@ -88,6 +88,7 @@
 
 (use-package ido-ubiquitous             ; IDO everywhere, really!
   :ensure t
+  :pre-load 'ido
   :init (progn 
 	  (require 'ido)
 	  (ido-ubiquitous-mode)))
@@ -204,6 +205,25 @@
   :bind ("C->" . mc/mark-next-like-this)
   ("C-<" . mc/mark-previous-like-this)
   ("C-c C-<" . mc/mark-all-like-this))
+
+(use-package key-chord
+  :ensure t
+  :defer t
+  :idle
+  (key-chord-mode t))
+
+(use-package helm
+  :ensure t
+  :init
+  (require 'helm-config)
+  :config
+  (key-chord-define-global "fm" 'helm-mini))
+
+(use-package helm-projectile
+  :ensure t
+  :config
+  (key-chord-define-global "fp" 'helm-projectile))
+
 
 
 ;; setup 
