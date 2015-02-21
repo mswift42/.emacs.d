@@ -8,6 +8,9 @@
 (setq-default indent-tabs-mode nil)
 ;; package init
 
+;; start emacs maximized
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
