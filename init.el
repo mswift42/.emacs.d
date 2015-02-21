@@ -4,6 +4,8 @@
 
 ;; disable yes-or-no
 (fset 'yes-or-no-p-history 'y-or-n-p)
+
+(setq-default indent-tabs-mode nil)
 ;; package init
 
 (require 'package)
@@ -208,9 +210,10 @@
 
 (use-package key-chord
   :ensure t
-  :defer t
-  :idle
-  (key-chord-mode t))
+  :init
+  (progn
+    (require 'key-chord)
+    (key-chord-mode t)))
 
 (use-package helm
   :ensure t
