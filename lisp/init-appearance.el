@@ -19,7 +19,7 @@
 (load-theme 'sanityinc-solarized-light)
 
 (global-hl-line-mode t)
-(set-frame-font "Camingo Code 10")
+(set-frame-font "Inconsolata 11")
 
 (provide 'init-appearance)
 	     
