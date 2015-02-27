@@ -216,7 +216,11 @@
   :init
   (progn
     (require 'key-chord)
-    (key-chord-mode t)))
+    (key-chord-mode t)
+    (key-chord-define-global "qq" (lambda () ;; useful for package-install/update.
+                                    (interactive) ;; updating packages also opens the compile window
+                                    (kill-buffer (other-buffer)) ;; this way both windows get closed after
+                                    (kill-buffer (other-buffer)))))) ;; finishing.
 
 (use-package helm
   :ensure t
@@ -230,7 +234,14 @@
   :config
   (key-chord-define-global "fp" 'helm-projectile))
 
+(use-package lispy
+  :ensure t
+  :init
+  (add-hook 'emacs-lisp-mode-hook (lambda ()
+                                    (lispy-mode t))))
 
+;;; load evil
+(require 'init-evil)
 
 ;; setup 
 
