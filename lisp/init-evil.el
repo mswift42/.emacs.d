@@ -13,6 +13,7 @@
       :init
       (progn
         (global-evil-leader-mode)
+        (setq evil-leader/in-all-states 1)
         (evil-leader/set-leader "<SPC>")
         (evil-leader/set-key "f" 'evil-ace-jump-word-mode)
         (evil-leader/set-key "c" 'compile)
