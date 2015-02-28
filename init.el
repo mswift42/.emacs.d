@@ -27,6 +27,7 @@
   (package-install 'use-package))
 
 (require 'use-package)
+(require 'diminish)
 
 (when (fboundp 'winner-mode)
   (winner-mode t))
