@@ -5,6 +5,10 @@
 ;; disable yes-or-no
 (fset 'yes-or-no-p-history 'y-or-n-p)
 
+;;; no backup files
+(setq make-backup-files nil)
+
+;;; no tabs
 (setq-default indent-tabs-mode nil)
 ;; package init
 
