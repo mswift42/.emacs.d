@@ -28,8 +28,8 @@
       :ensure t
       :init
       (progn
-        (add-to-list 'company-backend 'comapny-tern)
         (add-hook 'js2-mode-hook 'company-mode)
-        (eval-after-load 'tern-mode 'company-tern)))))
+        (add-to-list 'company-backends 'company-tern)
+        ))))
 
 (provide 'init-web)
