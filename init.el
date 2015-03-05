@@ -245,6 +245,19 @@
   (add-hook 'emacs-lisp-mode-hook (lambda ()
                                     (lispy-mode t))))
 
+(use-package company-ycmd
+  :ensure t
+  :init
+  (progn
+    (company-ycmd-setup)
+    (use-package flycheck-ycmd
+      :ensure t
+      :init
+      (progn
+        (add-hook 'ycmd-file-parse-result-hook 'flycheck-ycmd--cache-parse-results)
+        (add-to-list 'flycheck-checkers 'ycmd)))))
+
+
 ;;; load evil
 (require 'init-evil)
 
