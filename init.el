@@ -221,11 +221,7 @@
   :init
   (progn
     (require 'key-chord)
-    (key-chord-mode t)
-    (key-chord-define-global "qq" (lambda () ;; useful for package-install/update.
-                                    (interactive) ;; updating packages also opens the compile window
-                                    (kill-buffer (other-buffer)) ;; this way both windows get closed after
-                                    (kill-buffer (other-buffer)))))) ;; finishing.
+    (key-chord-mode t))) ;; finishing.
 
 (use-package helm
   :ensure t
@@ -245,6 +241,9 @@
   (add-hook 'emacs-lisp-mode-hook (lambda ()
                                     (lispy-mode t))))
 
+(require 'ycmd)
+(ycmd-setup)
+
 (use-package company-ycmd
   :ensure t
   :init
@@ -257,9 +256,22 @@
         (add-hook 'ycmd-file-parse-result-hook 'flycheck-ycmd--cache-parse-results)
         (add-to-list 'flycheck-checkers 'ycmd)))))
 
+(use-package cider
+  :ensure t
+  :config
+  (progn
+    (add-hook 'cider-mode-hook #'eldoc-mode)
+    (setq nrepl-hide-special-buffers t)
+    (setq cider-repl-wrap-history t)
+    (add-hook 'cider-repl-mode-hook #'subword-mode)
+    (add-hook 'cider-repl-mode-hook #'paredit-mode)))
+
+
 
 ;;; load evil
 (require 'init-evil)
+
+(menu-bar-mode t)
 
 ;; setup 
 
