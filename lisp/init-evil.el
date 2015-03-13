@@ -1,5 +1,13 @@
 ;; setup evil mode
 
+(defun kill-both-buffers ()
+    "if using package manager and updating packages,
+     this command will kill the current buffer and the
+     other buffer, in this case, the compilation buffer."
+  (interactive)
+  (kill-buffer (current-buffer))
+  (kill-buffer (other-buffer)))
+
 (use-package evil
   :ensure t
   :init
@@ -22,6 +30,7 @@
         (evil-leader/set-key "of" 'helm-find-files)
         (evil-leader/set-key "vb" 'ido-switch-buffer)
         (evil-leader/set-key "sc" 'org-capture)
+        (evil-leader/set-key "q" 'kill-both-buffers)
         (evil-leader/set-key "k" 'ido-kill-buffer)))
     (use-package evil-surround
       :ensure t

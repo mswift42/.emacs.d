@@ -2,6 +2,7 @@
 ;; disable toolbar 
 (tool-bar-mode -1)
 (column-number-mode t)
+(menu-bar-mode -1)
 
 (scroll-bar-mode -1)
 
@@ -16,10 +17,10 @@
 (use-package color-theme-sanityinc-solarized
   :ensure t)
 
-(load-theme 'sanityinc-solarized-light)
+(load-theme 'oldlace)
 
 (global-hl-line-mode t)
-(set-frame-font "Inconsolata 11")
+(set-frame-font "Camingo Code 9")
 
 (provide 'init-appearance)
 	     
