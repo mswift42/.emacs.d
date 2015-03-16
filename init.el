@@ -58,7 +58,7 @@
 (use-package ace-isearch
   :ensure t
   :defer t
-  :idle (global-ace-isearch-mode t))
+  :init (global-ace-isearch-mode t))
 
 ;; setup paredit
 (use-package paredit
@@ -72,7 +72,7 @@
 (use-package flycheck
   :ensure t
   :defer t
-  :idle (global-flycheck-mode))
+  :init (global-flycheck-mode))
 
 (use-package smex
   :ensure t
@@ -98,7 +98,6 @@
 
 (use-package ido-ubiquitous             ; IDO everywhere, really!
   :ensure t
-  :pre-load 'ido
   :init (progn 
 	  (require 'ido)
 	  (ido-ubiquitous-mode)))
@@ -110,7 +109,7 @@
 (use-package company               
   :ensure t
   :defer t
-  :idle (global-company-mode)
+  :init (global-company-mode)
   :config
   (progn
     ;; Use Company for completion
@@ -146,7 +145,7 @@
 (use-package go-eldoc
   :ensure t
   :defer
-  :idle
+  :init
   (add-hook 'go-mode-hook 'go-eldoc-setup))
 
 (use-package switch-window
@@ -200,7 +199,7 @@
 (use-package hydra
   :ensure t
   :defer t
-  :idle
+  :init
   (defhydra hydra-zoom (global-map "<f2>")
     "zoom"
     ("g" text-scale-increase)
@@ -244,6 +243,7 @@
 (require 'ycmd)
 (ycmd-setup)
 
+
 (use-package company-ycmd
   :ensure t
   :init
@@ -253,8 +253,9 @@
       :ensure t
       :init
       (progn
-        (add-hook 'ycmd-file-parse-result-hook 'flycheck-ycmd--cache-parse-results)
-        (add-to-list 'flycheck-checkers 'ycmd)))))
+        (add-hook 'ycmd-file-parse-result-hook 'flycheck-ycmd--cache-parse-results)))))
+
+(set-variable 'ycmd-server-command '("python" "/home/severin/ycmd/ycmd/__main__.py"))
 
 (use-package cider
   :ensure t
@@ -269,7 +270,7 @@
 
 
 ;;; load evil
-(require 'init-evil)
+;; (require 'init-evil)
 
 (menu-bar-mode t)
 
