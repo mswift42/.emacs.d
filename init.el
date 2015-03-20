@@ -234,11 +234,6 @@
   :config
   (key-chord-define-global "fp" 'helm-projectile))
 
-(use-package lispy
-  :ensure t
-  :init
-  (add-hook 'emacs-lisp-mode-hook (lambda ()
-                                    (lispy-mode t))))
 
 (require 'ycmd)
 (ycmd-setup)
