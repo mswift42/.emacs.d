@@ -7,6 +7,7 @@
 
 ;;; no backup files
 (setq make-backup-files nil)
+(global-auto-revert-mode t)
 
 ;;; no tabs
 (setq-default indent-tabs-mode nil)
