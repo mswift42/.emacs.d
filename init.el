@@ -242,12 +242,12 @@
 
 (use-package company-ycmd
   :ensure t
-  :init
+  :config
   (progn
     (company-ycmd-setup)
     (use-package flycheck-ycmd
       :ensure t
-      :init
+      :config
       (progn
         (add-hook 'ycmd-file-parse-result-hook 'flycheck-ycmd--cache-parse-results)))))
 
