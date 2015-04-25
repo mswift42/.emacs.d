@@ -2,6 +2,12 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
+(defalias 'flymake-get-temp-dir
+  (if (fboundp 'temp-directory)
+      'temp-directory
+    (lambda () temporary-file-directory)))
+
+
 ;; disable yes-or-no
 (fset 'yes-or-no-p-history 'y-or-n-p)
 
@@ -54,6 +60,10 @@
   :bind ("M-<f12>" . magit-status))
 
 (require 'init-web)
+
+(use-package ace-jump-mode
+  :ensure t
+  :bind ("C-'" . ace-jump-mode))
 
 ;; setup ace-isearch
 (use-package ace-isearch
@@ -236,22 +246,22 @@
   (key-chord-define-global "fp" 'helm-projectile))
 
 
-(require 'ycmd)
-(ycmd-setup)
+;; (require 'ycmd)
+;; (ycmd-setup)
 
 
-(use-package company-ycmd
-  :ensure t
-  :config
-  (progn
-    (company-ycmd-setup)
-    (use-package flycheck-ycmd
-      :ensure t
-      :config
-      (progn
-        (add-hook 'ycmd-file-parse-result-hook 'flycheck-ycmd--cache-parse-results)))))
+;; (use-package company-ycmd
+;;   :ensure t
+;;   :config
+;;   (progn
+;;     (company-ycmd-setup)
+;;     (use-package flycheck-ycmd
+;;       :ensure t
+;;       :config
+;;       (progn
+;;         (add-hook 'ycmd-file-parse-result-hook 'flycheck-ycmd--cache-parse-results)))))
 
-(set-variable 'ycmd-server-command '("python" "/home/severin/ycmd/ycmd/__main__.py"))
+;; (set-variable 'ycmd-server-command '("python" "/home/severin/ycmd/ycmd/__main__.py"))
 
 (use-package cider
   :ensure t
@@ -263,6 +273,21 @@
     (add-hook 'cider-repl-mode-hook #'subword-mode)
     (add-hook 'cider-repl-mode-hook #'paredit-mode)))
 
+(use-package weather-metno
+  :ensure t
+  :config
+  (setq weather-metno-location-name "Edinburgh, UK"
+        weather-metno-location-latitude 56
+        weather-metno-location-longitude -3.4))
+
+(use-package dart-mode
+  :ensure t
+  :config
+  (setq dart-format-path "dartfmt"))
+
+(use-package flycheck-dart
+  :init
+  (add-to-list 'flycheck-checkers 'dart-dartanalyzer))
 
 
 ;;; load evil
