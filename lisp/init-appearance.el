@@ -20,7 +20,7 @@
 (load-theme 'oldlace)
 
 (global-hl-line-mode t)
-(set-frame-font "Camingo Code 9")
+(set-frame-font "Source Code Pro 10")
 
 (provide 'init-appearance)
 	     

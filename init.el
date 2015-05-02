@@ -283,7 +283,9 @@
 (use-package dart-mode
   :ensure t
   :config
-  (setq dart-format-path "dartfmt"))
+  (progn
+    (setq dart-format-path "dartfmt")
+    (add-hook 'dart-mode-hook #'electric-pair-mode)))
 
 (use-package flycheck-dart
   :init
