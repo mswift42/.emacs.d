@@ -291,6 +291,8 @@
   :init
   (add-to-list 'flycheck-checkers 'dart-dartanalyzer))
 
+;; disable magit warning:
+(setq magit-last-seen-setup-instructions "1.4.0")
 
 ;;; load evil
 ;; (require 'init-evil)
