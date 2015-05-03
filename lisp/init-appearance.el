@@ -20,8 +20,9 @@
 (load-theme 'oldlace)
 
 (global-hl-line-mode t)
-(set-frame-font "Source Code Pro 10")
+(set-frame-font "Droid Sans Mono 10")
+
 
 (provide 'init-appearance)
-	     
 
+;;; init-appearance.el ends here
