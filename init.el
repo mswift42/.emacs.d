@@ -61,16 +61,6 @@
 
 (require 'init-web)
 
-(use-package ace-jump-mode
-  :ensure t
-  :bind ("C-'" . ace-jump-mode))
-
-;; setup ace-isearch
-(use-package ace-isearch
-  :ensure t
-  :defer t
-  :init (global-ace-isearch-mode t))
-
 ;; setup paredit
 (use-package paredit
   :ensure t
@@ -299,7 +289,18 @@
 
 (menu-bar-mode t)
 
-;; setup 
+;; setup
+
+(use-package swiper
+  :ensure t
+  :bind
+  ("M-'" . swiper))
+
+(use-package avy
+  :ensure t
+  :bind
+  ("C-'" . avy-goto-char)
+  ("C-;" . avy-goto-char-2))
 
 
 
