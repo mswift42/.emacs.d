@@ -14,8 +14,7 @@
 (defadvice load-theme (before disable-themes-first activate)
   (disable-all-themes))
 
-(use-package color-theme-sanityinc-solarized
-  :ensure t)
+
 
 (load-theme 'oldlace)
 
