@@ -39,6 +39,13 @@
 (when (fboundp 'winner-mode)
   (winner-mode t))
 
+;; Setup evil-mode.
+(use-package evil
+  :ensure t)
+
+(use-package colemak-evil
+  :ensure t)
+
 
 ;; load elisp-slime-nav
 (use-package elisp-slime-nav
@@ -301,6 +308,21 @@
   :bind
   ("C-'" . avy-goto-char)
   ("C-;" . avy-goto-char-2))
+
+
+
+
+(provide 'init)
+
+;;; init.el ends here
+
+
+
+
+
+
+
+
 
 
 
