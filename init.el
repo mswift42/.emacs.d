@@ -39,13 +39,6 @@
 (when (fboundp 'winner-mode)
   (winner-mode t))
 
-;; Setup evil-mode.
-(use-package evil
-  :ensure t)
-
-(use-package colemak-evil
-  :ensure t)
-
 
 ;; load elisp-slime-nav
 (use-package elisp-slime-nav
