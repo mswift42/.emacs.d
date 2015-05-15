@@ -40,6 +40,7 @@
   (winner-mode t))
 
 
+
 ;; load elisp-slime-nav
 (use-package elisp-slime-nav
   :ensure t
@@ -50,7 +51,7 @@
 
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-
+(require 'init-evil)
 
 (require 'init-appearance)
 
