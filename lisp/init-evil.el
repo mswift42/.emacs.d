@@ -34,8 +34,7 @@
         (evil-leader/set-key "k" 'ido-kill-buffer)))
     (use-package evil-surround
       :ensure t
-      :defer t
-      :idle
+      :config
       (progn
         (global-evil-surround-mode)))
     (defvar evil-emacs-state-cursor)
