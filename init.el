@@ -217,25 +217,14 @@
   ("C-<" . mc/mark-previous-like-this)
   ("C-c C-<" . mc/mark-all-like-this))
 
-(use-package key-chord
-  :ensure t
-  :init
-  (progn
-    (require 'key-chord)
-    (key-chord-mode t))) ;; finishing.
 
 (use-package helm
   :ensure t
   :init
-  (require 'helm-config)
-  :config
-  (key-chord-define-global "fm" 'helm-mini))
+  (require 'helm-config))
 
 (use-package helm-projectile
-  :ensure t
-  :config
-  (key-chord-define-global "fp" 'helm-projectile))
-
+  :ensure t) 
 
 ;; (require 'ycmd)
 ;; (ycmd-setup)
