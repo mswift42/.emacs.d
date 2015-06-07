@@ -154,7 +154,7 @@
   :ensure t
   :init
   (bind-key [remap other-window] 'switch-window))
-  
+
 (use-package ibuffer                    ; Better buffer list
   :bind (([remap list-buffers] . ibuffer))
   ;; Show VC Status in ibuffer
@@ -265,11 +265,16 @@
   :config
   (progn
     (setq dart-format-path "dartfmt")
+    (setq dart-executable-path "/opt/google/dartsdk/bin/dart")
+    (setq dart-analysis-server-snapshot-path
+          "/opt/google/dartsdk/bin/snapshots/analysis_server.dart.snapshot")
+    (setq dart-debug t)
+    (setq dart-enable-analysis-server t)
     (add-hook 'dart-mode-hook #'electric-pair-mode)))
 
-(use-package flycheck-dart
-  :init
-  (add-to-list 'flycheck-checkers 'dart-dartanalyzer))
+;; (use-package flycheck-dart
+;;   :init
+;;   (add-to-list 'flycheck-checkers 'dart-dartanalyzer))
 
 ;; disable magit warning:
 (setq magit-last-seen-setup-instructions "1.4.0")
@@ -292,6 +297,10 @@
   ("C-'" . avy-goto-char)
   ("C-;" . avy-goto-char-2))
 
+;; setup jdee
+(add-to-list 'load-path (expand-file-name "lisp/jdee-2.4.1/lisp" user-emacs-directory))
+(load "jde")
+(setq debug-on-error t)
 
 
 
