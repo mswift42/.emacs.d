@@ -54,6 +54,7 @@
     (setq evil-operator-state-cursor '("red" ))
     (define-key evil-normal-state-map "p" 'evil-paste-after)
     (define-key evil-normal-state-map "P" 'evil-paste-before)
+    (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
     (define-key evil-normal-state-map (kbd "C-]") (kbd "\\ M-."))
     (evil-set-initial-state 'git-commit-mode 'insert)))
 
