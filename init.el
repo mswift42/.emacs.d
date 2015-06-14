@@ -298,9 +298,8 @@
   ("C-;" . avy-goto-char-2))
 
 ;; setup jdee
-(add-to-list 'load-path (expand-file-name "lisp/jdee-2.4.1/lisp" user-emacs-directory))
-(load "jde")
-(setq debug-on-error t)
+;; (add-to-list 'load-path (expand-file-name "lisp/jdee-2.4.1/lisp" user-emacs-directory))
+;; (load "jde")
 
 
 
