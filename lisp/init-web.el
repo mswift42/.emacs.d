@@ -11,7 +11,9 @@
     (use-package emmet-mode
       :ensure t
       :init
-      (add-hook 'web-mode-hook 'emmet-mode t))))
+      (add-hook 'web-mode-hook 'emmet-mode t)
+      :config
+      (diminish 'emmet-mode))))
 
 (use-package js2-mode
   :ensure t
