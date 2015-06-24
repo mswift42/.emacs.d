@@ -142,7 +142,9 @@
   (progn
     (add-hook 'before-save-hook 'gofmt-before-save)
     (bind-key [remap find-tag] #'godef-jump)
-    (bind-key (kbd "C-c C-r") #'go-remove-unused-imports)))
+    (bind-key (kbd "C-c C-r") #'go-remove-unused-imports))
+  :config
+  (add-hook 'go-mode-hook 'electric-pair-mode))
 
 (use-package go-eldoc
   :ensure t
