@@ -140,6 +140,7 @@
   :ensure t
   :init
   (progn
+    (setq gofmt-command "goimports")
     (add-hook 'before-save-hook 'gofmt-before-save)
     (bind-key [remap find-tag] #'godef-jump)
     (bind-key (kbd "C-c C-r") #'go-remove-unused-imports))
