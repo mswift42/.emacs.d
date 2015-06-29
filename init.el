@@ -145,7 +145,8 @@
     (bind-key [remap find-tag] #'godef-jump)
     (bind-key (kbd "C-c C-r") #'go-remove-unused-imports))
   :config
-  (add-hook 'go-mode-hook 'electric-pair-mode))
+  (add-hook 'go-mode-hook 'electric-pair-mode)
+  (add-hook 'go-mode-hook 'subword-mode t))
 
 (use-package go-eldoc
   :ensure t
