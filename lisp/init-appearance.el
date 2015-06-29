@@ -19,7 +19,7 @@
 (load-theme 'oldlace)
 
 (global-hl-line-mode t)
-(set-frame-font "Droid Sans Mono 10")
+(set-frame-font "m+ 1m 10")
 
 
 (provide 'init-appearance)
