@@ -19,7 +19,7 @@
 (load-theme 'white-sand)
 
 (global-hl-line-mode t)
-(set-frame-font "m+ 1m 10")
+(set-frame-font "Camingo Code 10")
 
 
 (provide 'init-appearance)
