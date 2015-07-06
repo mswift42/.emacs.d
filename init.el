@@ -305,15 +305,16 @@
 ;; (add-to-list 'load-path (expand-file-name "lisp/jdee-2.4.1/lisp" user-emacs-directory))
 ;; (load "jde")
 
+(use-package geiser
+  :ensure t
+  :config
+  (add-hook 'scheme-mode-hook 'geiser-mode))
+
 
 
 (provide 'init)
 
 ;;; init.el ends here
-
-
-
-
 
 
 
