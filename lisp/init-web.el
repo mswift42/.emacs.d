@@ -32,6 +32,7 @@
       (progn
         (add-hook 'js2-mode-hook 'company-mode)
         (add-to-list 'company-backends 'company-tern)
-        ))))
+        ))
+    (add-hook 'js2-mode-hook 'electric-pair-mode)))
 
 (provide 'init-web)
