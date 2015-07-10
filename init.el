@@ -227,8 +227,7 @@
   :init
   (require 'helm-config))
 
-(use-package helm-projectile
-  :ensure t) 
+ 
 
 ;; (require 'ycmd)
 ;; (ycmd-setup)
