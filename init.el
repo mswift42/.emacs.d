@@ -268,9 +268,9 @@
   :config
   (progn
     (setq dart-format-path "dartfmt")
-    (setq dart-executable-path "/opt/google/dartsdk/bin/dart")
+    (setq dart-executable-path "/usr/lib/dart/bin/dart")
     (setq dart-analysis-server-snapshot-path
-          "/opt/google/dartsdk/bin/snapshots/analysis_server.dart.snapshot")
+          "/usr/lib/dart/bin/snapshots/analysis_server.dart.snapshot")
     (setq dart-debug t)
     (setq dart-enable-analysis-server t)
     (add-hook 'dart-mode-hook #'electric-pair-mode)))
