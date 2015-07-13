@@ -309,6 +309,16 @@
   :config
   (add-hook 'scheme-mode-hook 'geiser-mode))
 
+(use-package irony
+  :ensure t
+  :config
+  (progn
+    (add-hook 'c++-mode-hook 'irony-mode)
+    (use-package company-irony
+      :ensure t
+      :config
+      (add-to-list 'company-backends 'company-irony))))
+
 
 
 (provide 'init)
