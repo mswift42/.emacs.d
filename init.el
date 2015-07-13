@@ -311,13 +311,16 @@
 
 (use-package irony
   :ensure t
+  :init
+  (use-package company-irony
+    :ensure t
+    :config
+    (add-to-list 'company-backends 'company-irony))
   :config
   (progn
     (add-hook 'c++-mode-hook 'irony-mode)
-    (use-package company-irony
-      :ensure t
-      :config
-      (add-to-list 'company-backends 'company-irony))))
+    (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
+    (add-hook 'irony-mode-hook 'electric-pair-mode)))
 
 
 
