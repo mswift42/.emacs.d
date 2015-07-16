@@ -244,7 +244,7 @@
 ;;       (progn
 ;;         (add-hook 'ycmd-file-parse-result-hook 'flycheck-ycmd--cache-parse-results)))))
 
-;; (set-variable 'ycmd-server-command '("python" "/home/severin/ycmd/ycmd/__main__.py"))
+(set-variable 'ycmd-server-command '("python" "/home/severin/ycmd/ycmd/__main__.py"))
 
 (use-package cider
   :ensure t
@@ -315,12 +315,20 @@
   (use-package company-irony
     :ensure t
     :config
-    (add-to-list 'company-backends 'company-irony))
+    (progn
+      (setq company-clang-executable "/usr/bin/clang++-3.6")
+      (add-to-list 'company-backends 'company-irony)))
   :config
   (progn
     (add-hook 'c++-mode-hook 'irony-mode)
     (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
     (add-hook 'irony-mode-hook 'electric-pair-mode)))
+
+(use-package flycheck-google-cpplint
+  :ensure t
+  :config
+  (flycheck-add-next-checker 'c/c++-cppcheck
+                             '(warning . c/c++-googlelint)))
 
 
 
