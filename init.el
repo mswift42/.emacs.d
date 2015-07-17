@@ -309,20 +309,26 @@
   :config
   (add-hook 'scheme-mode-hook 'geiser-mode))
 
+(defun my-irony-mode-hook ()
+  (define-key irony-mode-map [remap completion-at-point]
+    'irony-completion-at-point-async)
+  (define-key irony-mode-map [remap complete-symbol]
+    'irony-completion-at-point-async))
+
 (use-package irony
   :ensure t
-  :init
-  (use-package company-irony
-    :ensure t
-    :config
-    (progn
-      (setq company-clang-executable "/usr/bin/clang++-3.6")
-      (add-to-list 'company-backends 'company-irony)))
   :config
   (progn
+    (use-package company-irony
+      :ensure t
+      :config
+      (add-to-list 'company-backends 'company-irony))
+    (add-hook 'irony-mode-hook 'electric-pair-mode)
     (add-hook 'c++-mode-hook 'irony-mode)
+    (add-hook 'c-mode-hook 'irony-mode)
+    (add-hook 'irony-mode-hook 'my-irony-mode-hook)
     (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
-    (add-hook 'irony-mode-hook 'electric-pair-mode)))
+    (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)))
 
 (use-package flycheck-google-cpplint
   :ensure t
