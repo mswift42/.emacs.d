@@ -10,6 +10,11 @@
 
 ;; disable yes-or-no
 (fset 'yes-or-no-p-history 'y-or-n-p)
+(setq confirm-nonexistent-file-or-buffer nil)
+
+;; get rid of splash screen
+(setq inhibit-startup-message t
+      inhibit-startup-echo-area-message t)
 
 ;;; no backup files
 (setq make-backup-files nil)
