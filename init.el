@@ -148,8 +148,7 @@
     (bind-key [remap find-tag] #'godef-jump)
     (bind-key (kbd "C-c C-r") #'go-remove-unused-imports))
   :config
-  (add-hook 'go-mode-hook 'electric-pair-mode)
-  (add-hook 'go-mode-hook 'subword-mode t))
+  (add-hook 'go-mode-hook 'electric-pair-mode))
 
 (use-package go-eldoc
   :ensure t
@@ -256,7 +255,6 @@
     (add-hook 'cider-mode-hook #'eldoc-mode)
     (setq nrepl-hide-special-buffers t)
     (setq cider-repl-wrap-history t)
-    (add-hook 'cider-repl-mode-hook #'subword-mode)
     (add-hook 'cider-repl-mode-hook #'paredit-mode)))
 
 (use-package weather-metno
