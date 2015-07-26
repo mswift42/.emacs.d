@@ -16,6 +16,9 @@
 (setq inhibit-startup-message t
       inhibit-startup-echo-area-message t)
 
+;; enable session support
+(desktop-save-mode t)
+
 ;;; no backup files
 (setq make-backup-files nil)
 (global-auto-revert-mode t)
