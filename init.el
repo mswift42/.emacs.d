@@ -19,6 +19,9 @@
 (setq-default indent-tabs-mode nil)
 ;; package init
 
+;;; set subword globally to on.
+(global-subword-mode t) 
+
 ;; start emacs maximized
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
