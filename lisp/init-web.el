@@ -35,4 +35,12 @@
         ))
     (add-hook 'js2-mode-hook 'electric-pair-mode)))
 
+(use-package jsx-mode
+  :ensure t
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
+    (autoload 'jsx-mode "jsx-mode" "JSX mode" t)
+    (add-hook 'js2-mode-hook 'electric-pair-mode)))
+
 (provide 'init-web)
