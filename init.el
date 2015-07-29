@@ -347,7 +347,10 @@
   (flycheck-add-next-checker 'c/c++-cppcheck
                              '(warning . c/c++-googlelint)))
 
-
+(use-package paredit-everywhere
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook 'paredit-everywhere-mode))
 
 (provide 'init)
 
