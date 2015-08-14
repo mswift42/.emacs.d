@@ -19,7 +19,7 @@
 (load-theme 'white-sand)
 
 (global-hl-line-mode t)
-(set-frame-font "Camingo Code 10")
+(set-frame-font "Ubuntu Mono 11")
 
 
 (provide 'init-appearance)
