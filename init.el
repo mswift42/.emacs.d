@@ -16,8 +16,6 @@
 (setq inhibit-startup-message t
       inhibit-startup-echo-area-message t)
 
-;; enable session support
-(desktop-save-mode t)
 
 ;;; no backup files
 (setq make-backup-files nil)
@@ -62,6 +60,7 @@
 
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+
 (require 'init-evil)
 
 (require 'init-appearance)
@@ -352,6 +351,13 @@
   :config
   (add-hook 'go-mode-hook 'paredit-everywhere-mode))
 
+;; setup sbcl
+(setq inferior-lisp-program "sbcl")
+
+;; enable session support
+(use-package desktop+
+  :ensure t)
+(desktop-save-mode t)
 (provide 'init)
 
 ;;; init.el ends here
