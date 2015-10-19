@@ -357,6 +357,12 @@
 ;; enable session support
 (use-package desktop+
   :ensure t)
+
+;; use agressive-indent
+(use-package aggressive-indent
+  :ensure t
+  :config
+  (global-aggressive-indent-mode t))
 (desktop-save-mode t)
 (provide 'init)
 
