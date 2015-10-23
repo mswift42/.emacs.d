@@ -14,7 +14,8 @@
 (defadvice load-theme (before disable-themes-first activate)
   (disable-all-themes))
 
-
+(use-package white-sand-theme
+  :ensure t)
 
 (load-theme 'white-sand)
 

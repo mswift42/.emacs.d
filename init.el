@@ -349,7 +349,8 @@
 (use-package paredit-everywhere
   :ensure t
   :config
-  (add-hook 'go-mode-hook 'paredit-everywhere-mode))
+  (add-hook 'go-mode-hook 'paredit-everywhere-mode)
+  (add-hook 'web-mode-hook 'paredit-everywhere-mode))
 
 ;; setup sbcl
 (setq inferior-lisp-program "sbcl")
