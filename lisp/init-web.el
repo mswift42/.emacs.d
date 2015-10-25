@@ -44,4 +44,17 @@
     (autoload 'jsx-mode "jsx-mode" "JSX mode" t)
     (add-hook 'js2-mode-hook 'electric-pair-mode)))
 
+(use-package tide
+  :ensure t
+  :config
+  (progn
+    (add-hook 'typescript-mode-hook
+              (lambda ()
+                (tide-setup)
+                (flycheck-mode +1)
+                (setq flycheck-check-syntax-automatically '(save-mode-enabled))
+                (eldoc-mode +1)
+                (company-mode-on)))
+    (setq company-tooltip-annotation t)))
+
 (provide 'init-web)
