@@ -364,6 +364,12 @@
   :ensure t
   :config
   (global-aggressive-indent-mode t))
+
+;; use beacon mode
+(use-package beacon
+  :ensure t
+  :config
+  (beacon-mode t))
 (desktop-save-mode t)
 (provide 'init)
 
