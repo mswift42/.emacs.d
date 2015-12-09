@@ -21,8 +21,6 @@
   :mode "\\.js\\'"
   :config
   (progn
-    (use-package js2-refactor
-      :ensure t)
     (use-package tern
       :ensure t
       :init
