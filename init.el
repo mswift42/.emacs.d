@@ -338,7 +338,6 @@
     (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
     (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)))
 
-(yas-global-mode t)
 
 (use-package flycheck-google-cpplint
   :ensure t
