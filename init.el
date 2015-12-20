@@ -364,6 +364,12 @@
   :config
   (global-aggressive-indent-mode t))
 
+;; setup org-capture
+
+(setq org-directory "~/Dropbox")
+(setq org-default-notes-file (concat org-directory "/todo.org"))
+(evil-leader/set-key "oc" 'org-capture)
+
 ;; use beacon mode
 (use-package beacon
   :ensure t
