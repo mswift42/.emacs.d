@@ -10,13 +10,13 @@
 
 
 ;;; Also use Melpa for most packages
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 ;; But don't take Melpa versions of certain packages
 (setq package-filter-function
       (lambda (package version archive)
-        (or (not (string-equal archive "melpa"))
             (not (memq package '())))))
+        (or (not (string-equal archive "melpa"))
 
 
 

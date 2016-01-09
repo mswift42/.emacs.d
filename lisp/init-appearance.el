@@ -16,8 +16,10 @@
 
 (use-package white-sand-theme
   :ensure t)
+(use-package reykjavik-theme
+  :ensure t)
 
-(load-theme 'white-sand)
+(load-theme 'reykjavik)
 
 (global-hl-line-mode t)
 (set-frame-font "Camingo Code 10")
