@@ -231,10 +231,7 @@
   ("C-c C-<" . mc/mark-all-like-this))
 
 
-(use-package helm
-  :ensure t
-  :init
-  (require 'helm-config))
+
 
  
 
@@ -307,10 +304,6 @@
   :bind
   ("C-'" . avy-goto-char)
   ("C-;" . avy-goto-char-2))
-
-;; setup jdee
-;; (add-to-list 'load-path (expand-file-name "lisp/jdee-2.4.1/lisp" user-emacs-directory))
-;; (load "jde")
 
 (use-package geiser
   :ensure t
