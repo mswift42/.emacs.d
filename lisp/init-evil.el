@@ -27,6 +27,12 @@
       :config
       (progn
         (global-evil-surround-mode)))
+    (use-package evil-escape
+      :ensure t
+      :config
+      (progn
+        (evil-escape-mode)
+        (setq-default evil-escape-key-sequence "tn")))
     (defvar evil-emacs-state-cursor)
     (defvar evil-normal-state-cursor)
     (defvar evil-visual-state-cursor)

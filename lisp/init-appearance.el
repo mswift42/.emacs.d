@@ -22,7 +22,7 @@
 (load-theme 'reykjavik)
 
 (global-hl-line-mode t)
-(set-frame-font "FiraCode 10")
+(set-frame-font "Camingo Code 13")
 
 
 (provide 'init-appearance)
