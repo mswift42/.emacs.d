@@ -347,9 +347,7 @@
 ;; setup sbcl
 (setq inferior-lisp-program "sbcl")
 
-;; enable session support
-(use-package desktop+
-  :ensure t)
+
 
 ;; use agressive-indent
 (use-package aggressive-indent
@@ -368,8 +366,12 @@
   :ensure t
   :config
   (beacon-mode t))
-(desktop-save-mode t)
 (provide 'init)
+
+(use-package desktop+
+  :ensure t
+  :config
+  (require 'desktop+))
 
 ;;; init.el ends here
 

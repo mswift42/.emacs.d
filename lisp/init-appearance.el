@@ -11,7 +11,7 @@
   (dolist (i custom-enabled-themes)
     (disable-theme i)))
 
-(defadvice load-theme (before disable-themes-first activate)
+(defadvice load-theme (before disable-themes-first activate)                 
   (disable-all-themes))
 
 (use-package white-sand-theme
@@ -22,7 +22,7 @@
 (load-theme 'reykjavik)
 
 (global-hl-line-mode t)
-(set-frame-font "Camingo Code 13")
+(set-frame-font "Camingo Code 12")
 
 
 (provide 'init-appearance)
