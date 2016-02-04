@@ -259,7 +259,8 @@
     (add-hook 'cider-mode-hook #'eldoc-mode)
     (setq nrepl-hide-special-buffers t)
     (setq cider-repl-wrap-history t)
-    (add-hook 'cider-repl-mode-hook #'paredit-mode)))
+    (add-hook 'cider-repl-mode-hook #'paredit-mode)
+    (setq cider-boot-parameters "cider repl -s wait")))
 
 (use-package weather-metno
   :ensure t
@@ -366,12 +367,12 @@
   :ensure t
   :config
   (beacon-mode t))
+
+(desktop-save-mode t)
+
 (provide 'init)
 
-(use-package desktop+
-  :ensure t
-  :config
-  (require 'desktop+))
+
 
 ;;; init.el ends here
 

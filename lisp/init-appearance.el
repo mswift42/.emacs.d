@@ -19,10 +19,10 @@
 (use-package reykjavik-theme
   :ensure t)
 
-(load-theme 'reykjavik)
+(load-theme 'white-sand)
 
 (global-hl-line-mode t)
-(set-frame-font "Camingo Code 12")
+(set-frame-font "Camingo Code 13")
 
 
 (provide 'init-appearance)
