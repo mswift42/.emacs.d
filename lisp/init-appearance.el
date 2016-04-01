@@ -20,7 +20,7 @@
 (load-theme 'silkworm)
 
 (global-hl-line-mode t)
-(set-frame-font "Roboto Mono 12")
+(set-frame-font "Camingo Code 12")
 
 
 (provide 'init-appearance)

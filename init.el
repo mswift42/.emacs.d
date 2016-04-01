@@ -29,7 +29,7 @@
 (global-subword-mode t) 
 
 ;; start emacs maximized
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
+;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -369,6 +369,19 @@
   (beacon-mode t))
 
 (desktop-save-mode t)
+
+;; setup rust
+(use-package rust-mode
+  :ensure t
+  :config
+  (progn
+    (use-package racer
+      :ensure t
+      :config
+      (setq racer-rust-src-path "/home/martin/rustc/rustc-1.7.0/src/"))
+    (add-hook 'rust-mode-hook #'racer-mode)
+    (add-hook 'racer-mode-hook #'eldoc-mode)
+    (add-hook 'racer-mode-hook #'company-mode)))
 
 (provide 'init)
 
