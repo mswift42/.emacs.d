@@ -14,15 +14,13 @@
 (defadvice load-theme (before disable-themes-first activate)                 
   (disable-all-themes))
 
-(use-package white-sand-theme
-  :ensure t)
-(use-package reykjavik-theme
+(use-package silkworm-theme
   :ensure t)
 
-(load-theme 'white-sand)
+(load-theme 'silkworm)
 
 (global-hl-line-mode t)
-(set-frame-font "Camingo Code 13")
+(set-frame-font "Roboto Mono 12")
 
 
 (provide 'init-appearance)
