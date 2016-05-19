@@ -14,10 +14,10 @@
 (defadvice load-theme (before disable-themes-first activate)                 
   (disable-all-themes))
 
-(use-package silkworm-theme
+(use-package white-sand-theme
   :ensure t)
 
-(load-theme 'silkworm)
+(load-theme 'white-sand)
 
 (global-hl-line-mode t)
 (set-frame-font "Camingo Code 12")
