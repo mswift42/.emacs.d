@@ -86,6 +86,12 @@
   :defer t
   :init (global-flycheck-mode))
 
+(use-package flycheck-pos-tip
+  :ensure t
+  :defer t
+  :config
+  (with-eval-after-load 'flycheck (flycheck-pos-tip-mode)))
+
 (use-package smex
   :ensure t
   :bind
@@ -270,16 +276,17 @@
         weather-metno-location-longitude -3.4))
 
 (use-package dart-mode
-  :ensure t
   :config
   (progn
-    (setq dart-format-path "dartfmt")
     (setq dart-executable-path "/usr/lib/dart/bin/dart")
     (setq dart-analysis-server-snapshot-path
           "/usr/lib/dart/bin/snapshots/analysis_server.dart.snapshot")
-    (setq dart-debug t)
     (setq dart-enable-analysis-server t)
-    (add-hook 'dart-mode-hook #'electric-pair-mode)))
+    (add-hook 'dart-mode-hook #'electric-pair-mode)
+    (add-hook 'dart-mode-hook 'flycheck-mode)
+    (add-hook 'dart-mode-hook
+              (lambda ()
+                (setq imenu-create-index-function #'dart-imenu-index)))))
 
 ;; (use-package flycheck-dart
 ;;   :init
@@ -343,11 +350,8 @@
   :ensure t
   :config
   (add-hook 'go-mode-hook 'paredit-everywhere-mode)
-  (add-hook 'web-mode-hook 'paredit-everywhere-mode))
-
-;; setup sbcl
-(setq inferior-lisp-program "sbcl")
-
+  (add-hook 'web-mode-hook 'paredit-everywhere-mode)
+  (add-hook 'typescript-mode-hook 'paredit-everywhere-mode))
 
 
 ;; use agressive-indent
@@ -382,6 +386,15 @@
     (add-hook 'rust-mode-hook #'racer-mode)
     (add-hook 'racer-mode-hook #'eldoc-mode)
     (add-hook 'racer-mode-hook #'company-mode)))
+
+;; gometalinter for flycheck:
+(use-package flycheck-gometalinter
+  :ensure t
+  :config
+  (progn
+    (flycheck-gometalinter-setup)
+    (setq flycheck-gometalinter-disable-all t)
+    (setq flycheck-gometalinter-enable-linters '("golint"))))
 
 (provide 'init)
 
