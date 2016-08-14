@@ -158,8 +158,7 @@
   (progn
     (setq gofmt-command "goimports")
     (add-hook 'before-save-hook 'gofmt-before-save)
-    (bind-key [remap find-tag] #'godef-jump)
-    (bind-key (kbd "C-c C-r") #'go-remove-unused-imports))
+    (bind-key [remap find-tag] #'godef-jump))
   :config
   (add-hook 'go-mode-hook 'electric-pair-mode))
 
@@ -388,13 +387,7 @@
     (add-hook 'racer-mode-hook #'company-mode)))
 
 ;; gometalinter for flycheck:
-(use-package flycheck-gometalinter
-  :ensure t
-  :config
-  (progn
-    (flycheck-gometalinter-setup)
-    (setq flycheck-gometalinter-disable-all t)
-    (setq flycheck-gometalinter-enable-linters '("golint"))))
+
 
 (provide 'init)
 

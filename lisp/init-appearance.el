@@ -11,7 +11,7 @@
   (dolist (i custom-enabled-themes)
     (disable-theme i)))
 
-(defadvice load-theme (before disable-themes-first activate)                 
+(defadvice load-theme (before disable-themes-first activate)
   (disable-all-themes))
 
 (use-package white-sand-theme
@@ -20,7 +20,7 @@
 (load-theme 'white-sand)
 
 (global-hl-line-mode t)
-(set-frame-font "M+ 1mn 12")
+(set-frame-font "Roboto Mono 11")
 
 
 (provide 'init-appearance)
