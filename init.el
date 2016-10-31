@@ -135,7 +135,8 @@
 
     (setq company-tooltip-align-annotations t
           ;; Easy navigation to candidates with M-<n>
-          company-show-numbers t))
+          company-show-numbers t)
+    (setq company-dabbrev-downcase nil))
   :diminish company-mode)
 
 
@@ -274,22 +275,22 @@
         weather-metno-location-latitude 56
         weather-metno-location-longitude -3.4))
 
-(use-package dart-mode
-  :config
-  (progn
-    (setq dart-executable-path "/usr/lib/dart/bin/dart")
-    (setq dart-analysis-server-snapshot-path
-          "/usr/lib/dart/bin/snapshots/analysis_server.dart.snapshot")
-    (setq dart-enable-analysis-server t)
-    (add-hook 'dart-mode-hook #'electric-pair-mode)
-    (add-hook 'dart-mode-hook 'flycheck-mode)
-    (add-hook 'dart-mode-hook
-              (lambda ()
-                (setq imenu-create-index-function #'dart-imenu-index)))))
+;; (use-package dart-mode
+;;   :config
+;;   (progn
+;;     (setq dart-executable-path "/usr/lib/dart/bin/dart")
+;;     (setq dart-analysis-server-snapshot-path
+;;           "/usr/lib/dart/bin/snapshots/analysis_server.dart.snapshot")
+;;     (setq dart-enable-analysis-server t)
+;;     (add-hook 'dart-mode-hook #'electric-pair-mode)
+;;     (add-hook 'dart-mode-hook 'flycheck-mode)
+;;     (add-hook 'dart-mode-hook
+;;               (lambda ()
+;;                 (setq imenu-create-index-function #'dart-imenu-index)))))
 
-;; (use-package flycheck-dart
-;;   :init
-;;   (add-to-list 'flycheck-checkers 'dart-dartanalyzer))
+;; ;; (use-package flycheck-dart
+;; ;;   :init
+;; ;;   (add-to-list 'flycheck-checkers 'dart-dartanalyzer))
 
 ;; disable magit warning:
 (setq magit-last-seen-setup-instructions "1.4.0")
