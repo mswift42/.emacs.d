@@ -20,7 +20,7 @@
 (load-theme 'white-sand)
 
 (global-hl-line-mode t)
-(set-frame-font "Roboto Mono 11")
+(set-frame-font "Go Mono 11")
 
 
 (provide 'init-appearance)
