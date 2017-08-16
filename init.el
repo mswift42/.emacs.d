@@ -114,11 +114,11 @@
 
 
 
-(use-package ido-ubiquitous             ; IDO everywhere, really!
-  :ensure t
-  :init (progn 
-	  (require 'ido)
-	  (ido-ubiquitous-mode)))
+;; (use-package ido-ubiquitous             ; IDO everywhere, really!
+;;   :ensure t
+;;   :init (progn 
+;; 	  (require 'ido)
+;; 	  (ido-ubiquitous-mode)))
 
 (use-package flx-ido                    ; Flex matching for IDO
   :ensure t
@@ -340,11 +340,7 @@
     (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)))
 
 
-(use-package flycheck-google-cpplint
-  :ensure t
-  :config
-  (flycheck-add-next-checker 'c/c++-cppcheck
-                             '(warning . c/c++-googlelint)))
+
 
 (use-package paredit-everywhere
   :ensure t
@@ -382,7 +378,12 @@
     (use-package racer
       :ensure t
       :config
-      (setq racer-rust-src-path "/home/martin/rustc/rustc-1.7.0/src/"))
+      (setq racer-rust-src-path
+            "/home/martin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"))
+    (use-package flycheck-rust
+      :ensure t
+      :config
+      (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
     (add-hook 'rust-mode-hook #'racer-mode)
     (add-hook 'racer-mode-hook #'eldoc-mode)
     (add-hook 'racer-mode-hook #'company-mode)))
