@@ -386,10 +386,15 @@
       (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
     (add-hook 'rust-mode-hook #'racer-mode)
     (add-hook 'racer-mode-hook #'eldoc-mode)
-    (add-hook 'racer-mode-hook #'company-mode)))
+    (add-hook 'racer-mode-hook #'company-mode)
+    (add-hook 'rust-mode-hook #'electric-pair-mode)
+    (setq rust-format-on-save t)))
 
-;; gometalinter for flycheck:
-
+;; nov.el mode
+(use-package nov
+  :ensure t
+  :config
+  (push '("\\.epub\\'" . nov-mode) auto-mode-alist))
 
 (provide 'init)
 

@@ -13,7 +13,7 @@
  '(fci-rule-color "#073642")
  '(package-selected-packages
    (quote
-    (flycheck-rust racer rust-mode beacon aggressive-indent paredit-everywhere flycheck-google-cpplint company-irony irony geiser avy swiper weather-metno cider multiple-cursors expand-region hydra fullframe ibuffer-vc switch-window go-eldoc company-go company-quickhelp flx-ido ido-ubiquitous smex flycheck-pos-tip paredit tide jsx-mode company-tern tern js2-mode emmet-mode web-mode magit white-sand-theme evil-escape evil-surround evil-leader evil elisp-slime-nav use-package)))
+    (nov novice+ flycheck-rust racer rust-mode beacon aggressive-indent paredit-everywhere flycheck-google-cpplint company-irony irony geiser avy swiper weather-metno cider multiple-cursors expand-region hydra fullframe ibuffer-vc switch-window go-eldoc company-go company-quickhelp flx-ido ido-ubiquitous smex flycheck-pos-tip paredit tide jsx-mode company-tern tern js2-mode emmet-mode web-mode magit white-sand-theme evil-escape evil-surround evil-leader evil elisp-slime-nav use-package)))
  '(pos-tip-background-color "#36473A")
  '(pos-tip-foreground-color "#FFFFC8")
  '(vc-annotate-background nil)
