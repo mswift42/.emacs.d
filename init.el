@@ -313,10 +313,7 @@
   ("C-'" . avy-goto-char)
   ("C-;" . avy-goto-char-2))
 
-(use-package geiser
-  :ensure t
-  :config
-  (add-hook 'scheme-mode-hook 'geiser-mode))
+
 
 (defun my-irony-mode-hook ()
   (define-key irony-mode-map [remap completion-at-point]
