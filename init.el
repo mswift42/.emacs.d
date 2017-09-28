@@ -76,8 +76,7 @@
 (use-package paredit
   :ensure t
   :init
-  (dolist (hook '(emacs-lisp-mode-hook lisp-mode-hook geiser-mode-hook
-				       clojure-mode-hook))
+  (dolist (hook '(emacs-lisp-mode-hook lisp-mode-hook clojure-mode-hook))
     (add-hook hook 'paredit-mode))
   :diminish paredit-mode)
 
@@ -236,27 +235,6 @@
   ("C-<" . mc/mark-previous-like-this)
   ("C-c C-<" . mc/mark-all-like-this))
 
-
-
-
- 
-
-;; (require 'ycmd)
-;; (ycmd-setup)
-
-
-;; (use-package company-ycmd
-;;   :ensure t
-;;   :config
-;;   (progn
-;;     (company-ycmd-setup)
-;;     (use-package flycheck-ycmd
-;;       :ensure t
-;;       :config
-;;       (progn
-;;         (add-hook 'ycmd-file-parse-result-hook 'flycheck-ycmd--cache-parse-results)))))
-
-(set-variable 'ycmd-server-command '("python" "/home/severin/ycmd/ycmd/__main__.py"))
 
 (use-package cider
   :ensure t
