@@ -371,6 +371,11 @@
   :config
   (push '("\\.epub\\'" . nov-mode) auto-mode-alist))
 
+;; haskell mode
+(use-package haskell-mode
+  :ensure t)
+
+
 (provide 'init)
 
 

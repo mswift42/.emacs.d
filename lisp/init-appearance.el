@@ -18,9 +18,10 @@
   :ensure t)
 
 (load-theme 'white-sand)
+(load-theme 'scotchegg)
 
 (global-hl-line-mode t)
-(set-frame-font "Roboto Mono 11")
+(set-frame-font "Go Mono 10")
 
 
 (provide 'init-appearance)
