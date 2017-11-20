@@ -18,10 +18,10 @@
   :ensure t)
 
 (load-theme 'white-sand)
-(load-theme 'scotchegg)
+(load-theme 'Beachy)
 
 (global-hl-line-mode t)
-(set-frame-font "Go Mono 10")
+(set-frame-font "Camingo Code 11")
 
 
 (provide 'init-appearance)
