@@ -21,7 +21,7 @@
 (load-theme 'Beachy)
 
 (global-hl-line-mode t)
-(set-frame-font "Camingo Code 11")
+(set-frame-font "Source Code Pro 13")
 
 
 (provide 'init-appearance)
