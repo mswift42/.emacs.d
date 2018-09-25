@@ -26,7 +26,7 @@
 ;; package init
 
 ;;; set subword globally to on.
-(global-subword-mode t) 
+(global-subword-mode t)
 
 ;; start emacs maximized
 ;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
@@ -325,11 +325,11 @@
   (add-hook 'typescript-mode-hook 'paredit-everywhere-mode))
 
 
-;; use agressive-indent
+use agressive-indent
 (use-package aggressive-indent
   :ensure t
   :config
-  (global-aggressive-indent-mode t))
+  (global-aggressive-indent-mode nil))
 
 ;; setup org-capture
 
@@ -374,6 +374,23 @@
 ;; haskell mode
 (use-package haskell-mode
   :ensure t)
+
+## intero mode
+(use-package intero
+  :ensure t
+  :config
+  (add-hook 'haskell-mode-hook 'intero-mode))
+
+(use-package elm-mode
+  :ensure t
+  :config
+  (setq exec-path (append exec-path '("/home/martin/.npm-packages/bin/")))
+  (setq elm-tags-on-save t)
+  (setq elm-tags-exclude-elm-stuff nil)
+  (add-to-list 'company-backends 'company-elm))
+
+
+
 
 
 (provide 'init)
