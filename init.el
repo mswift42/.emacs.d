@@ -375,7 +375,6 @@
 (use-package haskell-mode
   :ensure t)
 
-## intero mode
 (use-package intero
   :ensure t
   :config
