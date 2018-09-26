@@ -325,11 +325,11 @@
   (add-hook 'typescript-mode-hook 'paredit-everywhere-mode))
 
 
-use agressive-indent
-(use-package aggressive-indent
-  :ensure t
-  :config
-  (global-aggressive-indent-mode nil))
+;; ;; use agressive-indent
+;; (use-package aggressive-indent
+;;   :ensure t
+;;   :config
+;;   (global-aggressive-indent-mode nil))
 
 ;; setup org-capture
 
