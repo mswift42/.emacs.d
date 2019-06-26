@@ -19,6 +19,7 @@
         (evil-leader/set-leader "<SPC>")
         (evil-leader/set-key "c" 'compile)
         (evil-leader/set-key "m" 'magit-status)
+        (evil-leader/set-key "fj" 'frog-jump-buffer)
         (evil-leader/set-key "sb" 'ido-switch-buffer)
         (evil-leader/set-key "sc" 'org-capture)
         (evil-leader/set-key "k" 'ido-kill-buffer)))

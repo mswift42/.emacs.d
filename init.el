@@ -388,6 +388,7 @@
   (setq elm-tags-exclude-elm-stuff nil)
   (add-to-list 'company-backends 'company-elm))
 
+(use-package frog-jump-buffer :ensure t)
 
 
 
