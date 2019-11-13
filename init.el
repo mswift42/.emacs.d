@@ -345,25 +345,33 @@
 
 (desktop-save-mode t)
 
+;; ;; setup rust
+;; (use-package rust-mode
+;;   :ensure t
+;;   :config
+;;   (progn
+;;     (use-package racer
+;;       :ensure t
+;;       :config
+;;       (setq racer-rust-src-path
+;;             "/home/martin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"))
+;;     (use-package flycheck-rust
+;;       :ensure t
+;;       :config
+;;       (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+;;     (add-hook 'rust-mode-hook #'racer-mode)
+;;     (add-hook 'racer-mode-hook #'eldoc-mode)
+;;     (add-hook 'racer-mode-hook #'company-mode)
+;;     (add-hook 'rust-mode-hook #'electric-pair-mode)
+;;     (setq rust-format-on-save t)))
+
 ;; setup rust
 (use-package rust-mode
-  :ensure t
-  :config
-  (progn
-    (use-package racer
-      :ensure t
-      :config
-      (setq racer-rust-src-path
-            "/home/martin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"))
-    (use-package flycheck-rust
-      :ensure t
-      :config
-      (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
-    (add-hook 'rust-mode-hook #'racer-mode)
-    (add-hook 'racer-mode-hook #'eldoc-mode)
-    (add-hook 'racer-mode-hook #'company-mode)
-    (add-hook 'rust-mode-hook #'electric-pair-mode)
-    (setq rust-format-on-save t)))
+  :ensure t)
+
+(use-package lsp-mode
+  :hook (rust-mode . lsp)
+  :commands lsp)
 
 ;; nov.el mode
 (use-package nov
