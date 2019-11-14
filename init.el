@@ -367,11 +367,27 @@
 
 ;; setup rust
 (use-package rust-mode
-  :ensure t)
+  :ensure t
+  :config
+  (setq rust-format-on-save t)
+  (add-hook 'rust-mode-hook #'company-mode))
 
 (use-package lsp-mode
   :hook (rust-mode . lsp)
   :commands lsp)
+
+(use-package company-lsp
+  :commands company-lsp)
+
+;; (use-package lsp-rust
+;;   :ensure t
+;;   :config
+;;   (progn
+;;     (require 'lsp-flycheck)
+;;     (require 'lsp-mode)
+;;     (add-hook 'rust-mode-hook 'lsp-rust-enable)
+;;     (add-hook 'rust-mode-hook 'flycheck-mode))
+;;   )
 
 ;; nov.el mode
 (use-package nov
