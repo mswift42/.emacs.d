@@ -378,8 +378,15 @@
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 (use-package lsp-mode
-  :hook (rust-mode . lsp)
-  :commands lsp)
+  :ensure t
+  :commands lsp
+  :init
+  (add-hook 'rust-mode-hook #'lsp))
+
+(use-package lsp-ui
+  :ensure t
+  :config
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
 (use-package company-lsp
   :commands company-lsp)
