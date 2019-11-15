@@ -372,12 +372,22 @@
   (setq rust-format-on-save t)
   (add-hook 'rust-mode-hook #'company-mode))
 
+(use-package flycheck-rust
+  :ensure t
+  :config
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
 (use-package lsp-mode
   :hook (rust-mode . lsp)
   :commands lsp)
 
 (use-package company-lsp
   :commands company-lsp)
+
+(use-package cargo
+  :ensure t
+  :hook
+  (rust-mode . cargo-minor-mode))
 
 ;; (use-package lsp-rust
 ;;   :ensure t
