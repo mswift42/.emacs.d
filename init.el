@@ -383,10 +383,16 @@
   :init
   (add-hook 'rust-mode-hook #'lsp))
 
+(use-package yasnippet
+  :ensure t
+  :init
+  (yas-global-mode 1))
+
 (use-package lsp-ui
   :ensure t
   :config
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  (add-hook 'lsp-mode-hook #'yasnippet-mode))
 
 (use-package company-lsp
   :commands company-lsp)
