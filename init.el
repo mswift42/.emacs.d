@@ -113,17 +113,12 @@
 
 
 
-;; (use-package ido-ubiquitous             ; IDO everywhere, really!
-;;   :ensure t
-;;   :init (progn 
-;; 	  (require 'ido)
-;; 	  (ido-ubiquitous-mode)))
 
 (use-package flx-ido                    ; Flex matching for IDO
   :ensure t
   :init (flx-ido-mode))
 
-(use-package company               
+(use-package company
   :ensure t
   :defer t
   :init (global-company-mode)
@@ -253,22 +248,6 @@
         weather-metno-location-latitude 56
         weather-metno-location-longitude -3.4))
 
-;; (use-package dart-mode
-;;   :config
-;;   (progn
-;;     (setq dart-executable-path "/usr/lib/dart/bin/dart")
-;;     (setq dart-analysis-server-snapshot-path
-;;           "/usr/lib/dart/bin/snapshots/analysis_server.dart.snapshot")
-;;     (setq dart-enable-analysis-server t)
-;;     (add-hook 'dart-mode-hook #'electric-pair-mode)
-;;     (add-hook 'dart-mode-hook 'flycheck-mode)
-;;     (add-hook 'dart-mode-hook
-;;               (lambda ()
-;;                 (setq imenu-create-index-function #'dart-imenu-index)))))
-
-;; ;; (use-package flycheck-dart
-;; ;;   :init
-;; ;;   (add-to-list 'flycheck-checkers 'dart-dartanalyzer))
 
 ;; disable magit warning:
 (setq magit-last-seen-setup-instructions "1.4.0")
@@ -325,11 +304,6 @@
   (add-hook 'typescript-mode-hook 'paredit-everywhere-mode))
 
 
-;; ;; use agressive-indent
-;; (use-package aggressive-indent
-;;   :ensure t
-;;   :config
-;;   (global-aggressive-indent-mode nil))
 
 ;; setup org-capture
 
@@ -345,25 +319,6 @@
 
 (desktop-save-mode t)
 
-;; ;; setup rust
-;; (use-package rust-mode
-;;   :ensure t
-;;   :config
-;;   (progn
-;;     (use-package racer
-;;       :ensure t
-;;       :config
-;;       (setq racer-rust-src-path
-;;             "/home/martin/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"))
-;;     (use-package flycheck-rust
-;;       :ensure t
-;;       :config
-;;       (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
-;;     (add-hook 'rust-mode-hook #'racer-mode)
-;;     (add-hook 'racer-mode-hook #'eldoc-mode)
-;;     (add-hook 'racer-mode-hook #'company-mode)
-;;     (add-hook 'rust-mode-hook #'electric-pair-mode)
-;;     (setq rust-format-on-save t)))
 
 ;; setup rust
 (use-package rust-mode
