@@ -239,7 +239,8 @@
     (setq nrepl-hide-special-buffers t)
     (setq cider-repl-wrap-history t)
     (add-hook 'cider-repl-mode-hook #'paredit-mode)
-    (setq cider-boot-parameters "cider repl -s wait")))
+   ; (setq cider-boot-parameters "cider repl -s wait")
+    ))
 
 (use-package weather-metno
   :ensure t
@@ -391,6 +392,10 @@
   (add-to-list 'company-backends 'company-elm))
 
 (use-package frog-jump-buffer :ensure t)
+
+(require 'tab-line)
+
+(global-tab-line-mode (if (display-graphic-p) t nil))
 
 
 
