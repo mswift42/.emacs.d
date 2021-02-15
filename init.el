@@ -397,6 +397,8 @@
 
 (global-tab-line-mode (if (display-graphic-p) t nil))
 
+(global-display-line-numbers-mode)
+
 
 
 
